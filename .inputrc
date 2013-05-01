@@ -1,5 +1,5 @@
 $include /etc/inputrc
-set editing-mode vi
+#set editing-mode vi
 $if mode=vi
 set keymap vi-command
 # these are for vi-command mode
@@ -7,6 +7,9 @@ set keymap vi-command
 "\e[B": history-search-forward
 set keymap vi-insert
 # # these are for vi-insert mode
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+$else
 "\e[A": history-search-backward
 "\e[B": history-search-forward
 $endif
