@@ -3,4 +3,4 @@
 	url = git@github.com:mikeage/vimfiles
 [submodule "dircolors-solarized"]
 	path = dircolors-solarized
-	url = git@github.com:mikeage/dircolors-solarized.git
+	url = git@github.com:seebi/dircolors-solarized.git
