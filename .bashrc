@@ -235,3 +235,4 @@ lastpass() {
 }
 #alias lastpass='lpass show -c --password $(lpass ls | fzf | awk '\''{print $NF}'\'' | sed '\''s/\]//g'\'')'
 
+export PATH="$PATH:/Users/mikemi/.local/bin"
