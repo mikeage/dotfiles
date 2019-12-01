@@ -1,0 +1,10 @@
+tags
+*.un~
+cscope.files
+cscope.in.out
+cscope.out
+cscope.po.out
+src/*_version.c
+src/server/*_version.c
+__pycache__
+*.py[cdo]
