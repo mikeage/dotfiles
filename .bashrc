@@ -234,5 +234,8 @@ lastpass() {
 		fzf --ansi
 }
 #alias lastpass='lpass show -c --password $(lpass ls | fzf | awk '\''{print $NF}'\'' | sed '\''s/\]//g'\'')'
+function phone() {
+	ldapsearch -LLL -y ~/.ldappassword -x -D mikemi@synamedia.com -H "ldaps://ds-global.synamedia.com:3269" -b "OU=Regions,DC=synamedia,DC=com" "(|(name=*$**)(sAMAccountName=*$**))" telephoneNumber mobile
+} # End function phone
 
 export PATH="$PATH:/Users/mikemi/.local/bin"
