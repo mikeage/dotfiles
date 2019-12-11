@@ -235,7 +235,49 @@ lastpass() {
 }
 #alias lastpass='lpass show -c --password $(lpass ls | fzf | awk '\''{print $NF}'\'' | sed '\''s/\]//g'\'')'
 function phone() {
-	ldapsearch -LLL -y ~/.ldappassword -x -D mikemi@synamedia.com -H "ldaps://ds-global.synamedia.com:3269" -b "OU=Regions,DC=synamedia,DC=com" "(|(name=*$**)(sAMAccountName=*$**))" telephoneNumber mobile
+	ldapsearch -LLL -y ~/.ldappassword -x -D mikemi@synamedia.com -H "ldaps://ds-global.synamedia.com:3269" -b "OU=Regions,DC=synamedia,DC=com" "(|(name=*$**)(sAMAccountName=*$**))" telephoneNumber mobile | sed -e 's/+/tel:+/g'
 } # End function phone
 
+function org_chart() {
+	MANAGERS=()
+	DIRECTREPORTS=()
+
+	MATCHES=$(ldapsearch -LLL -y ~/.ldappassword -x -D mikemi@synamedia.com -H "ldaps://ds-global.synamedia.com:3269" -b "OU=Regions,DC=synamedia,DC=com" "(|(name=*$**)(sAMAccountName=*$**))" dn | grep -v '^$')
+	COUNT=$(echo "$MATCHES" | wc -l)
+	if [ $COUNT -ne 1 ]
+	then
+		echo Multiple possible matches found:
+		echo "$(echo "$MATCHES" | sed -e 's/^.*CN=\([^,]*\),.*$/\1/')"
+		return 1
+	fi
+	MANAGER="$(echo "$MATCHES" | sed -e 's/^.*CN=\([^,]*\),.*$/\1/')"
+
+	while read DIRECTREPORT; do
+		DIRECTREPORTS+=("$DIRECTREPORT")
+	done < <(ldapsearch -LLL -y ~/.ldappassword -x -D mikemi@synamedia.com -H "ldaps://ds-global.synamedia.com:3269" -b "OU=Regions,DC=synamedia,DC=com" "CN=${MANAGER}" directReports | grep directReports | sed -e 's/directReports: //' -e 's/CN=\([^,]*\)*,.*$/\1/' | sort)
+
+	while [ x"$MANAGER" != "x" ]
+	do
+		MANAGERS+=("$MANAGER")
+		MANAGER=$(ldapsearch -LLL -y ~/.ldappassword -x -D mikemi@synamedia.com -H "ldaps://ds-global.synamedia.com:3269" -b "OU=Regions,DC=synamedia,DC=com" "CN=${MANAGER}" manager | grep manager | sed -e 's/manager: //' -e 's/CN=\([^,]*\)*,.*$/\1/')
+	done
+
+	MAX_DEPTH=${#MANAGERS[@]}
+	for (( idx=$MAX_DEPTH-1 ; idx>=0 ; idx-- ))
+	do
+		printf "%*s%s" $((4 * ($MAX_DEPTH - $idx) )) '|-- ' "${MANAGERS[idx]}"
+		echo
+	done
+
+	for DIRECTREPORT in "${DIRECTREPORTS[@]}"
+	do
+		printf "%*s%s" $((4 * ($MAX_DEPTH - $idx) )) '|-- ' "$DIRECTREPORT"
+		echo
+	done 
+
+} # End function org_charg
+
+function rain() {
+	curl --silent "https://api.weather.com/v2/pws/observations/current?apiKey=6532d6454b8aa370768e63d6ba5a832e&stationId=$1&numericPrecision=decimal&format=json&units=m" | jq '.observations[0].metric.precipRate, .observations[0].metric.precipTotal'
+}
 export PATH="$PATH:/Users/mikemi/.local/bin"
