@@ -136,6 +136,13 @@ fi
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 [ -f /usr/local/share/bash-completion/bash_completion ] && . /usr/local/share/bash-completion/bash_completion
 
+if type brew &>/dev/null; then
+  HOMEBREW_PREFIX="$(brew --prefix)"
+  for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+    [[ -r "$COMPLETION" ]] && source "$COMPLETION"
+  done
+fi
+
 if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
 	source /usr/local/etc/bash_completion.d/git-prompt.sh
 fi
