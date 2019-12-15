@@ -288,3 +288,4 @@ function rain() {
 	curl --silent "https://api.weather.com/v2/pws/observations/current?apiKey=6532d6454b8aa370768e63d6ba5a832e&stationId=$1&numericPrecision=decimal&format=json&units=m" | jq '.observations[0].metric.precipRate, .observations[0].metric.precipTotal'
 }
 export PATH="$PATH:/Users/mikemi/.local/bin"
+export LC_ALL=en_US.UTF-8
