@@ -244,3 +244,5 @@ lastpass() {
 
 export PATH="$PATH:/Users/mikemi/.local/bin"
 export LC_ALL=en_US.UTF-8
+export GOPATH=$HOME/go
+export PATH="$PATH:$GOPATH/bin"
