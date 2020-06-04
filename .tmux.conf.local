@@ -275,10 +275,10 @@ tmux_conf_copy_to_os_clipboard=false
 # this is the place to override or undo settings
 
 # increase history size
-#set -g history-limit 10000
+set -g history-limit 25000
 
 # start with mouse mode enabled
-#set -g mouse on
+set -g mouse on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
@@ -294,3 +294,16 @@ tmux_conf_copy_to_os_clipboard=false
 
 # move status line to top
 #set -g status-position top
+bind | split-window -h
+# Space (or Ctrl-Space, because it's so close) for next window
+bind " " next-window
+bind C-" " next-window
+# Tab used to be last window; we'll use C-a
+bind C-a last-window
+# And Ctrl-a, a will send Ctrl-a
+bind a send-prefix -2
+# Tab switches panes (Shift Tab reverse order)
+unbind Tab
+bind Tab select-pane -t:.+
+unbind BTab
+bind BTab select-pane -t:.-
