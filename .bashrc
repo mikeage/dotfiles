@@ -135,6 +135,7 @@ fi
 ##################
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 [ -f /usr/local/share/bash-completion/bash_completion ] && . /usr/local/share/bash-completion/bash_completion
+[ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc ] && . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
 
 if type brew &>/dev/null; then
   HOMEBREW_PREFIX="$(brew --prefix)"
@@ -246,3 +247,4 @@ export PATH="$PATH:/Users/mikemi/.local/bin"
 export LC_ALL=en_US.UTF-8
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
+
