@@ -1,0 +1,38 @@
+[alias]
+	tree = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[branch]
+	autosetupmerge = true
+[color]
+	interactive = auto
+	ui = auto
+[core]
+	preloadindex = true
+	excludesfile = /Users/mikemi/.cvsignore
+[diff]
+	mnemonicprefix = true
+	tool = araxis
+[merge]
+	stat = true
+	tool = araxis
+[rerere]
+	enabled = 1
+[user]
+	email = github@mikeage.net
+	name = Mike Miller
+[mergetool "araxis"]
+	path = /Applications/Araxis Merge.app/Contents/Utilities/compare
+[difftool "araxis"]
+	path = /Applications/Araxis Merge.app/Contents/Utilities/compare
+[remote "origin"]
+	prune = true
+[fetch]
+	prune = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[rebase]
+	autosquash = true
+[pull]
+	ff = only
