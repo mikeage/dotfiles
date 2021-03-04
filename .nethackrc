@@ -1,0 +1,97 @@
+OPTIONS=align:l,catname:kitty,clicklook,race:Dwa,role:Arch,dogname:fido,hilite_pet,hilite_pile,lit_corridor,pickup_burden:Burdened,windowtype=Qt,pickup_types:?!/
+
+qt_tilewidth=23
+qt_tileheight=30
+qt_fontsize=large
+qt_compact=0
+
+AUTOPICKUP_EXCEPTION=">Amulet of Yendor$"
+AUTOPICKUP_EXCEPTION="<Amulet of Vendor named"
+AUTOPICKUP_EXCEPTION=">scroll of scare monster"
+AUTOPICKUP_EXCEPTION=">scroll called scare monster"
+AUTOPICKUP_EXCEPTION=":0¥)"
+AUTOPICKUP_EXCEPTION="> named empty"
+AUTOPICKUP_EXCEPTION="<full healing"
+AUTOPICKUP_EXCEPTION="<potion of extra healing"
+AUTOPICKUP_EXCEPTION="<potion of healing"
+AUTOPICKUP_EXCEPTION="<gain level"
+AUTOPICKUP_EXCEPTION="<[^| ]the "
+
+AUTOPICKUP_EXCEPTION=">a corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">b corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">c corpse[^<]*$"
+
+# lizards, but not wizards or guards or lords
+AUTOPICKUP_EXCEPTION="<lizard corpse"
+AUTOPICKUP_EXCEPTION=">[^r]d corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">[^a]rd corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">[^z]ard corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">[^l]izard corpse[^<]*$"
+
+#floating eye corpse
+AUTOPICKUP_EXCEPTION="<floating eye corpse"
+AUTOPICKUP_EXCEPTION=">[^y]e corpse[^<]*$"
+
+AUTOPICKUP_EXCEPTION=">f corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">g corpse[^<]*$"
+
+# wraiths, but not Ixoth or Death
+AUTOPICKUP_EXCEPTION="<wraith corpse"
+AUTOPICKUP_EXCEPTION=">[^t]h corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">[^i]th corpse[^<]*$"
+
+AUTOPICKUP_EXCEPTION=">i corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">k corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">l corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">m corpse[^<]*$"
+
+#lichen corpse, but not all that other en stuff
+AUTOPICKUP_EXCEPTION="<lichen corpse"
+AUTOPICKUP_EXCEPTION=">[^e]n corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">[^h]en corpse[^<]*$"
+
+AUTOPICKUP_EXCEPTION=">o corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">p corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">r corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">s corpse[^<]*$"
+
+# newt
+AUTOPICKUP_EXCEPTION="<newt corpse"
+AUTOPICKUP_EXCEPTION=">[^w]t corpse[^<]*$"
+
+AUTOPICKUP_EXCEPTION=">u corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">v corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">x corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">y corpse[^<]*$"
+AUTOPICKUP_EXCEPTION=">' corpse[^<]*$"
+
+AUTOPICKUP_EXCEPTION="<wand of wishing"
+AUTOPICKUP_EXCEPTION="<wand called wish"
+AUTOPICKUP_EXCEPTION="<wand of create monster"
+AUTOPICKUP_EXCEPTION="<wand of teleportation"
+AUTOPICKUP_EXCEPTION="<wand called tele"
+# AUTOPICKUP_EXCEPTION="<wand of polymorph"
+# AUTOPICKUP_EXCEPTION="<wand called poly"
+AUTOPICKUP_EXCEPTION="<wand of fire"
+AUTOPICKUP_EXCEPTION="<wand of lightning"
+AUTOPICKUP_EXCEPTION="<wand of death"
+# # Cold is used for Juiblex swamp, etc.
+# AUTOPICKUP_EXCEPTION=">wand of cold[^<]*$"
+AUTOPICKUP_EXCEPTION="<magic marker"
+AUTOPICKUP_EXCEPTION="< lamp"
+AUTOPICKUP_EXCEPTION="> oil lamp [^<]*$"
+AUTOPICKUP_EXCEPTION="> lamp called oil[^<]*$"
+AUTOPICKUP_EXCEPTION="<amulet of life saving"
+AUTOPICKUP_EXCEPTION="<amulet called life"
+AUTOPICKUP_EXCEPTION="<athame"
+
+AUTOPICKUP_EXCEPTION="> loadstone[^<]*$"
+AUTOPICKUP_EXCEPTION="<stone called luck"
+AUTOPICKUP_EXCEPTION="< luckstone"
+# AUTOPICKUP_EXCEPTION="< touchstone"
+AUTOPICKUP_EXCEPTION="> rock[^<]*$"
+
+# #blind: glass/gems show up as gem, all else as stone.
+AUTOPICKUP_EXCEPTION="> stone[^<]*$"
+
+

@@ -8,3 +8,5 @@ src/*_version.c
 src/server/*_version.c
 __pycache__
 *.py[cdo]
+.DS_Store
+*.swp
