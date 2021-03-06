@@ -23,6 +23,10 @@ brew "axel"
 brew "bash"
 # Programmable completion for Bash 4.2+
 brew "bash-completion@2"
+# Development kit for the Java programming language
+brew "openjdk"
+# Remove large files or passwords from Git history like git-filter-branch
+brew "bfg"
 # Platform built on V8 to build network applications
 brew "node"
 # Secure and free password manager for all of your devices
@@ -67,6 +71,16 @@ brew "gnuplot"
 brew "go"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# Development framework for multimedia applications
+brew "gstreamer"
+# GStreamer plugins for Libav (a fork of FFmpeg)
+brew "gst-libav"
+# GStreamer plugins less supported, not fully tested
+brew "gst-plugins-bad"
+# GStreamer plugins (well-supported, under the LGPL)
+brew "gst-plugins-good"
+# Library for constructing graphs of media-handling components
+brew "gst-plugins-ugly"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
 # Command-line interface for Jfrog Artifactory and Bintray
@@ -75,8 +89,6 @@ brew "jfrog-cli"
 brew "jq"
 # Message broker implementing the MQTT protocol
 brew "mosquitto"
-# DNS benchmark utility
-brew "namebench"
 # NCurses Disk Usage
 brew "ncdu"
 # Utility for managing network connections
@@ -87,8 +99,6 @@ brew "nmap"
 brew "node@10"
 # Platform built on V8 to build network applications
 brew "node@12"
-# Development kit for the Java programming language
-brew "openjdk"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
 # Tool for creating identical machine images for multiple platforms
@@ -139,6 +149,10 @@ brew "mongodb/brew/mongodb-community"
 # The official CLI for Amazon EKS
 brew "weaveworks/tap/eksctl"
 cask "adoptopenjdk"
+# Menu bar tool to limit maximum charging percentage
+cask "aldente"
+# Desktop client for Android Messages
+cask "android-messages"
 # Android SDK component
 cask "android-platform-tools"
 cask "araxis-merge"
@@ -152,6 +166,8 @@ cask "bettertouchtool"
 cask "bitwarden"
 # E-books management software
 cask "calibre"
+# Tool to show live information about the batteries in various devices
+cask "coconutbattery"
 # Tool to run Windows software
 cask "crossover"
 # Browser for SQLite databases
