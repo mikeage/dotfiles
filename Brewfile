@@ -49,6 +49,8 @@ brew "ctags"
 brew "dive"
 # Convert text between DOS, UNIX, and Mac formats
 brew "dos2unix"
+# AST-based pattern checker for JavaScript
+brew "eslint"
 # Perl lib for reading and writing EXIF metadata
 brew "exiftool"
 # Test various flash cards
@@ -101,6 +103,8 @@ brew "node@10"
 brew "node@12"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
+# 7-Zip (high compression file archiver) implementation
+brew "p7zip"
 # Tool for creating identical machine images for multiple platforms
 brew "packer"
 # Check coding standards in PHP, JavaScript and CSS
@@ -127,6 +131,8 @@ brew "ruby"
 brew "sshfs"
 # User interface to the TELNET protocol
 brew "telnet"
+# Granddaddy of HTML tools, with support for modern standards
+brew "tidy-html5"
 # Terminal multiplexer
 brew "tmux"
 # Lightweight BitTorrent client
@@ -197,6 +203,10 @@ cask "telegram"
 cask "transmission-remote-gui"
 # Management tool for Unity
 cask "unity-hub"
+# Development environment
+cask "vagrant"
+# Free and open-source hosted hypervisor for x86 virtualization
+cask "virtualbox"
 # Multimedia player
 cask "vlc"
 # Desktop client for WhatsApp
