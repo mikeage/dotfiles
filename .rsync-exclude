@@ -28,6 +28,7 @@
 **/Library/Logs
 **/Library/Mail
 **/Library/com.apple.nsurlsessiond
+**/VirtualBox VMs
 **/__pycache__
 **/node_modules
 **/src/eflow-backup
