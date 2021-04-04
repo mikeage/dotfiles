@@ -248,3 +248,6 @@ export LC_ALL=en_US.UTF-8
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
 export PATH="/usr/local/sbin:$PATH"
+# Add .NET Core SDK tools
+export PATH="$PATH:/Users/mikemi/.dotnet/tools"
+export DOTNET_ROOT="/usr/local/opt/dotnet/libexec"
