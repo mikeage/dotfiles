@@ -9,6 +9,7 @@ tap "homebrew/services"
 tap "hudochenkov/sshpass"
 tap "mongodb/brew"
 tap "weaveworks/tap"
+tap "wswenyue/apkparser"
 # Automate deployment, configuration, and upgrading
 brew "ansible"
 # Record and share terminal sessions
@@ -156,6 +157,8 @@ brew "hudochenkov/sshpass/sshpass"
 brew "mongodb/brew/mongodb-community"
 # The official CLI for Amazon EKS
 brew "weaveworks/tap/eksctl"
+# Android apk file parsing tool
+brew "wswenyue/apkparser/apkparser"
 cask "adoptopenjdk"
 # Menu bar tool to limit maximum charging percentage
 cask "aldente"
