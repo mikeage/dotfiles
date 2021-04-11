@@ -70,6 +70,8 @@ brew "git-lfs"
 brew "gnu-sed"
 # GNU version of the tar archiving utility
 brew "gnu-tar"
+# Framework for layout and rendering of i18n text
+brew "pango"
 # Command-driven, interactive function plotting
 brew "gnuplot"
 # Open source programming language to build simple/reliable/efficient software
@@ -78,10 +80,14 @@ brew "go"
 brew "graphviz"
 # Development framework for multimedia applications
 brew "gstreamer"
+# GStreamer plugins (well-supported, basic set)
+brew "gst-plugins-base"
 # GStreamer plugins for Libav (a fork of FFmpeg)
 brew "gst-libav"
 # GStreamer plugins less supported, not fully tested
 brew "gst-plugins-bad"
+# Toolkit for creating graphical user interfaces
+brew "gtk+3"
 # GStreamer plugins (well-supported, under the LGPL)
 brew "gst-plugins-good"
 # Library for constructing graphs of media-handling components
@@ -92,6 +98,8 @@ brew "imagemagick"
 brew "jfrog-cli"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Provides library functionality for FIDO U2F & FIDO 2.0, including USB
+brew "libfido2"
 # Message broker implementing the MQTT protocol
 brew "mosquitto"
 # NCurses Disk Usage
@@ -118,6 +126,8 @@ brew "pipx"
 brew "pssh"
 # Show ps output as a tree
 brew "pstree"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.8"
 # Tools for and transforming and inspecting PDF files
 brew "qpdf"
 # Cross-platform application and UI framework
