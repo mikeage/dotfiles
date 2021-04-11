@@ -158,6 +158,8 @@ brew "vim"
 brew "watch"
 # Internet file retriever
 brew "wget"
+# Linter for YAML files
+brew "yamllint"
 # Download YouTube videos from the command-line
 brew "youtube-dl"
 # Extract, view, and test RAR archives
