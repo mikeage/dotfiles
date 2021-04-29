@@ -42,6 +42,8 @@ brew "pkg-config"
 brew "certbot"
 # Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
 brew "clang-format"
+# Cross-platform make
+brew "cmake"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Tool for browsing source code
