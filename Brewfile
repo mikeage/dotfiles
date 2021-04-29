@@ -12,6 +12,8 @@ tap "weaveworks/tap"
 tap "wswenyue/apkparser"
 # Automate deployment, configuration, and upgrading
 brew "ansible"
+# Tool for reverse engineering 3rd party, closed, binary Android apps
+brew "apktool"
 # Record and share terminal sessions
 brew "asciinema"
 # Tool for generating GNU Standards-compliant Makefiles
