@@ -16,6 +16,8 @@ brew "ansible"
 brew "apktool"
 # Record and share terminal sessions
 brew "asciinema"
+# Automatic configure script builder
+brew "autoconf"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
 # Official Amazon AWS command-line interface
@@ -98,12 +100,14 @@ brew "gst-plugins-good"
 brew "gst-plugins-ugly"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
-# Command-line interface for Jfrog Artifactory and Bintray
+# Command-line interface for JFrog products
 brew "jfrog-cli"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
 brew "libfido2"
+# Use Realtek DVB-T dongles as a cheap SDR
+brew "librtlsdr"
 # Message broker implementing the MQTT protocol
 brew "mosquitto"
 # NCurses Disk Usage
@@ -142,10 +146,12 @@ brew "reattach-to-user-namespace"
 brew "rpm2cpio"
 # Utility that provides fast incremental file transfer
 brew "rsync"
+# Program to decode radio transmissions from devices
+brew "rtl_433"
 # Powerful, clean, object-oriented scripting language
 brew "ruby"
-# File system client based on SSH File Transfer Protocol
-brew "sshfs"
+# Display and control your Android device
+brew "scrcpy"
 # User interface to the TELNET protocol
 brew "telnet"
 # Granddaddy of HTML tools, with support for modern standards
@@ -175,6 +181,7 @@ brew "mongodb/brew/mongodb-community"
 brew "weaveworks/tap/eksctl"
 # Android apk file parsing tool
 brew "wswenyue/apkparser/apkparser"
+# JDK from the Java User Group (JUG)
 cask "adoptopenjdk"
 # Menu bar tool to limit maximum charging percentage
 cask "aldente"
@@ -183,6 +190,8 @@ cask "android-messages"
 # Android SDK component
 cask "android-platform-tools"
 cask "araxis-merge"
+# Multi-track audio editor and recorder
+cask "audacity"
 # Utility to set a Retina display to custom resolutions
 cask "avibrazil-rdm"
 # Tool to flash OS images to SD cards & USB drives
@@ -205,6 +214,8 @@ cask "discord"
 cask "docker"
 # Web browser
 cask "google-chrome"
+# Software-defined radio receiver powered by GNU Radio and Qt
+cask "gqrx"
 # Desktop shield and keystroke interceptor
 cask "keyboard-cleaner"
 # File system integration
