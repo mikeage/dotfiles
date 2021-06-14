@@ -30,6 +30,7 @@
 **/Library/com.apple.nsurlsessiond
 **/VirtualBox VMs
 **/__pycache__
+**/casesensitive.sparsebundle
 **/node_modules
 **/src/eflow-backup
 **/src/sluffoff
