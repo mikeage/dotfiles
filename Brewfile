@@ -100,6 +100,8 @@ brew "gst-plugins-good"
 brew "gst-plugins-ugly"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
+# Offline radio signal analyser
+brew "inspectrum"
 # Command-line interface for JFrog products
 brew "jfrog-cli"
 # Lightweight and flexible command-line JSON processor
@@ -108,6 +110,8 @@ brew "jq"
 brew "libfido2"
 # Use Realtek DVB-T dongles as a cheap SDR
 brew "librtlsdr"
+# Collection of tools that nobody wrote when UNIX was young
+brew "moreutils"
 # Message broker implementing the MQTT protocol
 brew "mosquitto"
 # NCurses Disk Usage
@@ -116,8 +120,6 @@ brew "ncdu"
 brew "netcat"
 # Port scanning utility for large networks
 brew "nmap"
-# Platform built on V8 to build network applications
-brew "node@10"
 # Platform built on V8 to build network applications
 brew "node@12"
 # OpenBSD freely-licensed SSH connectivity tools
