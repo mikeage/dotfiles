@@ -14,6 +14,8 @@ tap "wswenyue/apkparser"
 brew "ansible"
 # Tool for reverse engineering 3rd party, closed, binary Android apps
 brew "apktool"
+# Download with resuming and segmented downloading
+brew "aria2"
 # Record and share terminal sessions
 brew "asciinema"
 # Automatic configure script builder
@@ -56,8 +58,6 @@ brew "ctags"
 brew "dive"
 # Convert text between DOS, UNIX, and Mac formats
 brew "dos2unix"
-# .NET Core
-brew "dotnet"
 # AST-based pattern checker for JavaScript
 brew "eslint"
 # Perl lib for reading and writing EXIF metadata
@@ -154,6 +154,12 @@ brew "rtl_433"
 brew "ruby"
 # Display and control your Android device
 brew "scrcpy"
+# Autoformat shell script source code
+brew "shfmt"
+# Command-line interface for https://speedtest.net bandwidth tests
+brew "speedtest-cli"
+# Statistics from the command-line
+brew "st"
 # User interface to the TELNET protocol
 brew "telnet"
 # Granddaddy of HTML tools, with support for modern standards
@@ -214,6 +220,8 @@ cask "db-browser-for-sqlite"
 cask "discord"
 # App to build and share containerized applications and microservices
 cask "docker"
+# Developer platform
+cask "dotnet-sdk-preview"
 # Web browser
 cask "google-chrome"
 # Software-defined radio receiver powered by GNU Radio and Qt
