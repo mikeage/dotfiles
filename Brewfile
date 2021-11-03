@@ -98,6 +98,8 @@ brew "gtk+3"
 brew "gst-plugins-good"
 # Library for constructing graphs of media-handling components
 brew "gst-plugins-ugly"
+# Improved top (interactive process viewer)
+brew "htop"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
 # Offline radio signal analyser
@@ -197,6 +199,7 @@ cask "aldente"
 cask "android-messages"
 # Android SDK component
 cask "android-platform-tools"
+# Two and three-way file comparison, merging and folder synchronization
 cask "araxis-merge"
 # Multi-track audio editor and recorder
 cask "audacity"
@@ -240,6 +243,7 @@ cask "slack"
 cask "spotify"
 # Video game digital distribution service
 cask "steam"
+cask "steamcmd"
 # Messaging app with a focus on speed and security
 cask "telegram"
 cask "transmission-remote-gui"
