@@ -12,6 +12,8 @@ tap "weaveworks/tap"
 tap "wswenyue/apkparser"
 # Automate deployment, configuration, and upgrading
 brew "ansible"
+# Development kit for the Java programming language
+brew "openjdk"
 # Tool for reverse engineering 3rd party, closed, binary Android apps
 brew "apktool"
 # Download with resuming and segmented downloading
@@ -30,8 +32,6 @@ brew "axel"
 brew "bash"
 # Programmable completion for Bash 4.2+
 brew "bash-completion@2"
-# Development kit for the Java programming language
-brew "openjdk"
 # Remove large files or passwords from Git history like git-filter-branch
 brew "bfg"
 # Platform built on V8 to build network applications
@@ -54,6 +54,8 @@ brew "coreutils"
 brew "cscope"
 # Reimplementation of ctags(1)
 brew "ctags"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
 # Tool for exploring each layer in a docker image
 brew "dive"
 # Convert text between DOS, UNIX, and Mac formats
@@ -64,6 +66,8 @@ brew "eslint"
 brew "exiftool"
 # Test various flash cards
 brew "f3"
+# Generic library support script
+brew "libtool"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
 # Command-line fuzzy finder written in Go
@@ -102,20 +106,30 @@ brew "gst-plugins-ugly"
 brew "htop"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
+# GNU utilities for networking
+brew "inetutils"
 # Offline radio signal analyser
 brew "inspectrum"
 # Command-line interface for JFrog products
 brew "jfrog-cli"
+# Extract Digicam setting info from EXIF JPEG headers
+brew "jhead"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Sophisticated file transfer program
+brew "lftp"
 # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
 brew "libfido2"
+# Library for USB device access
+brew "libusb"
 # Use Realtek DVB-T dongles as a cheap SDR
 brew "librtlsdr"
+# HTTP client/server library for GNOME
+brew "libsoup"
 # Collection of tools that nobody wrote when UNIX was young
 brew "moreutils"
 # Message broker implementing the MQTT protocol
-brew "mosquitto"
+brew "mosquitto", restart_service: true
 # NCurses Disk Usage
 brew "ncdu"
 # Utility for managing network connections
@@ -130,6 +144,8 @@ brew "openssh"
 brew "p7zip"
 # Tool for creating identical machine images for multiple platforms
 brew "packer"
+# Granddaddy of HTML tools, with support for modern standards
+brew "tidy-html5"
 # Check coding standards in PHP, JavaScript and CSS
 brew "php-code-sniffer"
 # Execute binaries from Python packages in isolated environments
@@ -163,13 +179,11 @@ brew "speedtest-cli"
 # Statistics from the command-line
 brew "st"
 # User interface to the TELNET protocol
-brew "telnet"
-# Granddaddy of HTML tools, with support for modern standards
-brew "tidy-html5"
+brew "telnet", link: false
 # Terminal multiplexer
 brew "tmux"
 # Lightweight BitTorrent client
-brew "transmission-cli"
+brew "transmission-cli", restart_service: true
 # URL extractor/launcher
 brew "urlview"
 # Vi 'workalike' with many additional features
@@ -224,7 +238,7 @@ cask "discord"
 # App to build and share containerized applications and microservices
 cask "docker"
 # Developer platform
-cask "dotnet-sdk-preview"
+cask "dotnet-sdk"
 # Web browser
 cask "google-chrome"
 # Software-defined radio receiver powered by GNU Radio and Qt
@@ -251,10 +265,12 @@ cask "transmission-remote-gui"
 cask "unity-hub"
 # Development environment
 cask "vagrant"
-# Free and open-source hosted hypervisor for x86 virtualization
+# Virtualizer for x86 hardware
 cask "virtualbox"
 # Multimedia player
 cask "vlc"
+# Remote desktop application focusing on security
+cask "vnc-viewer"
 # Desktop client for WhatsApp
 cask "whatsapp"
 # Network protocol analyzer
