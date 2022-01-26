@@ -72,6 +72,8 @@ brew "libtool"
 brew "ffmpeg"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# GNU awk utility
+brew "gawk"
 # Distributed revision control system
 brew "git"
 # Git extension for versioning large files
@@ -129,7 +131,7 @@ brew "libsoup"
 # Collection of tools that nobody wrote when UNIX was young
 brew "moreutils"
 # Message broker implementing the MQTT protocol
-brew "mosquitto", restart_service: true
+brew "mosquitto"
 # NCurses Disk Usage
 brew "ncdu"
 # Utility for managing network connections
@@ -180,10 +182,12 @@ brew "speedtest-cli"
 brew "st"
 # User interface to the TELNET protocol
 brew "telnet", link: false
+# Tool to build, change, and version infrastructure
+brew "terraform"
 # Terminal multiplexer
 brew "tmux"
 # Lightweight BitTorrent client
-brew "transmission-cli", restart_service: true
+brew "transmission-cli"
 # URL extractor/launcher
 brew "urlview"
 # Vi 'workalike' with many additional features
@@ -261,6 +265,8 @@ cask "steamcmd"
 # Messaging app with a focus on speed and security
 cask "telegram"
 cask "transmission-remote-gui"
+# 3D printer and slicing GUI
+cask "ultimaker-cura"
 # Management tool for Unity
 cask "unity-hub"
 # Development environment
