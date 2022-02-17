@@ -150,6 +150,8 @@ brew "packer"
 brew "tidy-html5"
 # Check coding standards in PHP, JavaScript and CSS
 brew "php-code-sniffer"
+# Minimal dumb-terminal emulation program
+brew "picocom"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
 # Parallel versions of OpenSSH and related tools
