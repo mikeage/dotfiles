@@ -10,6 +10,8 @@ tap "hudochenkov/sshpass"
 tap "mongodb/brew"
 tap "weaveworks/tap"
 tap "wswenyue/apkparser"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
 # Automate deployment, configuration, and upgrading
 brew "ansible"
 # Development kit for the Java programming language
@@ -20,6 +22,8 @@ brew "apktool"
 brew "aria2"
 # Record and share terminal sessions
 brew "asciinema"
+# GNOME accessibility toolkit
+brew "atk"
 # Automatic configure script builder
 brew "autoconf"
 # Tool for generating GNU Standards-compliant Makefiles
@@ -100,6 +104,8 @@ brew "gst-libav"
 brew "gst-plugins-bad"
 # Toolkit for creating graphical user interfaces
 brew "gtk+3"
+# HTTP client/server library for GNOME
+brew "libsoup"
 # GStreamer plugins (well-supported, under the LGPL)
 brew "gst-plugins-good"
 # Library for constructing graphs of media-handling components
@@ -126,8 +132,8 @@ brew "libfido2"
 brew "libusb"
 # Use Realtek DVB-T dongles as a cheap SDR
 brew "librtlsdr"
-# HTTP client/server library for GNOME
-brew "libsoup"
+# Unified display of technical and tag data for audio/video
+brew "media-info"
 # Collection of tools that nobody wrote when UNIX was young
 brew "moreutils"
 # Message broker implementing the MQTT protocol
@@ -154,6 +160,8 @@ brew "php-code-sniffer"
 brew "picocom"
 # Execute binaries from Python packages in isolated environments
 brew "pipx"
+# Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
+brew "prettier"
 # Parallel versions of OpenSSH and related tools
 brew "pssh"
 # Show ps output as a tree
@@ -182,8 +190,6 @@ brew "shfmt"
 brew "speedtest-cli"
 # Statistics from the command-line
 brew "st"
-# User interface to the TELNET protocol
-brew "telnet", link: false
 # Tool to build, change, and version infrastructure
 brew "terraform"
 # Terminal multiplexer
@@ -231,8 +237,12 @@ cask "balenaetcher"
 cask "bettertouchtool"
 # Desktop password and login vault
 cask "bitwarden"
+# Web security testing toolkit
+cask "burp-suite"
 # E-books management software
 cask "calibre"
+# Web debugging Proxy application
+cask "charles"
 # Tool to show live information about the batteries in various devices
 cask "coconutbattery"
 # Tool to run Windows software
@@ -251,8 +261,14 @@ cask "google-chrome"
 cask "gqrx"
 # Desktop shield and keystroke interceptor
 cask "keyboard-cleaner"
+# Clipboard manager
+cask "maccy"
+# Programmable solid 3D CAD modeller
+cask "openscad"
 # File system integration
 cask "osxfuse"
+# Collaboration platform for API development
+cask "postman"
 # MongoDB management tool
 cask "robo-3t"
 # Virtual reality content platform
@@ -267,6 +283,8 @@ cask "steamcmd"
 # Messaging app with a focus on speed and security
 cask "telegram"
 cask "transmission-remote-gui"
+# Free and open-source OpenVPN client
+cask "tunnelblick"
 # 3D printer and slicing GUI
 cask "ultimaker-cura"
 # Management tool for Unity
