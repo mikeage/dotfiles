@@ -204,6 +204,8 @@ brew "vim"
 brew "watch"
 # Internet file retriever
 brew "wget"
+# Tools for the WireGuard secure network tunnel
+brew "wireguard-tools"
 # Linter for YAML files
 brew "yamllint"
 # Download YouTube videos from the command-line
@@ -263,6 +265,8 @@ cask "gqrx"
 cask "keyboard-cleaner"
 # Clipboard manager
 cask "maccy"
+# VPN client for secure internet access and private browsing
+cask "nordvpn"
 # Programmable solid 3D CAD modeller
 cask "openscad"
 # File system integration
