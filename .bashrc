@@ -143,6 +143,7 @@ if type brew &>/dev/null; then
     [[ -r "$COMPLETION" ]] && source "$COMPLETION"
   done
 fi
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
 	source /usr/local/etc/bash_completion.d/git-prompt.sh
