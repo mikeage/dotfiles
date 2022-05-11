@@ -28,6 +28,8 @@ brew "atk"
 brew "autoconf"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
+# Use AWS IAM credentials to authenticate to Kubernetes
+brew "aws-iam-authenticator"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Light UNIX download accelerator
@@ -70,6 +72,10 @@ brew "eslint"
 brew "exiftool"
 # Test various flash cards
 brew "f3"
+# ISO AAC audio encoder
+brew "faac"
+# ISO AAC audio decoder
+brew "faad2"
 # Generic library support script
 brew "libtool"
 # Play, record, convert, and stream audio and video
@@ -100,16 +106,8 @@ brew "gstreamer"
 brew "gst-plugins-base"
 # GStreamer plugins for Libav (a fork of FFmpeg)
 brew "gst-libav"
-# GStreamer plugins less supported, not fully tested
-brew "gst-plugins-bad"
 # Toolkit for creating graphical user interfaces
 brew "gtk+3"
-# HTTP client/server library for GNOME
-brew "libsoup"
-# GStreamer plugins (well-supported, under the LGPL)
-brew "gst-plugins-good"
-# Library for constructing graphs of media-handling components
-brew "gst-plugins-ugly"
 # Improved top (interactive process viewer)
 brew "htop"
 # Tools and libraries to manipulate images in many formats
@@ -128,24 +126,32 @@ brew "jq"
 brew "lftp"
 # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
 brew "libfido2"
+# GLib ICE implementation
+brew "libnice"
 # Library for USB device access
 brew "libusb"
 # Use Realtek DVB-T dongles as a cheap SDR
 brew "librtlsdr"
+# Data and connectivity library for the icecast server
+brew "libshout"
+# HTTP client/server library for GNOME
+brew "libsoup"
+# Portable SCTP userland stack
+brew "libusrsctp"
 # Unified display of technical and tag data for audio/video
 brew "media-info"
 # Collection of tools that nobody wrote when UNIX was young
 brew "moreutils"
 # Message broker implementing the MQTT protocol
 brew "mosquitto"
+# Audio compression format and tools
+brew "musepack"
 # NCurses Disk Usage
 brew "ncdu"
 # Utility for managing network connections
 brew "netcat"
 # Port scanning utility for large networks
 brew "nmap"
-# Platform built on V8 to build network applications
-brew "node@12"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
 # 7-Zip (high compression file archiver) implementation
@@ -166,8 +172,6 @@ brew "prettier"
 brew "pssh"
 # Show ps output as a tree
 brew "pstree"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.8"
 # Tools for and transforming and inspecting PDF files
 brew "qpdf"
 # Cross-platform application and UI framework
@@ -188,8 +192,12 @@ brew "scrcpy"
 brew "shfmt"
 # Command-line interface for https://speedtest.net bandwidth tests
 brew "speedtest-cli"
+# Implementation of the Secure Real-time Transport Protocol
+brew "srtp"
 # Statistics from the command-line
 brew "st"
+# Audio metadata library
+brew "taglib"
 # Tool to build, change, and version infrastructure
 brew "terraform"
 # Terminal multiplexer
@@ -215,8 +223,6 @@ brew "carlocab/personal/unrar"
 brew "hudochenkov/sshpass/sshpass"
 # High-performance, schema-free, document-oriented database
 brew "mongodb/brew/mongodb-community"
-# The official CLI for Amazon EKS
-brew "weaveworks/tap/eksctl"
 # Android apk file parsing tool
 brew "wswenyue/apkparser/apkparser"
 # JDK from the Java User Group (JUG)
@@ -227,6 +233,8 @@ cask "aldente"
 cask "android-messages"
 # Android SDK component
 cask "android-platform-tools"
+# Tools for building Android applications
+cask "android-studio"
 # Two and three-way file comparison, merging and folder synchronization
 cask "araxis-merge"
 # Multi-track audio editor and recorder
@@ -253,6 +261,8 @@ cask "crossover"
 cask "db-browser-for-sqlite"
 # Voice and text chat software
 cask "discord"
+# Disk usage utility
+cask "disk-inventory-x"
 # App to build and share containerized applications and microservices
 cask "docker"
 # Developer platform
