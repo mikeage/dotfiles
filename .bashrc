@@ -252,6 +252,16 @@ if [[ -f $BASHRC_DIR/.bashrc.local ]]; then
 	source $BASHRC_DIR/.bashrc.local
 fi
 
+listening() {
+	if [ $# -eq 0 ]; then
+		sudo lsof -iTCP -sTCP:LISTEN -n -P
+	elif [ $# -eq 1 ]; then
+		sudo lsof -iTCP -sTCP:LISTEN -n -P | grep -i --color $1
+	else
+		echo "Usage: listening [pattern]"
+	fi
+}
+
 export PATH="$PATH:/Users/mikemi/.local/bin"
 export LC_ALL=en_US.UTF-8
 export GOPATH=$HOME/go
