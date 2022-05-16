@@ -66,6 +66,8 @@ brew "curl"
 brew "dive"
 # Convert text between DOS, UNIX, and Mac formats
 brew "dos2unix"
+# LLVM bytecode to JavaScript compiler
+brew "emscripten"
 # AST-based pattern checker for JavaScript
 brew "eslint"
 # Perl lib for reading and writing EXIF metadata
