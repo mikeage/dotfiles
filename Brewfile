@@ -62,6 +62,8 @@ brew "cscope"
 brew "ctags"
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
+# Tools to work with Android .dex and Java .class files
+brew "dex2jar"
 # Tool for exploring each layer in a docker image
 brew "dive"
 # Convert text between DOS, UNIX, and Mac formats
@@ -269,10 +271,14 @@ cask "disk-inventory-x"
 cask "docker"
 # Developer platform
 cask "dotnet-sdk"
+# Software reverse engineering (SRE) suite of tools
+cask "ghidra"
 # Web browser
 cask "google-chrome"
 # Software-defined radio receiver powered by GNU Radio and Qt
 cask "gqrx"
+# Standalone Java Decompiler GUI
+cask "jd-gui"
 # Desktop shield and keystroke interceptor
 cask "keyboard-cleaner"
 # Clipboard manager
