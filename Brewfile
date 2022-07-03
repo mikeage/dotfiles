@@ -120,6 +120,8 @@ brew "imagemagick"
 brew "inetutils"
 # Offline radio signal analyser
 brew "inspectrum"
+# Dex to Java decompiler
+brew "jadx"
 # Command-line interface for JFrog products
 brew "jfrog-cli"
 # Extract Digicam setting info from EXIF JPEG headers
@@ -130,6 +132,8 @@ brew "jq"
 brew "lftp"
 # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
 brew "libfido2"
+# Implementation of the file(1) command
+brew "libmagic"
 # GLib ICE implementation
 brew "libnice"
 # Library for USB device access
@@ -148,6 +152,8 @@ brew "media-info"
 brew "moreutils"
 # Message broker implementing the MQTT protocol
 brew "mosquitto"
+# Multiple Repository management tool
+brew "mr"
 # Audio compression format and tools
 brew "musepack"
 # NCurses Disk Usage
@@ -212,6 +218,8 @@ brew "transmission-cli"
 brew "urlview"
 # Vi 'workalike' with many additional features
 brew "vim"
+# Web Assembly Binary Toolkit
+brew "wabt"
 # Executes a program periodically, showing output fullscreen
 brew "watch"
 # Internet file retriever
@@ -302,6 +310,8 @@ cask "spotify"
 # Video game digital distribution service
 cask "steam"
 cask "steamcmd"
+# Kart racing game
+cask "supertuxkart"
 # Messaging app with a focus on speed and security
 cask "telegram"
 cask "transmission-remote-gui"
