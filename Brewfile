@@ -14,6 +14,8 @@ tap "wswenyue/apkparser"
 brew "python@3.10"
 # Automate deployment, configuration, and upgrading
 brew "ansible"
+# Manage compile and link flags for libraries
+brew "pkg-config"
 # Development kit for the Java programming language
 brew "openjdk"
 # Tool for reverse engineering 3rd party, closed, binary Android apps
@@ -46,8 +48,6 @@ brew "node"
 brew "bitwarden-cli"
 # Collection of portable C++ source libraries
 brew "boost"
-# Manage compile and link flags for libraries
-brew "pkg-config"
 # Tool to obtain certs from Let's Encrypt and autoenable HTTPS
 brew "certbot"
 # Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
@@ -66,6 +66,8 @@ brew "curl"
 brew "dex2jar"
 # Tool for exploring each layer in a docker image
 brew "dive"
+# Command-line DNS client
+brew "dog"
 # Convert text between DOS, UNIX, and Mac formats
 brew "dos2unix"
 # LLVM bytecode to JavaScript compiler
@@ -96,6 +98,10 @@ brew "git-lfs"
 brew "gnu-sed"
 # GNU version of the tar archiving utility
 brew "gnu-tar"
+# Library for USB device access
+brew "libusb"
+# GNU Pretty Good Privacy (PGP) package
+brew "gnupg"
 # Framework for layout and rendering of i18n text
 brew "pango"
 # Command-driven, interactive function plotting
@@ -120,6 +126,8 @@ brew "imagemagick"
 brew "inetutils"
 # Offline radio signal analyser
 brew "inspectrum"
+# Modular IRC client
+brew "irssi"
 # Dex to Java decompiler
 brew "jadx"
 # Command-line interface for JFrog products
@@ -136,8 +144,6 @@ brew "libfido2"
 brew "libmagic"
 # GLib ICE implementation
 brew "libnice"
-# Library for USB device access
-brew "libusb"
 # Use Realtek DVB-T dongles as a cheap SDR
 brew "librtlsdr"
 # Data and connectivity library for the icecast server
@@ -172,6 +178,8 @@ brew "packer"
 brew "tidy-html5"
 # Check coding standards in PHP, JavaScript and CSS
 brew "php-code-sniffer"
+# General-purpose scripting language
+brew "php@7.4"
 # Minimal dumb-terminal emulation program
 brew "picocom"
 # Execute binaries from Python packages in isolated environments
@@ -196,6 +204,8 @@ brew "rsync"
 brew "rtl_433"
 # Powerful, clean, object-oriented scripting language
 brew "ruby"
+# Safe, concurrent, practical language
+brew "rust"
 # Display and control your Android device
 brew "scrcpy"
 # Autoformat shell script source code
@@ -230,13 +240,13 @@ brew "wireguard-tools"
 brew "yamllint"
 # Download YouTube videos from the command-line
 brew "youtube-dl"
-# Extract, view, and test RAR archives
-brew "carlocab/personal/unrar"
 brew "hudochenkov/sshpass/sshpass"
 # High-performance, schema-free, document-oriented database
 brew "mongodb/brew/mongodb-community"
 # Android apk file parsing tool
 brew "wswenyue/apkparser/apkparser"
+# View, print, and comment on PDF documents
+cask "adobe-acrobat-reader"
 # JDK from the Java User Group (JUG)
 cask "adoptopenjdk"
 # Menu bar tool to limit maximum charging percentage
@@ -267,6 +277,8 @@ cask "calibre"
 cask "charles"
 # Tool to show live information about the batteries in various devices
 cask "coconutbattery"
+# Metadata editor for digital comics
+cask "comictagger"
 # Tool to run Windows software
 cask "crossover"
 # Browser for SQLite databases
@@ -287,10 +299,16 @@ cask "google-chrome"
 cask "gqrx"
 # Standalone Java Decompiler GUI
 cask "jd-gui"
+# Jellyfin desktop client
+cask "jellyfin-media-player"
 # Desktop shield and keystroke interceptor
 cask "keyboard-cleaner"
+# Free and open-source media player
+cask "kodi"
 # Clipboard manager
 cask "maccy"
+# Desktop sync client for Nextcloud software products
+cask "nextcloud"
 # VPN client for secure internet access and private browsing
 cask "nordvpn"
 # Programmable solid 3D CAD modeller
@@ -299,6 +317,8 @@ cask "openscad"
 cask "osxfuse"
 # Collaboration platform for API development
 cask "postman"
+# Archive manager for data compression and backups
+cask "rar"
 # MongoDB management tool
 cask "robo-3t"
 # Virtual reality content platform
@@ -314,6 +334,8 @@ cask "steamcmd"
 cask "supertuxkart"
 # Messaging app with a focus on speed and security
 cask "telegram"
+# JDK from the Eclipse Foundation (Adoptium)
+cask "temurin"
 cask "transmission-remote-gui"
 # Free and open-source OpenVPN client
 cask "tunnelblick"
@@ -321,10 +343,10 @@ cask "tunnelblick"
 cask "ultimaker-cura"
 # Management tool for Unity
 cask "unity-hub"
-# Development environment
-cask "vagrant"
 # Virtualizer for x86 hardware
 cask "virtualbox"
+# Open-source code editor
+cask "visual-studio-code"
 # Multimedia player
 cask "vlc"
 # Remote desktop application focusing on security
