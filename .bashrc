@@ -60,8 +60,15 @@ export EDITOR=vim
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
 
-# Immediately add a trailing slash when autocompleting symlinks to directories
-bind "set mark-symlinked-directories on"
+#
+if [[ "$(set -o | grep 'emacs\|\bvi\b' | cut -f2 | tr '\n' ':')" != 'off:off:' ]]; then
+	# Immediately add a trailing slash when autocompleting symlinks to directories
+	bind "set mark-symlinked-directories on"
+
+	# Enable history expansion with space
+	# E.g. typing !!<space> will replace the !! with your last command
+	bind Space:magic-space
+fi
 
 ###################
 # History options #
@@ -69,9 +76,6 @@ bind "set mark-symlinked-directories on"
 export HISTSIZE=100000000
 shopt -s histappend
 
-# Enable history expansion with space
-# E.g. typing !!<space> will replace the !! with your last command
-bind Space:magic-space
 
 #export PROMPT_COMMAND='history -a ; history -n'
 export PROMPT_COMMAND='history -a'
@@ -162,17 +166,19 @@ __local_git_ps1 ()
 	fi
 }
 
-command -v __git_ps1 > /dev/null 2>&1 && GITPS1='$(__git_ps1 " {%s}")' || GITPS1='$(__local_git_ps1 " {%s}")'
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
-GIT_PS1_SHOWSTASHSTATE=1
-GIT_PS1_SHOWUPSTREAM="verbose"
-GREEN="$(tput setaf 2)"
-RED="$(tput setaf 1)"
-CYAN="$(tput setaf 6)"
-GRAY="$(tput setaf 7)"
-# export PS1="\`_ret=\$?; if [ \$_ret = 0 ]; then echo -en \"${GREEN}\"; else echo -en \"${RED}\"; fi; printf "%3d" \$_ret\` ${CYAN}\u@\h ${RED}\w${CYAN}${GITPS1}\\\$${GRAY} \[\`printf "\\\e[?1004l"\`\]"
-export PS1='$(_ret=$?; if [ $_ret = 0 ]; then echo -en "\[${GREEN}\]"; else echo -en "\[${RED}\]"; fi; printf "%3d" $_ret)\[${CYAN}\] \u@\h \[${RED}\]\w\[${CYAN}\]'${GITPS1}'\$\[${GRAY}\] '
+if [[ "$(set -o | grep 'emacs\|\bvi\b' | cut -f2 | tr '\n' ':')" != 'off:off:' ]]; then
+	command -v __git_ps1 > /dev/null 2>&1 && GITPS1='$(__git_ps1 " {%s}")' || GITPS1='$(__local_git_ps1 " {%s}")'
+	GIT_PS1_SHOWDIRTYSTATE=1
+	GIT_PS1_SHOWUNTRACKEDFILES=1
+	GIT_PS1_SHOWSTASHSTATE=1
+	GIT_PS1_SHOWUPSTREAM="verbose"
+	GREEN="$(tput setaf 2)"
+	RED="$(tput setaf 1)"
+	CYAN="$(tput setaf 6)"
+	GRAY="$(tput setaf 7)"
+	# export PS1="\`_ret=\$?; if [ \$_ret = 0 ]; then echo -en \"${GREEN}\"; else echo -en \"${RED}\"; fi; printf "%3d" \$_ret\` ${CYAN}\u@\h ${RED}\w${CYAN}${GITPS1}\\\$${GRAY} \[\`printf "\\\e[?1004l"\`\]"
+	export PS1='$(_ret=$?; if [ $_ret = 0 ]; then echo -en "\[${GREEN}\]"; else echo -en "\[${RED}\]"; fi; printf "%3d" $_ret)\[${CYAN}\] \u@\h \[${RED}\]\w\[${CYAN}\]'${GITPS1}'\$\[${GRAY}\] '
+fi
 
 ##############
 # tmux stuff #
@@ -215,7 +221,9 @@ else
 	BASHRC_DIR="$(dirname "$(readlink -f ${BASH_SOURCE[0]})")"
 fi
 source $BASHRC_DIR/fzf-git/functions.sh
-source $BASHRC_DIR/fzf-git/key-binding.bash
+if [[ "$(set -o | grep 'emacs\|\bvi\b' | cut -f2 | tr '\n' ':')" != 'off:off:' ]]; then
+	source $BASHRC_DIR/fzf-git/key-binding.bash
+fi
 export FZF_TMUX=1
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/.iterm2_shell_integration.bash ] && source ~/.iterm2_shell_integration.bash
