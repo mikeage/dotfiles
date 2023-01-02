@@ -38,3 +38,5 @@
 	ff = only
 [init]
 	defaultBranch = main
+[http]
+	cookiefile = /Users/mikemi/.gitcookies
