@@ -10,14 +10,8 @@ tap "hudochenkov/sshpass"
 tap "mongodb/brew"
 tap "weaveworks/tap"
 tap "wswenyue/apkparser"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
-# Automate deployment, configuration, and upgrading
-brew "ansible"
 # Manage compile and link flags for libraries
 brew "pkg-config"
-# Development kit for the Java programming language
-brew "openjdk"
 # Tool for reverse engineering 3rd party, closed, binary Android apps
 brew "apktool"
 # Download with resuming and segmented downloading
@@ -84,6 +78,8 @@ brew "faac"
 brew "faad2"
 # Generic library support script
 brew "libtool"
+# Framework for layout and rendering of i18n text
+brew "pango"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
 # Command-line fuzzy finder written in Go
@@ -102,8 +98,6 @@ brew "gnu-tar"
 brew "libusb"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
-# Framework for layout and rendering of i18n text
-brew "pango"
 # Command-driven, interactive function plotting
 brew "gnuplot"
 # Open source programming language to build simple/reliable/efficient software
@@ -178,8 +172,6 @@ brew "packer"
 brew "tidy-html5"
 # Check coding standards in PHP, JavaScript and CSS
 brew "php-code-sniffer"
-# General-purpose scripting language
-brew "php@7.4"
 # Minimal dumb-terminal emulation program
 brew "picocom"
 # Execute binaries from Python packages in isolated environments
@@ -190,10 +182,10 @@ brew "prettier"
 brew "pssh"
 # Show ps output as a tree
 brew "pstree"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.10"
 # Tools for and transforming and inspecting PDF files
 brew "qpdf"
-# Cross-platform application and UI framework
-brew "qt"
 # Reattach process (e.g., tmux) to background
 brew "reattach-to-user-namespace"
 # Tool to convert RPM package to CPIO archive
@@ -240,6 +232,8 @@ brew "wireguard-tools"
 brew "yamllint"
 # Download YouTube videos from the command-line
 brew "youtube-dl"
+# Fork of youtube-dl with additional features and fixes
+brew "yt-dlp"
 brew "hudochenkov/sshpass/sshpass"
 # High-performance, schema-free, document-oriented database
 brew "mongodb/brew/mongodb-community"
