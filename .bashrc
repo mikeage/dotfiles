@@ -220,10 +220,8 @@ then
 else
 	BASHRC_DIR="$(dirname "$(readlink -f ${BASH_SOURCE[0]})")"
 fi
-source $BASHRC_DIR/fzf-git/functions.sh
-if [[ "$(set -o | grep 'emacs\|\bvi\b' | cut -f2 | tr '\n' ':')" != 'off:off:' ]]; then
-	source $BASHRC_DIR/fzf-git/key-binding.bash
-fi
+source $BASHRC_DIR/fzf-git.sh/fzf-git.sh
+
 export FZF_TMUX=1
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/.iterm2_shell_integration.bash ] && source ~/.iterm2_shell_integration.bash
