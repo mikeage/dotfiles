@@ -7,3 +7,6 @@
 [submodule "fzf-git.sh"]
 	path = fzf-git.sh
 	url = https://github.com/junegunn/fzf-git.sh.git
+[submodule "alacritty-theme"]
+	path = alacritty-theme
+	url = https://github.com/alacritty/alacritty-theme.git
