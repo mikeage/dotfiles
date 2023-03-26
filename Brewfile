@@ -1,4 +1,5 @@
 tap "adoptopenjdk/openjdk"
+tap "borgbackup/tap"
 tap "carlocab/personal"
 tap "heroku/brew"
 tap "homebrew/bundle"
@@ -8,6 +9,7 @@ tap "homebrew/core"
 tap "homebrew/services"
 tap "hudochenkov/sshpass"
 tap "mongodb/brew"
+tap "stateful/tap"
 tap "weaveworks/tap"
 tap "wswenyue/apkparser"
 # Manage compile and link flags for libraries
@@ -16,6 +18,8 @@ brew "pkg-config"
 brew "apktool"
 # Download with resuming and segmented downloading
 brew "aria2"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.11"
 # Record and share terminal sessions
 brew "asciinema"
 # GNOME accessibility toolkit
@@ -76,12 +80,12 @@ brew "f3"
 brew "faac"
 # ISO AAC audio decoder
 brew "faad2"
-# Generic library support script
-brew "libtool"
 # Framework for layout and rendering of i18n text
 brew "pango"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
+# Generic library support script
+brew "libtool"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # GNU awk utility
@@ -146,6 +150,8 @@ brew "libshout"
 brew "libsoup"
 # Portable SCTP userland stack
 brew "libusrsctp"
+# Mac App Store command-line interface
+brew "mas"
 # Unified display of technical and tag data for audio/video
 brew "media-info"
 # Collection of tools that nobody wrote when UNIX was young
@@ -182,8 +188,6 @@ brew "prettier"
 brew "pssh"
 # Show ps output as a tree
 brew "pstree"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.10"
 # Tools for and transforming and inspecting PDF files
 brew "qpdf"
 # Reattach process (e.g., tmux) to background
@@ -243,6 +247,8 @@ brew "wswenyue/apkparser/apkparser"
 cask "adobe-acrobat-reader"
 # JDK from the Java User Group (JUG)
 cask "adoptopenjdk"
+# GPU-accelerated terminal emulator
+cask "alacritty"
 # Menu bar tool to limit maximum charging percentage
 cask "aldente"
 # Desktop client for Android Messages
@@ -285,6 +291,8 @@ cask "disk-inventory-x"
 cask "docker"
 # Developer platform
 cask "dotnet-sdk"
+# Web browser
+cask "firefox"
 # Software reverse engineering (SRE) suite of tools
 cask "ghidra"
 # Web browser
@@ -301,6 +309,8 @@ cask "keyboard-cleaner"
 cask "kodi"
 # Clipboard manager
 cask "maccy"
+# File system integration
+cask "macfuse"
 # Desktop sync client for Nextcloud software products
 cask "nextcloud"
 # VPN client for secure internet access and private browsing
@@ -351,3 +361,19 @@ cask "whatsapp"
 cask "wireshark"
 # Video communication and virtual meeting platform
 cask "zoom"
+mas "Amphetamine", id: 937984704
+mas "Bitwarden", id: 1352778147
+mas "Blackmagic RAW Speed Test", id: 1466185689
+mas "Disk Speed Test", id: 425264550
+mas "Flowchart Designer 3", id: 1512570906
+mas "GarageBand", id: 682658836
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
+mas "Microsoft Excel", id: 462058435
+mas "Microsoft PowerPoint", id: 462062816
+mas "MQTT Explorer", id: 1455214828
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Speedtest", id: 1153157709
+mas "WireGuard", id: 1451685025
+mas "Xcode", id: 497799835
