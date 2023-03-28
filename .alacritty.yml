@@ -1,16 +1,20 @@
 ---
 import:
   - ~/dotfiles/alacritty-theme/themes/solarized_dark.yaml
+
 window:
   option_as_alt: Both
   dynamic_padding: true
+
 font:
   normal:
     family: "monaco"
   size: 12
+
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
   save_to_clipboard: true
+
 live_config_reload: true
 
 key_bindings:
