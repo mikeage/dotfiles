@@ -454,4 +454,5 @@ bind Tab select-pane -t:.+
 unbind BTab
 bind BTab select-pane -t:.-
 set -g default-terminal "alacritty"
-
+set -ga terminal-overrides ",xterm-256color:RGB"
+set -ga terminal-overrides ",alacritty:RGB"
