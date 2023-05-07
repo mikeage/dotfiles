@@ -469,3 +469,6 @@ bind -T off F12 \
   set -u prefix2 \;\
   set -u key-table \;\
   refresh-client -S
+
+bind-key -n Home send Escape "OH"
+bind-key -n End send Escape "OF"
