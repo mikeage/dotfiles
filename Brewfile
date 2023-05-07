@@ -102,20 +102,30 @@ brew "gnu-tar"
 brew "libusb"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
+# Cross-platform application and UI framework
+brew "qt@5", link: true
 # Command-driven, interactive function plotting
 brew "gnuplot"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
-# Development framework for multimedia applications
-brew "gstreamer"
-# GStreamer plugins (well-supported, basic set)
-brew "gst-plugins-base"
-# GStreamer plugins for Libav (a fork of FFmpeg)
-brew "gst-libav"
 # Toolkit for creating graphical user interfaces
 brew "gtk+3"
+# Data and connectivity library for the icecast server
+brew "libshout"
+# HTTP client/server library for GNOME
+brew "libsoup"
+# Portable SCTP userland stack
+brew "libusrsctp"
+# Audio compression format and tools
+brew "musepack"
+# Implementation of the Secure Real-time Transport Protocol
+brew "srtp"
+# Audio metadata library
+brew "taglib"
+# Development framework for multimedia applications
+brew "gstreamer"
 # Improved top (interactive process viewer)
 brew "htop"
 # Tools and libraries to manipulate images in many formats
@@ -144,24 +154,18 @@ brew "libmagic"
 brew "libnice"
 # Use Realtek DVB-T dongles as a cheap SDR
 brew "librtlsdr"
-# Data and connectivity library for the icecast server
-brew "libshout"
-# HTTP client/server library for GNOME
-brew "libsoup"
-# Portable SCTP userland stack
-brew "libusrsctp"
 # Mac App Store command-line interface
 brew "mas"
 # Unified display of technical and tag data for audio/video
 brew "media-info"
+# Intercept, modify, replay, save HTTP/S traffic
+brew "mitmproxy"
 # Collection of tools that nobody wrote when UNIX was young
 brew "moreutils"
 # Message broker implementing the MQTT protocol
 brew "mosquitto"
 # Multiple Repository management tool
 brew "mr"
-# Audio compression format and tools
-brew "musepack"
 # NCurses Disk Usage
 brew "ncdu"
 # Utility for managing network connections
@@ -190,6 +194,8 @@ brew "pssh"
 brew "pstree"
 # Tools for and transforming and inspecting PDF files
 brew "qpdf"
+# Reverse engineering framework
+brew "radare2"
 # Reattach process (e.g., tmux) to background
 brew "reattach-to-user-namespace"
 # Tool to convert RPM package to CPIO archive
@@ -208,12 +214,10 @@ brew "scrcpy"
 brew "shfmt"
 # Command-line interface for https://speedtest.net bandwidth tests
 brew "speedtest-cli"
-# Implementation of the Secure Real-time Transport Protocol
-brew "srtp"
+# Compressed read-only file system for Linux
+brew "squashfs"
 # Statistics from the command-line
 brew "st"
-# Audio metadata library
-brew "taglib"
 # Tool to build, change, and version infrastructure
 brew "terraform"
 # Terminal multiplexer
@@ -241,6 +245,8 @@ brew "yt-dlp"
 brew "hudochenkov/sshpass/sshpass"
 # High-performance, schema-free, document-oriented database
 brew "mongodb/brew/mongodb-community"
+# Execute code snippets directly from Markdown files.
+brew "stateful/tap/runme"
 # Android apk file parsing tool
 brew "wswenyue/apkparser/apkparser"
 # View, print, and comment on PDF documents
@@ -281,6 +287,8 @@ cask "coconutbattery"
 cask "comictagger"
 # Tool to run Windows software
 cask "crossover"
+# Reverse engineering platform powered by Rizin
+cask "cutter"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
 # Voice and text chat software
@@ -299,6 +307,8 @@ cask "ghidra"
 cask "google-chrome"
 # Software-defined radio receiver powered by GNU Radio and Qt
 cask "gqrx"
+# Utility to hide menu bar items
+cask "hiddenbar"
 # Standalone Java Decompiler GUI
 cask "jd-gui"
 # Jellyfin desktop client
@@ -333,6 +343,7 @@ cask "slack"
 cask "spotify"
 # Video game digital distribution service
 cask "steam"
+# Command-line client for Steam
 cask "steamcmd"
 # Kart racing game
 cask "supertuxkart"
