@@ -38,8 +38,16 @@ brew "axel"
 brew "bash"
 # Programmable completion for Bash 4.2+
 brew "bash-completion@2"
+# Library for USB device access
+brew "libusb"
+# Swiss army knife for network attacks and monitoring
+brew "bettercap"
 # Remove large files or passwords from Git history like git-filter-branch
 brew "bfg"
+# 7-Zip (high compression file archiver) implementation
+brew "p7zip"
+# Searches a binary image for embedded files and executable code
+brew "binwalk"
 # Platform built on V8 to build network applications
 brew "node"
 # Secure and free password manager for all of your devices
@@ -70,6 +78,8 @@ brew "dog"
 brew "dos2unix"
 # LLVM bytecode to JavaScript compiler
 brew "emscripten"
+# Pseudorandom number sequence test program
+brew "ent"
 # AST-based pattern checker for JavaScript
 brew "eslint"
 # Perl lib for reading and writing EXIF metadata
@@ -98,8 +108,6 @@ brew "git-lfs"
 brew "gnu-sed"
 # GNU version of the tar archiving utility
 brew "gnu-tar"
-# Library for USB device access
-brew "libusb"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
 # Cross-platform application and UI framework
@@ -174,8 +182,6 @@ brew "netcat"
 brew "nmap"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
-# 7-Zip (high compression file archiver) implementation
-brew "p7zip"
 # Tool for creating identical machine images for multiple platforms
 brew "packer"
 # Granddaddy of HTML tools, with support for modern standards
@@ -372,6 +378,8 @@ cask "whatsapp"
 cask "wireshark"
 # Video communication and virtual meeting platform
 cask "zoom"
+# Desktop client for the Zulip team chat platform
+cask "zulip"
 mas "Amphetamine", id: 937984704
 mas "Bitwarden", id: 1352778147
 mas "Blackmagic RAW Speed Test", id: 1466185689
