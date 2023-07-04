@@ -220,7 +220,11 @@ then
 else
 	BASHRC_DIR="$(dirname "$(readlink -f ${BASH_SOURCE[0]})")"
 fi
-source $BASHRC_DIR/fzf-git.sh/fzf-git.sh
+# Originally, we called this from .bashrc directly. However, when running in xquartz, it passes /Applications/Utilities/XQuartz.app/Contents/MacOS/X11.bin as the first argument, which caused this script to exit on the exit 1 on or about line 46. So now we'll do it within a function so there's no $1
+fzf_without_args() {
+	source $BASHRC_DIR/fzf-git.sh/fzf-git.sh
+}
+fzf_without_args
 
 export FZF_TMUX=1
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
