@@ -1,4 +1,5 @@
 tap "adoptopenjdk/openjdk"
+tap "akeylesslabs/tap"
 tap "borgbackup/tap"
 tap "carlocab/personal"
 tap "heroku/brew"
@@ -198,6 +199,8 @@ brew "prettier"
 brew "pssh"
 # Show ps output as a tree
 brew "pstree"
+# Sound system for POSIX OSes
+brew "pulseaudio"
 # Tools for and transforming and inspecting PDF files
 brew "qpdf"
 # Reverse engineering framework
@@ -224,6 +227,8 @@ brew "speedtest-cli"
 brew "squashfs"
 # Statistics from the command-line
 brew "st"
+# Implementation of the STUN protocol
+brew "stuntman"
 # Tool to build, change, and version infrastructure
 brew "terraform"
 # Terminal multiplexer
@@ -248,6 +253,8 @@ brew "yamllint"
 brew "youtube-dl"
 # Fork of youtube-dl with additional features and fixes
 brew "yt-dlp"
+# Akeyless CLI
+brew "akeylesslabs/tap/akeyless"
 brew "hudochenkov/sshpass/sshpass"
 # High-performance, schema-free, document-oriented database
 brew "mongodb/brew/mongodb-community"
@@ -329,8 +336,6 @@ cask "maccy"
 cask "macfuse"
 # Desktop sync client for Nextcloud software products
 cask "nextcloud"
-# VPN client for secure internet access and private browsing
-cask "nordvpn"
 # Programmable solid 3D CAD modeller
 cask "openscad"
 # File system integration
@@ -341,8 +346,6 @@ cask "postman"
 cask "rar"
 # MongoDB management tool
 cask "robo-3t"
-# Virtual reality content platform
-cask "sidequest"
 # Team communication and collaboration software
 cask "slack"
 # Music streaming service
@@ -376,6 +379,8 @@ cask "vnc-viewer"
 cask "whatsapp"
 # Network protocol analyzer
 cask "wireshark"
+# Open-source version of the X.Org X Window System
+cask "xquartz"
 # Video communication and virtual meeting platform
 cask "zoom"
 # Desktop client for the Zulip team chat platform
@@ -396,3 +401,12 @@ mas "Pages", id: 409201541
 mas "Speedtest", id: 1153157709
 mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
+vscode "ms-azuretools.vscode-docker"
+vscode "ms-dotnettools.csharp"
+vscode "ms-vscode-remote.remote-containers"
+vscode "ms-vscode-remote.remote-ssh"
+vscode "ms-vscode-remote.remote-ssh-edit"
+vscode "ms-vscode-remote.remote-wsl"
+vscode "ms-vscode-remote.vscode-remote-extensionpack"
+vscode "ms-vscode.remote-explorer"
+vscode "ms-vscode.remote-server"
