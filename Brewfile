@@ -4,9 +4,7 @@ tap "borgbackup/tap"
 tap "carlocab/personal"
 tap "heroku/brew"
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/cask-versions"
-tap "homebrew/core"
 tap "homebrew/services"
 tap "hudochenkov/sshpass"
 tap "mongodb/brew"
@@ -45,10 +43,6 @@ brew "libusb"
 brew "bettercap"
 # Remove large files or passwords from Git history like git-filter-branch
 brew "bfg"
-# 7-Zip (high compression file archiver) implementation
-brew "p7zip"
-# Searches a binary image for embedded files and executable code
-brew "binwalk"
 # Platform built on V8 to build network applications
 brew "node"
 # Secure and free password manager for all of your devices
@@ -183,6 +177,8 @@ brew "netcat"
 brew "nmap"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
+# 7-Zip (high compression file archiver) implementation
+brew "p7zip"
 # Tool for creating identical machine images for multiple platforms
 brew "packer"
 # Granddaddy of HTML tools, with support for modern standards
