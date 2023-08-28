@@ -55,6 +55,10 @@ brew "certbot"
 brew "clang-format"
 # Cross-platform make
 brew "cmake"
+# Container runtimes on MacOS (and Linux) with minimal setup
+brew "colima"
+# Diff your Docker containers
+brew "container-diff"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Tool for browsing source code
@@ -67,6 +71,12 @@ brew "curl"
 brew "dex2jar"
 # Tool for exploring each layer in a docker image
 brew "dive"
+# Pack, ship and run any application as a lightweight container
+brew "docker"
+# Docker CLI plugin for extended build capabilities with BuildKit
+brew "docker-buildx"
+# Isolated development environments using Docker
+brew "docker-compose"
 # Command-line DNS client
 brew "dog"
 # Convert text between DOS, UNIX, and Mac formats
@@ -304,8 +314,6 @@ cask "db-browser-for-sqlite"
 cask "discord"
 # Disk usage utility
 cask "disk-inventory-x"
-# App to build and share containerized applications and microservices
-cask "docker"
 # Developer platform
 cask "dotnet-sdk"
 # Web browser
