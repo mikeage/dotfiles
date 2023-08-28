@@ -81,6 +81,8 @@ brew "docker-compose"
 brew "dog"
 # Convert text between DOS, UNIX, and Mac formats
 brew "dos2unix"
+# Simple command-line tool for creating clusters on Amazon EKS
+brew "eksctl"
 # LLVM bytecode to JavaScript compiler
 brew "emscripten"
 # Pseudorandom number sequence test program
@@ -105,6 +107,8 @@ brew "libtool"
 brew "fzf"
 # GNU awk utility
 brew "gawk"
+# GitHub command-line tool
+brew "gh"
 # Distributed revision control system
 brew "git"
 # Git extension for versioning large files
@@ -115,8 +119,6 @@ brew "gnu-sed"
 brew "gnu-tar"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
-# Cross-platform application and UI framework
-brew "qt@5", link: true
 # Command-driven, interactive function plotting
 brew "gnuplot"
 # Open source programming language to build simple/reliable/efficient software
@@ -145,6 +147,8 @@ brew "htop"
 brew "imagemagick"
 # GNU utilities for networking
 brew "inetutils"
+# Cross-platform application and UI framework
+brew "qt@5"
 # Offline radio signal analyser
 brew "inspectrum"
 # Modular IRC client
@@ -233,6 +237,8 @@ brew "speedtest-cli"
 brew "squashfs"
 # Statistics from the command-line
 brew "st"
+# Tail multiple Kubernetes pods & their containers
+brew "stern"
 # Implementation of the STUN protocol
 brew "stuntman"
 # Tool to build, change, and version infrastructure
@@ -322,6 +328,8 @@ cask "firefox"
 cask "ghidra"
 # Web browser
 cask "google-chrome"
+# Set of tools to manage resources and applications hosted on Google Cloud
+cask "google-cloud-sdk"
 # Software-defined radio receiver powered by GNU Radio and Qt
 cask "gqrx"
 # Utility to hide menu bar items
@@ -338,6 +346,8 @@ cask "kodi"
 cask "maccy"
 # File system integration
 cask "macfuse"
+# Remote desktop client
+cask "microsoft-remote-desktop"
 # Desktop sync client for Nextcloud software products
 cask "nextcloud"
 # Programmable solid 3D CAD modeller
@@ -407,6 +417,7 @@ mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
 vscode "ms-azuretools.vscode-docker"
 vscode "ms-dotnettools.csharp"
+vscode "ms-dotnettools.vscode-dotnet-runtime"
 vscode "ms-vscode-remote.remote-containers"
 vscode "ms-vscode-remote.remote-ssh"
 vscode "ms-vscode-remote.remote-ssh-edit"
