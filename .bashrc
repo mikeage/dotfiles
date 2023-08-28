@@ -153,6 +153,10 @@ if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
 	source /usr/local/etc/bash_completion.d/git-prompt.sh
 fi
 
+if type brew &>/dev/null; then
+	[ -f "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc" ] && source "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc"
+fi
+
 ###########################
 # Prompt related goodness #
 ###########################
