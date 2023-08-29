@@ -107,6 +107,8 @@ brew "libtool"
 brew "fzf"
 # GNU awk utility
 brew "gawk"
+# Easily access your Google Calendar(s) from a command-line
+brew "gcalcli"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
