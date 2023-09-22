@@ -163,6 +163,8 @@ brew "jfrog-cli"
 brew "jhead"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Kubernetes command-line interface
+brew "kubernetes-cli"
 # Sophisticated file transfer program
 brew "lftp"
 # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
@@ -284,6 +286,8 @@ cask "adoptopenjdk"
 cask "alacritty"
 # Menu bar tool to limit maximum charging percentage
 cask "aldente"
+# Communications service
+cask "amazon-chime"
 # Desktop client for Android Messages
 cask "android-messages"
 # Android SDK component
@@ -391,7 +395,7 @@ cask "visual-studio-code"
 cask "vlc"
 # Remote desktop application focusing on security
 cask "vnc-viewer"
-# Desktop client for WhatsApp
+# Native desktop client for WhatsApp
 cask "whatsapp"
 # Network protocol analyzer
 cask "wireshark"
