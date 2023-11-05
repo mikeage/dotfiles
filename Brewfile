@@ -17,8 +17,6 @@ brew "pkg-config"
 brew "apktool"
 # Download with resuming and segmented downloading
 brew "aria2"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.11"
 # Record and share terminal sessions
 brew "asciinema"
 # GNOME accessibility toolkit
@@ -29,6 +27,8 @@ brew "autoconf"
 brew "automake"
 # Use AWS IAM credentials to authenticate to Kubernetes
 brew "aws-iam-authenticator"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.11"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Light UNIX download accelerator
@@ -271,6 +271,8 @@ brew "youtube-dl"
 brew "yt-dlp"
 # Akeyless CLI
 brew "akeylesslabs/tap/akeyless"
+# Deduplicating archiver with compression and authenticated encryption
+brew "borgbackup/tap/borgbackup-fuse"
 brew "hudochenkov/sshpass/sshpass"
 # High-performance, schema-free, document-oriented database
 brew "mongodb/brew/mongodb-community"
@@ -395,6 +397,8 @@ cask "visual-studio-code"
 cask "vlc"
 # Remote desktop application focusing on security
 cask "vnc-viewer"
+# Desktop Backup Client for Borg
+cask "vorta"
 # Native desktop client for WhatsApp
 cask "whatsapp"
 # Network protocol analyzer
