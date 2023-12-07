@@ -2,7 +2,7 @@ tap "adoptopenjdk/openjdk"
 tap "akeylesslabs/tap"
 tap "borgbackup/tap"
 tap "carlocab/personal"
-tap "heroku/brew"
+tap "derailed/k9s"
 tap "homebrew/bundle"
 tap "homebrew/cask-versions"
 tap "homebrew/services"
@@ -19,8 +19,8 @@ brew "apktool"
 brew "aria2"
 # Record and share terminal sessions
 brew "asciinema"
-# GNOME accessibility toolkit
-brew "atk"
+# Protocol definitions and daemon for D-Bus at-spi
+brew "at-spi2-core"
 # Automatic configure script builder
 brew "autoconf"
 # Tool for generating GNU Standards-compliant Makefiles
@@ -56,7 +56,7 @@ brew "clang-format"
 # Cross-platform make
 brew "cmake"
 # Container runtimes on MacOS (and Linux) with minimal setup
-brew "colima"
+brew "colima", restart_service: true
 # Diff your Docker containers
 brew "container-diff"
 # GNU File, Shell, and Text utilities
@@ -97,10 +97,14 @@ brew "f3"
 brew "faac"
 # ISO AAC audio decoder
 brew "faad2"
+# High quality MPEG Audio Layer III (MP3) encoder
+brew "lame"
 # Framework for layout and rendering of i18n text
 brew "pango"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
+# C routines to compute the Discrete Fourier Transform
+brew "fftw"
 # Generic library support script
 brew "libtool"
 # Command-line fuzzy finder written in Go
@@ -167,6 +171,8 @@ brew "jq"
 brew "kubernetes-cli"
 # Sophisticated file transfer program
 brew "lftp"
+# Configuration file processing library
+brew "libconfig"
 # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
 brew "libfido2"
 # Implementation of the file(1) command
@@ -235,6 +241,8 @@ brew "rust"
 brew "scrcpy"
 # Autoformat shell script source code
 brew "shfmt"
+# SOund eXchange: universal sound sample translator
+brew "sox"
 # Command-line interface for https://speedtest.net bandwidth tests
 brew "speedtest-cli"
 # Compressed read-only file system for Linux
@@ -265,6 +273,8 @@ brew "wget"
 brew "wireguard-tools"
 # Linter for YAML files
 brew "yamllint"
+# JavaScript package manager
+brew "yarn"
 # Download YouTube videos from the command-line
 brew "youtube-dl"
 # Fork of youtube-dl with additional features and fixes
@@ -273,10 +283,12 @@ brew "yt-dlp"
 brew "akeylesslabs/tap/akeyless"
 # Deduplicating archiver with compression and authenticated encryption
 brew "borgbackup/tap/borgbackup-fuse"
+# Kubernetes CLI To Manage Your Clusters In Style!
+brew "derailed/k9s/k9s"
 brew "hudochenkov/sshpass/sshpass"
 # High-performance, schema-free, document-oriented database
 brew "mongodb/brew/mongodb-community"
-# Execute code snippets directly from Markdown files.
+# Execute your runbooks, docs, and READMEs.
 brew "stateful/tap/runme"
 # Android apk file parsing tool
 brew "wswenyue/apkparser/apkparser"
@@ -366,6 +378,8 @@ cask "osxfuse"
 cask "postman"
 # Archive manager for data compression and backups
 cask "rar"
+# Move and resize windows using keyboard shortcuts or snap areas
+cask "rectangle"
 # MongoDB management tool
 cask "robo-3t"
 # Team communication and collaboration software
@@ -376,8 +390,6 @@ cask "spotify"
 cask "steam"
 # Command-line client for Steam
 cask "steamcmd"
-# Kart racing game
-cask "supertuxkart"
 # Messaging app with a focus on speed and security
 cask "telegram"
 # JDK from the Eclipse Foundation (Adoptium)
