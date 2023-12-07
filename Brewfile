@@ -318,8 +318,6 @@ cask "avibrazil-rdm"
 cask "balenaetcher"
 # Tool to customize input devices and automate computer systems
 cask "bettertouchtool"
-# Desktop password and login vault
-cask "bitwarden"
 # Web security testing toolkit
 cask "burp-suite"
 # E-books management software
