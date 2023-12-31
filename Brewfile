@@ -91,8 +91,6 @@ brew "ent"
 brew "eslint"
 # Perl lib for reading and writing EXIF metadata
 brew "exiftool"
-# Test various flash cards
-brew "f3"
 # ISO AAC audio encoder
 brew "faac"
 # ISO AAC audio decoder
@@ -167,6 +165,8 @@ brew "jfrog-cli"
 brew "jhead"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Tool to move from `docker-compose` to Kubernetes
+brew "kompose"
 # Kubernetes command-line interface
 brew "kubernetes-cli"
 # Sophisticated file transfer program
@@ -368,6 +368,8 @@ cask "macfuse"
 cask "microsoft-remote-desktop"
 # Desktop sync client for Nextcloud software products
 cask "nextcloud"
+# Reverse proxy, secure introspectable tunnels to localhost
+cask "ngrok"
 # Programmable solid 3D CAD modeller
 cask "openscad"
 # File system integration
