@@ -1,0 +1,26 @@
+import = ["/Users/mikemi/dotfiles/alacritty-theme/themes/solarized_dark.toml"]
+live_config_reload = true
+
+[font]
+size = 12
+
+[font.normal]
+family = "monaco"
+
+[[keyboard.bindings]]
+chars = "\u001Bf"
+key = "F"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bb"
+key = "B"
+mods = "Alt"
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+[window]
+dynamic_padding = true
+option_as_alt = "Both"
