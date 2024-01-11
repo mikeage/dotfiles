@@ -1,0 +1,13 @@
+#%Module
+
+proc ModulesHelp { } {
+   puts stderr "This module sets up Hyperscale environment"
+}
+
+module-whatis "This module sets up Hyperscale environment"
+
+# https://modules.readthedocs.io/en/latest/cookbook/tips-for-code-reuse.html
+conflict hyperscale
+setenv HYPERSCALE_ENV vqhx_ew4_c1
+module load gcloud/hyperscale-dev2-vqhx-ew4
+module load kubeconfig/hyperscale-dev2-vqhx_gcp-dev2-ui-ew4-c1

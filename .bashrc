@@ -157,7 +157,7 @@ fi
 if type brew &>/dev/null; then
 	[ -f "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc" ] && source "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc"
 fi
-
+source /usr/local/Cellar/modules/*/init/bash_completion
 ###########################
 # Prompt related goodness #
 ###########################
@@ -171,6 +171,10 @@ __local_git_ps1 ()
 	fi
 }
 
+get_CLOUDSDK_ACTIVE_CONFIG_NAME() {
+	echo "${CLOUDSDK_ACTIVE_CONFIG_NAME}"
+}
+
 if [[ "$(set -o | grep 'emacs\|\bvi\b' | cut -f2 | tr '\n' ':')" != 'off:off:' ]]; then
 	command -v __git_ps1 > /dev/null 2>&1 && GITPS1='$(__git_ps1 " {%s}")' || GITPS1='$(__local_git_ps1 " {%s}")'
 	GIT_PS1_SHOWDIRTYSTATE=1
@@ -179,10 +183,12 @@ if [[ "$(set -o | grep 'emacs\|\bvi\b' | cut -f2 | tr '\n' ':')" != 'off:off:' ]
 	GIT_PS1_SHOWUPSTREAM="verbose"
 	GREEN="$(tput setaf 2)"
 	RED="$(tput setaf 1)"
+	YELLOW="$(tput setaf 3)"
 	CYAN="$(tput setaf 6)"
 	GRAY="$(tput setaf 7)"
 	# export PS1="\`_ret=\$?; if [ \$_ret = 0 ]; then echo -en \"${GREEN}\"; else echo -en \"${RED}\"; fi; printf "%3d" \$_ret\` ${CYAN}\u@\h ${RED}\w${CYAN}${GITPS1}\\\$${GRAY} \[\`printf "\\\e[?1004l"\`\]"
-	export PS1='$(_ret=$?; if [ $_ret = 0 ]; then echo -en "\[${GREEN}\]"; else echo -en "\[${RED}\]"; fi; printf "%3d" $_ret)\[${CYAN}\] \u@\h \[${RED}\]\w\[${CYAN}\]'${GITPS1}'\$\[${GRAY}\] '
+	#export PS1='$(_ret=$?; if [ $_ret = 0 ]; then echo -en "\[${GREEN}\]"; else echo -en "\[${RED}\]"; fi; printf "%3d" $_ret)\[${CYAN}\] \u@\h $(if [ $KUBECONFIG ]; then echo -en "\[${GREEN}\](k:$(basename $KUBECONFIG | rev | cut -d'-' -f1 | rev)) "; fi)$(if [ $CLOUDSDK_ACTIVE_CONFIG_NAME ]; then echo -en "\[${YELLOW}\](g:$(basename $CLOUDSDK_ACTIVE_CONFIG_NAME)) "; fi)\[${RED}\]\w\[${CYAN}\]'${GITPS1}'\$\[${GRAY}\] '
+	export PS1='$(_ret=$?; if [ $_ret = 0 ]; then echo -en "\[${GREEN}\]"; else echo -en "\[${RED}\]"; fi; printf "%3d" $_ret)\[${CYAN}\] \u@\h $(if [ $HYPERSCALE_ENV ]; then echo -en "\[${GREEN}\](e:$HYPERSCALE_ENV) "; fi)\[${RED}\]\w\[${CYAN}\]'${GITPS1}'\$\[${GRAY}\] '
 fi
 
 ##############
@@ -235,6 +241,8 @@ export FZF_TMUX=1
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/.iterm2_shell_integration.bash ] && source ~/.iterm2_shell_integration.bash
 [ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
+[ -f /usr/local/opt/modules/init/bash ] && source /usr/local/opt/modules/init/bash
+export MODULEPATH=$BASHRC_DIR/modules:$MODULEPATH
 
 safari_history() {
 	local cols sep

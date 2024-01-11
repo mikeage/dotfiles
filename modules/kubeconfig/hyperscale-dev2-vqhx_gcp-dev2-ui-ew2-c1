@@ -1,0 +1,12 @@
+#%Module
+
+proc ModulesHelp { } {
+   puts stderr "This module sets up Hyperscale environment"
+}
+
+module-whatis "This module sets up Hyperscale environment"
+
+# https://modules.readthedocs.io/en/latest/cookbook/tips-for-code-reuse.html
+conflict kubeconfig
+setenv KUBECONFIG ~/.kube/config_hyperscale-dev2-vqhx_gcp-dev2-ui-ew2-c1
+setenv DEPLOYER jump.gcp-hs-ew2-ui-c1-dev.ivp.synamedialabs.com
