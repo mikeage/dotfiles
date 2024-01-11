@@ -74,6 +74,7 @@ fi
 # History options #
 ###################
 export HISTSIZE=100000000
+export HISTCONTROL=ignorespace:ignoredups  # erasedups -- this messes with chronology
 shopt -s histappend
 
 
