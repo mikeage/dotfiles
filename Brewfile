@@ -187,6 +187,8 @@ brew "mas"
 brew "media-info"
 # Intercept, modify, replay, save HTTP/S traffic
 brew "mitmproxy"
+# Dynamic modification of a user's environment via modulefiles
+brew "modules"
 # Collection of tools that nobody wrote when UNIX was young
 brew "moreutils"
 # Message broker implementing the MQTT protocol
@@ -358,8 +360,6 @@ cask "jd-gui"
 cask "jellyfin-media-player"
 # Desktop shield and keystroke interceptor
 cask "keyboard-cleaner"
-# Free and open-source media player
-cask "kodi"
 # Clipboard manager
 cask "maccy"
 # File system integration
@@ -437,6 +437,7 @@ mas "Pages", id: 409201541
 mas "Speedtest", id: 1153157709
 mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
+vscode "janjoerke.jenkins-pipeline-linter-connector"
 vscode "ms-azuretools.vscode-docker"
 vscode "ms-dotnettools.csharp"
 vscode "ms-dotnettools.vscode-dotnet-runtime"
