@@ -60,7 +60,13 @@ function approve() {
 #################
 
 shopt -s checkwinsize
-export EDITOR=vim
+if which nvim > /dev/null
+then
+	export EDITOR=nvim
+	alias nvimdiff='nvim -d'
+else
+	export EDITOR=vim
+fi
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;

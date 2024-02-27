@@ -1,7 +1,7 @@
 dotfiles
 ========
 
-All of my (public) complete dotfiles. Includes my .vim plugins and customizations
+All of my (public) complete dotfiles.
 
 Because of the use of submodules, the initial clone should be done via:
 
@@ -12,7 +12,10 @@ Enjoy
 ```bash
 cd ~
 git clone --recursive https://github.com/mikeage/dotfiles.git
-ln -s ~/dotfiles/{.inputrc,.vim,.vimrc,.tmux.conf,.tmux.conf.local,.bashrc,.bash_profile,.alacritty,.cvsignore,.rsync-exclude} ~/
+ln -s ~/dotfiles/{.inputrc,.tmux.conf,.tmux.conf.local,.bashrc,.bash_profile,.alacritty,.cvsignore,.rsync-exclude,.pylintrc} ~/
+mkdir -p ~/.config/nvim
+ln -s ~/dotfiles/nvim/config/nvim/init.vim ~/.config/nvim/init.vim
+
 ```
 
 ## Git config
