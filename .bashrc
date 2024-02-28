@@ -1,4 +1,5 @@
 # Custom .bashrc; collected from quite a few places on the internet. Not even going to attempt to list them all..
+# shellcheck disable=SC2001,SC1091,SC1090
 
 ###########################
 # Solarized related stuff #
@@ -7,15 +8,18 @@
 if [[ "$TERM" == *-solarized* ]]
 then
 	ORIGTERM="$TERM"
-	export TERM=`echo $ORIGTERM | sed "s/-solarized.*$//"`
-	export SOLARIZED=`echo $ORIGTERM | sed "s/^.*-solarized//"`
+	TERM=$(echo "$ORIGTERM" | sed "s/-solarized.*$//")
+	export TERM
+	SOLARIZED=$(echo "$ORIGTERM" | sed "s/^.*-solarized//")
+	export SOLARIZED
 	unset ORIGTERM
 fi
 
 # Support solarized mintty's
 if [[ -f ~/.minttyrc ]]
 then
-	export SOLARIZED=$(grep -i solarized .minttyrc | cut -d"=" -f2)
+	SOLARIZED=$(grep -i solarized .minttyrc | cut -d"=" -f2)
+	export SOLARIZED
 fi
 
 #######################
@@ -38,7 +42,7 @@ if [[ -f /mnt/Fusion/mmiller/common/bin/_bashrc ]]; then
 fi
 
 # Cygwin, by default, does not include DOMAINNAME.
-command -v domainname > /dev/null 2>&1 && DOMAINNAME=`domainname`
+command -v domainname > /dev/null 2>&1 && DOMAINNAME=$(domainname) && export DOMAINNAME
 
 alias sshcpe='sshpass -p erdk ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root'
 alias sshhe='sshpass -p Nat0d12 ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -l root'
@@ -48,7 +52,7 @@ function approve() {
 	REPO="$1"
 	COMMIT="$2"
 	CHECK="$3"
-	curl -XPOST https://github3.cisco.com/api/v3/repos/$REPO/statuses/$COMMIT?access_token=$CSWCI_ACCESS_TOKEN --data '{"state": "success", "context": "'$CHECK'"}'
+	curl -XPOST "https://github3.cisco.com/api/v3/repos/$REPO/statuses/$COMMIT?access_token=$CSWCI_ACCESS_TOKEN" --data '{"state": "success", "context": "'"$CHECK"'"}'
 }
 
 #################
@@ -57,6 +61,7 @@ function approve() {
 
 shopt -s checkwinsize
 export EDITOR=vim
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
 
@@ -112,23 +117,23 @@ if [ "$(uname)" == "Darwin" ]
 then
 	export CLICOLOR=YES
 else
-	DIRCOLORSDB=`dirname \`readlink -f ~/.bashrc\``/dircolors-solarized/dircolors.ansi-universal
-	if [ ! -f $DIRCOLORSDB ]
+	DIRCOLORSDB="$(dirname "$(readlink -f ~/.bashrc)")/dircolors-solarized/dircolors.ansi-universal"
+	if [ ! -f "$DIRCOLORSDB" ]
 	then
 		export LS_COLORS='di=01;33:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:';
 	else
-		DIRCOLORS=$(dircolors $DIRCOLORSDB 2>/dev/null)
-		if [ "x$DIRCOLORS" == "x" ]; then
-			DIRCOLORS=$(dircolors --sh $DIRCOLORSDB)
+		DIRCOLORS=$(dircolors "$DIRCOLORSDB" 2>/dev/null)
+		if [ "$DIRCOLORS" == "" ]; then
+			DIRCOLORS="$(dircolors --sh "$DIRCOLORSDB")"
 		fi
-		eval $DIRCOLORS
+		eval "$DIRCOLORS"
 	fi
 fi
 
 ############
 # Homebrew #
 ############
-if $(which brew > /dev/null)
+if which brew > /dev/null
 then
 	export PATH=/usr/local/coreutils/libexec/gnubin:$PATH
 	# Keep python2 in the path, since homebrew breaks the python convention
@@ -165,7 +170,8 @@ source /usr/local/Cellar/modules/*/init/bash_completion
 # In case we don't have the __git_ps1 available, for any reason, at least print the branch
 __local_git_ps1 ()
 {
-	local b="$(git symbolic-ref HEAD 2>/dev/null)";
+	local b
+	b="$(git symbolic-ref HEAD 2>/dev/null)";
 	if [ -n "$b" ]; then
 		printf " (%s)" "${b##refs/heads/}";
 	fi
@@ -176,6 +182,7 @@ get_CLOUDSDK_ACTIVE_CONFIG_NAME() {
 }
 
 if [[ "$(set -o | grep 'emacs\|\bvi\b' | cut -f2 | tr '\n' ':')" != 'off:off:' ]]; then
+	# shellcheck disable=SC2016
 	command -v __git_ps1 > /dev/null 2>&1 && GITPS1='$(__git_ps1 " {%s}")' || GITPS1='$(__local_git_ps1 " {%s}")'
 	GIT_PS1_SHOWDIRTYSTATE=1
 	GIT_PS1_SHOWUNTRACKEDFILES=1
@@ -183,11 +190,12 @@ if [[ "$(set -o | grep 'emacs\|\bvi\b' | cut -f2 | tr '\n' ':')" != 'off:off:' ]
 	GIT_PS1_SHOWUPSTREAM="verbose"
 	GREEN="$(tput setaf 2)"
 	RED="$(tput setaf 1)"
-	YELLOW="$(tput setaf 3)"
+	#YELLOW="$(tput setaf 3)"
 	CYAN="$(tput setaf 6)"
 	GRAY="$(tput setaf 7)"
 	# export PS1="\`_ret=\$?; if [ \$_ret = 0 ]; then echo -en \"${GREEN}\"; else echo -en \"${RED}\"; fi; printf "%3d" \$_ret\` ${CYAN}\u@\h ${RED}\w${CYAN}${GITPS1}\\\$${GRAY} \[\`printf "\\\e[?1004l"\`\]"
 	#export PS1='$(_ret=$?; if [ $_ret = 0 ]; then echo -en "\[${GREEN}\]"; else echo -en "\[${RED}\]"; fi; printf "%3d" $_ret)\[${CYAN}\] \u@\h $(if [ $KUBECONFIG ]; then echo -en "\[${GREEN}\](k:$(basename $KUBECONFIG | rev | cut -d'-' -f1 | rev)) "; fi)$(if [ $CLOUDSDK_ACTIVE_CONFIG_NAME ]; then echo -en "\[${YELLOW}\](g:$(basename $CLOUDSDK_ACTIVE_CONFIG_NAME)) "; fi)\[${RED}\]\w\[${CYAN}\]'${GITPS1}'\$\[${GRAY}\] '
+	# shellcheck disable=SC2154
 	export PS1='$(_ret=$?; if [ $_ret = 0 ]; then echo -en "\[${GREEN}\]"; else echo -en "\[${RED}\]"; fi; printf "%3d" $_ret)\[${CYAN}\] \u@\h $(if [ $HYPERSCALE_ENV ]; then echo -en "\[${GREEN}\](e:$HYPERSCALE_ENV) "; fi)\[${RED}\]\w\[${CYAN}\]'${GITPS1}'\$\[${GRAY}\] '
 fi
 
@@ -227,13 +235,13 @@ alias gpip2='PIP_REQUIRE_VIRTUALENV="" pip2'
 #########################
 if [ "$(uname)" == "Darwin" ]
 then
-	BASHRC_DIR="$(dirname "$(greadlink -f ${BASH_SOURCE[0]})")"
+	BASHRC_DIR="$(dirname "$(greadlink -f "${BASH_SOURCE[0]}")")"
 else
-	BASHRC_DIR="$(dirname "$(readlink -f ${BASH_SOURCE[0]})")"
+	BASHRC_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
 fi
 # Originally, we called this from .bashrc directly. However, when running in xquartz, it passes /Applications/Utilities/XQuartz.app/Contents/MacOS/X11.bin as the first argument, which caused this script to exit on the exit 1 on or about line 46. So now we'll do it within a function so there's no $1
 fzf_without_args() {
-	source $BASHRC_DIR/fzf-git.sh/fzf-git.sh
+	source "$BASHRC_DIR/fzf-git.sh/fzf-git.sh"
 }
 fzf_without_args
 
@@ -273,14 +281,14 @@ function rain() {
 }
 
 if [[ -f $BASHRC_DIR/.bashrc.local ]]; then
-	source $BASHRC_DIR/.bashrc.local
+	source "$BASHRC_DIR/.bashrc.local"
 fi
 
 listening() {
 	if [ $# -eq 0 ]; then
 		sudo lsof -iTCP -sTCP:LISTEN -n -P
 	elif [ $# -eq 1 ]; then
-		sudo lsof -iTCP -sTCP:LISTEN -n -P | grep -i --color $1
+		sudo lsof -iTCP -sTCP:LISTEN -n -P | grep -i --color "$1"
 	else
 		echo "Usage: listening [pattern]"
 	fi
