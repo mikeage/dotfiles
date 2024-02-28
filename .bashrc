@@ -143,10 +143,10 @@ fi
 [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc ] && . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
 
 if type brew &>/dev/null; then
-  HOMEBREW_PREFIX="$(brew --prefix)"
-  for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
-    [[ -r "$COMPLETION" ]] && source "$COMPLETION"
-  done
+	HOMEBREW_PREFIX="$(brew --prefix)"
+	for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+		[[ -r "$COMPLETION" ]] && source "$COMPLETION"
+	done
 fi
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
@@ -250,10 +250,10 @@ safari_history() {
 	sep='{::}'
 
 	sqlite3 -separator $sep ~/Library/Safari/History.db "SELECT substr(title, 1, $cols), url FROM history_visits INNER JOIN history_items ON history_items.id = history_visits.history_item ORDER BY history_items.id;" |
-		awk -F '{::}' '{printf "%-'$cols's \x1b[36m%s\x1b[m\n", $1, $2}' |
-		fzf --ansi --multi |
-		sed 's#.*\(https*://\)#\1#' |
-		xargs open > /dev/null 2>/dev/null
+	awk -F '{::}' '{printf "%-'$cols's \x1b[36m%s\x1b[m\n", $1, $2}' |
+	fzf --ansi --multi |
+	sed 's#.*\(https*://\)#\1#' |
+	xargs open > /dev/null 2>/dev/null
 }
 
 export LPASS_AGENT_TIMEOUT=0
@@ -263,8 +263,8 @@ lastpass() {
 	sep='{::}'
 
 	lpass ls --format="%ai${sep}%/as%/ag%/an${sep}%al" |
-		awk -F "$sep" '{printf "%s %s %s\n", $1, $2, $3}' |
-		fzf --ansi
+	awk -F "$sep" '{printf "%s %s %s\n", $1, $2, $3}' |
+	fzf --ansi
 }
 #alias lastpass='lpass show -c --password $(lpass ls | fzf | awk '\''{print $NF}'\'' | sed '\''s/\]//g'\'')'
 
