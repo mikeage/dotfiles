@@ -245,7 +245,7 @@ fzf_without_args() {
 }
 fzf_without_args
 
-export FZF_TMUX=1
+# export FZF_TMUX=1
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f ~/.iterm2_shell_integration.bash ] && source ~/.iterm2_shell_integration.bash
 [ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
