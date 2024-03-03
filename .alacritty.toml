@@ -5,7 +5,8 @@ live_config_reload = true
 size = 12
 
 [font.normal]
-family = "monaco"
+#family = "monaco"
+family = "Monaco Nerd Font"
 
 [[keyboard.bindings]]
 chars = "\u001Bf"

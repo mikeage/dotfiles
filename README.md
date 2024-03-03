@@ -18,6 +18,15 @@ ln -s ~/dotfiles/nvim/config/nvim/init.lua ~/.config/nvim/init.lua
 
 ```
 
+## Font(s)
+
+```bash
+mkdir ~/fonts-to-patch
+cp /System/Library/Fonts/Monaco.ttf ~/fonts-to-patch/
+docker run --rm -v $HOME/fonts-to-patch:/in -v $HOME/Library/Fonts/:/out nerdfonts/patcher --complete
+rm -rf ~/fonts-to-patch
+```
+
 ## Git config
 
 ```bash

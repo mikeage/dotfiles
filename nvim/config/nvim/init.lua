@@ -166,6 +166,7 @@ vim.g.airline_solarized_bg = 'dark'
 vim.g.airline_theme = 'solarized'
 vim.g["airline#extensions#tabline#enabled"] = 1
 vim.g["airline#extensions#tabline#formatter"] = 'unique_tail_improved'
+vim.g["airline_powerline_fonts"] = 1
 
 vim.cmd([[
 function! Get_linter_status()
