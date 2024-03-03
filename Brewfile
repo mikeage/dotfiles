@@ -4,15 +4,15 @@ tap "borgbackup/tap"
 tap "carlocab/personal"
 tap "derailed/k9s"
 tap "homebrew/bundle"
+tap "homebrew/cask"
 tap "homebrew/cask-versions"
+tap "homebrew/core"
 tap "homebrew/services"
 tap "hudochenkov/sshpass"
 tap "mongodb/brew"
 tap "stateful/tap"
 tap "weaveworks/tap"
 tap "wswenyue/apkparser"
-# Manage compile and link flags for libraries
-brew "pkg-config"
 # Tool for reverse engineering 3rd party, closed, binary Android apps
 brew "apktool"
 # Download with resuming and segmented downloading
@@ -95,6 +95,10 @@ brew "exiftool"
 brew "faac"
 # ISO AAC audio decoder
 brew "faad2"
+# Powerful, clean, object-oriented scripting language
+brew "ruby"
+# Easiest way to build and release mobile apps
+brew "fastlane"
 # High quality MPEG Audio Layer III (MP3) encoder
 brew "lame"
 # Framework for layout and rendering of i18n text
@@ -127,6 +131,8 @@ brew "gnupg"
 brew "gnuplot"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
+# Manage compile and link flags for libraries
+brew "pkg-config"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
 # Toolkit for creating graphical user interfaces
@@ -197,6 +203,8 @@ brew "mosquitto"
 brew "mr"
 # NCurses Disk Usage
 brew "ncdu"
+# Ambitious Vim-fork focused on extensibility and agility
+brew "neovim"
 # Utility for managing network connections
 brew "netcat"
 # Port scanning utility for large networks
@@ -235,12 +243,12 @@ brew "rpm2cpio"
 brew "rsync"
 # Program to decode radio transmissions from devices
 brew "rtl_433"
-# Powerful, clean, object-oriented scripting language
-brew "ruby"
 # Safe, concurrent, practical language
 brew "rust"
 # Display and control your Android device
 brew "scrcpy"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
 # Autoformat shell script source code
 brew "shfmt"
 # SOund eXchange: universal sound sample translator
@@ -310,7 +318,7 @@ cask "android-messages"
 cask "android-platform-tools"
 # Tools for building Android applications
 cask "android-studio"
-# Two and three-way file comparison, merging and folder synchronization
+# Two and three-way file comparison, merging and folder synchronisation
 cask "araxis-merge"
 # Multi-track audio editor and recorder
 cask "audacity"
@@ -318,7 +326,7 @@ cask "audacity"
 cask "avibrazil-rdm"
 # Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
-# Tool to customize input devices and automate computer systems
+# Tool to customise input devices and automate computer systems
 cask "bettertouchtool"
 # Web security testing toolkit
 cask "burp-suite"
@@ -401,7 +409,7 @@ cask "tunnelblick"
 cask "ultimaker-cura"
 # Management tool for Unity
 cask "unity-hub"
-# Virtualizer for x86 hardware
+# Virtualiser for x86 hardware
 cask "virtualbox"
 # Open-source code editor
 cask "visual-studio-code"
