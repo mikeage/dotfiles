@@ -30,7 +30,8 @@ Plug('nathanaelkane/vim-indent-guides')                                   -- Hig
 Plug('prettier/vim-prettier', { ['do'] = 'yarn install     --frozen-lockfile --production' })
 Plug('kshenoy/vim-signature')                                             -- Show marks in the signs column
 Plug('preservim/nerdcommenter')                                           -- Per-langauge comments
-Plug('preservim/nerdtree')                                                -- File browser
+Plug('nvim-tree/nvim-tree.lua')                                           -- File browser
+Plug('nvim-tree/nvim-web-devicons')                                       -- File browser
 Plug('editorconfig/editorconfig-vim')                                     -- Load config from an editorconfig file
 Plug('tpope/vim-eunuch')                                                  -- Unix commands without annoying quirks
 Plug('vim-scripts/YankRing.vim')                                          -- Keep history of yanks, not just deletes
@@ -133,13 +134,13 @@ vim.keymap.set('n', '<space>', ':exe "silent! normal! za".(foldlevel(".")?"":"l"
 -- Don't open a fold on search
 vim.opt.foldopen:remove('search')
 
-vim.keymap.set('', '<F4>', ':NERDTreeToggle<CR>')
+vim.keymap.set('', '<F4>', ':NvimTreeToggle<CR>')
 vim.keymap.set('n', '<F6>', ':GundoToggle<CR>')
 
 vim.g.NERDTreeWinSize = 60
 
 vim.cmd([[
-autocmd vimenter * if !argc() | NERDTree | endif
+autocmd vimenter * if !argc() | NvimTreeOpen | endif
 ]])
 
 -- Ignore special marks; only show the user defined local (a-z) and global (A-Z) marks
@@ -192,6 +193,11 @@ vim.opt.signcolumn = 'auto:1-5'
 vim.g.gitgutter_highlight_linenrs = 1
 vim.g.gitgutter_set_sign_backgrounds = 1
 
+require("nvim-tree").setup {
+	renderer = {
+		group_empty = true,
+	},
+}
 -- Set up mason, LSP, and lint
 require("mason").setup()
 require("mason-lspconfig").setup {
