@@ -19,6 +19,7 @@ Plug('fatih/vim-go')                                                      -- Lan
 Plug('tmux-plugins/vim-tmux')                                             -- Language specific
 Plug('mtdl9/vim-log-highlighting')                                        -- Language specific
 Plug('glench/vim-jinja2-syntax')                                          -- Language specific
+Plug('chrisbra/csv.vim')                                                  -- Language specific
 
 Plug('AndrewRadev/linediff.vim')                                          -- Diffs within files
 Plug('mikeage/occur.vim')                                                 -- Show all matches in the quickfix menu
@@ -64,6 +65,11 @@ vim.opt.shiftwidth = 4            -- Indentation is 4
 vim.opt.wildmode = 'longest,list' -- Mimic bash- tabs expand as far as they can go, and then show a list of the options
 
 vim.g.c_space_errors = 1          -- Trailing whitespace
+
+vim.g.csv_nomap_space = 1         -- Don't remap space in CSV files
+vim.g.csv_nomap_cr = 1            -- Don't remap CR in CSV files
+vim.g.csv_highlight_column = 1    -- Highlight the column under the cursor
+
 vim.keymap.set('c', 'w!!', ':w ! sudo tee % > /dev/null')
 
 -- map <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#") . " BG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"bg#")<CR>
