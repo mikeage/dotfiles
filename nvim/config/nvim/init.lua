@@ -48,6 +48,7 @@ Plug('rshkarin/mason-nvim-lint')                                          -- Eas
 Plug('https://git.sr.ht/~whynothugo/lsp_lines.nvim')                      -- LSP diagnostics
 Plug('stevearc/conform.nvim')                                             -- Formatting
 Plug('github/copilot.vim')                                                -- AI enhanced coding
+Plug('mbbill/undotree')                                                   -- Undo tree
 vim.call('plug#end')
 
 vim.opt.termguicolors = true
@@ -141,7 +142,10 @@ vim.keymap.set('n', '<space>', ':exe "silent! normal! za".(foldlevel(".")?"":"l"
 vim.opt.foldopen:remove('search')
 
 vim.keymap.set('', '<F4>', ':NvimTreeToggle<CR>')
-vim.keymap.set('n', '<F6>', ':GundoToggle<CR>')
+vim.keymap.set('', '<F6>', vim.cmd.UndotreeToggle)
+vim.g.undotree_WindowLayout = 2
+vim.g.undotree_ShortIndicators = 1
+vim.g.undotree_SetFocusWhenToggle = 1
 
 vim.g.NERDTreeWinSize = 60
 
