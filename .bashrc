@@ -161,8 +161,8 @@ fi
 
 if type brew &>/dev/null; then
 	[ -f "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc" ] && source "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc"
+	source /usr/local/Cellar/modules/*/init/bash_completion
 fi
-source /usr/local/Cellar/modules/*/init/bash_completion
 ###########################
 # Prompt related goodness #
 ###########################
