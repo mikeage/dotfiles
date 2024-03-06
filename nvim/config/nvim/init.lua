@@ -73,6 +73,15 @@ vim.g.csv_highlight_column = 1    -- Highlight the column under the cursor
 
 vim.keymap.set('c', 'w!!', ':w ! sudo tee % > /dev/null')
 
+if vim.g.neovide then
+	vim.keymap.set('n', '<D-s>', ':w<CR>')   -- Save
+	vim.keymap.set('v', '<D-c>', '"+y')      -- Copy
+	vim.keymap.set('n', '<D-v>', '"+P')      -- Paste normal mode
+	vim.keymap.set('v', '<D-v>', '"+P')      -- Paste visual mode
+	vim.keymap.set('c', '<D-v>', '<C-R>+')   -- Paste command mode
+	vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
+end
+
 -- map <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#") . " BG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"bg#")<CR>
 
 -- Disable wordwrap
