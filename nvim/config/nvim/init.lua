@@ -140,9 +140,7 @@ endfunction
 
 ]])
 
-vim.cmd([[
-map <silent><leader>z :set foldexpr=getline(v:lnum)!~@/ foldlevel=0 foldmethod=expr<CR>
-]])
+vim.keymap.set('', '<leader>z', ':set foldexpr=getline(v:lnum)!~@/ foldlevel=0 foldmethod=expr<CR>', { silent = true })
 
 -- Fold / unfold on space
 vim.keymap.set('n', '<space>', ':exe "silent! normal! za".(foldlevel(".")?"":"l")<CR>', { silent = true })
@@ -158,9 +156,13 @@ vim.g.undotree_SetFocusWhenToggle = 1
 
 vim.g.NERDTreeWinSize = 60
 
-vim.cmd([[
-autocmd vimenter * if !argc() | NvimTreeOpen | endif
-]])
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		if vim.fn.argc() == 0 then
+			require("nvim-tree.api").tree.toggle()
+		end
+	end
+})
 
 -- Ignore special marks; only show the user defined local (a-z) and global (A-Z) marks
 vim.g.showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
