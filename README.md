@@ -12,7 +12,7 @@ Enjoy
 ```bash
 cd ~
 git clone --recursive https://github.com/mikeage/dotfiles.git
-ln -s ~/dotfiles/{.inputrc,.tmux.conf,.tmux.conf.local,.bashrc,.bash_profile,.alacritty,.cvsignore,.rsync-exclude,.pylintrc} ~/
+ln -s ~/dotfiles/{.inputrc,.tmux.conf,.tmux.conf.local,.bashrc,.bash_profile,.alacritty.toml,.cvsignore,.rsync-exclude,.pylintrc} ~/ -f
 mkdir -p ~/.config/nvim
 ln -s ~/dotfiles/nvim/config/nvim/init.lua ~/.config/nvim/init.lua
 
