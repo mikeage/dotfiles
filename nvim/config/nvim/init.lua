@@ -22,6 +22,7 @@ Plug('glench/vim-jinja2-syntax')                                          -- Lan
 Plug('chrisbra/csv.vim')                                                  -- Language specific
 
 Plug('AndrewRadev/linediff.vim')                                          -- Diffs within files
+Plug('sindrets/diffview.nvim')                                            -- Show all diffs across files (also for git)
 Plug('mikeage/occur.vim')                                                 -- Show all matches in the quickfix menu
 Plug('vim-airline/vim-airline')                                           -- Status bar
 Plug('vim-airline/vim-airline-themes')                                    -- Status bar themes
