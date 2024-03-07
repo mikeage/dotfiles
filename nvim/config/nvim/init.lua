@@ -61,7 +61,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
 vim.opt.autowriteall = true
-vim.cmd.colorscheme('highlite-solarized8')
+vim.cmd.colorscheme('highlite-sonokai')
 vim.opt.tabstop = 4               -- Tabs are shown as 4
 vim.opt.shiftwidth = 4            -- Indentation is 4
 vim.opt.wildmode = 'longest,list' -- Mimic bash- tabs expand as far as they can go, and then show a list of the options
@@ -186,7 +186,7 @@ vim.g.go_list_type = "quickfix"
 vim.g.go_list_height = 10
 
 vim.g.airline_solarized_bg = 'dark'
-vim.g.airline_theme = 'solarized'
+vim.g.airline_theme = 'molokai'
 vim.g["airline#extensions#tabline#enabled"] = 1
 vim.g["airline#extensions#tabline#formatter"] = 'unique_tail_improved'
 vim.g["airline_powerline_fonts"] = 1
