@@ -9,7 +9,9 @@ endif
 
 local Plug = vim.fn['plug#']
 vim.call('plug#begin')
-Plug('Iron-E/nvim-highlite')                                              -- Colorscheme(s)
+Plug('tjdevries/colorbuddy.nvim')                                         -- Colorscheme(s)
+Plug('svrana/neosolarized.nvim')                                          -- Colorscheme(s)
+
 Plug('tpope/vim-sensible')                                                -- Defaults
 
 Plug('ekalinin/Dockerfile.vim')                                           -- Language specific
@@ -61,7 +63,12 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.incsearch = true
 vim.opt.autowriteall = true
-vim.cmd.colorscheme('highlite-sonokai')
+require('colorbuddy').setup()
+require('neosolarized').setup({
+	comment_italics = true,
+	background_set = true,
+})
+
 vim.opt.tabstop = 4               -- Tabs are shown as 4
 vim.opt.shiftwidth = 4            -- Indentation is 4
 vim.opt.wildmode = 'longest,list' -- Mimic bash- tabs expand as far as they can go, and then show a list of the options
