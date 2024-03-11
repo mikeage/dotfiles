@@ -13,6 +13,7 @@ Plug('tjdevries/colorbuddy.nvim')                                         -- Col
 Plug('svrana/neosolarized.nvim')                                          -- Colorscheme(s)
 
 Plug('tpope/vim-sensible')                                                -- Defaults
+Plug('folke/which-key.nvim')                                              -- See which key bindings are available
 
 Plug('ekalinin/Dockerfile.vim')                                           -- Language specific
 Plug('martinda/Jenkinsfile-vim-syntax')                                   -- Language specific
@@ -79,7 +80,7 @@ vim.g.csv_nomap_space = 1         -- Don't remap space in CSV files
 vim.g.csv_nomap_cr = 1            -- Don't remap CR in CSV files
 vim.g.csv_highlight_column = 1    -- Highlight the column under the cursor
 
-vim.keymap.set('c', 'w!!', ':w ! sudo tee % > /dev/null')
+vim.keymap.set('c', 'w!!', ':w ! sudo tee % > /dev/null', { desc = 'Write as root' })
 
 if vim.g.neovide then
 	vim.keymap.set('n', '<D-s>', ':w<CR>')   -- Save
@@ -93,11 +94,11 @@ end
 -- map <leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#") . " BG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"bg#")<CR>
 
 -- Disable wordwrap
-vim.keymap.set('', '<leader>w', ':set nowrap!<CR>')
+vim.keymap.set('', '<leader>w', ':set nowrap!<CR>', { desc = 'Toggle wordwrap' })
 
 -- Buffer tabbing
-vim.keymap.set('', '<leader><Tab>', ':confirm bnext<CR>')
-vim.keymap.set('', '<leader><leader><Tab>', ':confirm bprevious<CR>')
+vim.keymap.set('', '<leader><Tab>', ':confirm bnext<CR>', { desc = 'Next buffer' })
+vim.keymap.set('', '<leader><leader><Tab>', ':confirm bprevious<CR>', { desc = 'Previous buffer' })
 
 -- Beginning and ending of lines
 vim.opt.backspace = 'indent,eol,start'
@@ -122,9 +123,9 @@ function! QFixToggle(forced)
 endfunction
 ]])
 -- Quickfix scrolling
-vim.keymap.set('', '<leader><PageDown>', ':cnext<CR>')
-vim.keymap.set('', '<leader><PageUp>', ':cprevious<CR>')
-vim.keymap.set('n', '<leader>q', ':QFix<CR>', { silent = true })
+vim.keymap.set('', '<leader><PageDown>', ':cnext<CR>', { desc = 'Next quickfix' })
+vim.keymap.set('', '<leader><PageUp>', ':cprevious<CR>', { desc = 'Previous quickfix' })
+vim.keymap.set('n', '<leader>q', ':QFix<CR>', { silent = true }, { desc = 'Toggle quickfix' })
 
 vim.cmd([[
 " Convert all sorts of fancy prints to basic ASCII. Used for e-book conversions
@@ -148,16 +149,18 @@ endfunction
 
 ]])
 
-vim.keymap.set('', '<leader>z', ':set foldexpr=getline(v:lnum)!~@/ foldlevel=0 foldmethod=expr<CR>', { silent = true })
+vim.keymap.set('', '<leader>z', ':set foldexpr=getline(v:lnum)!~@/ foldlevel=0 foldmethod=expr<CR>',
+	{ silent = true, desc = 'Fold on current search' })
 
 -- Fold / unfold on space
-vim.keymap.set('n', '<space>', ':exe "silent! normal! za".(foldlevel(".")?"":"l")<CR>', { silent = true })
+vim.keymap.set('n', '<space>', ':exe "silent! normal! za".(foldlevel(".")?"":"l")<CR>',
+	{ silent = true, desc = 'Toggle fold' })
 
 -- Don't open a fold on search
 vim.opt.foldopen:remove('search')
 
-vim.keymap.set('', '<F4>', ':NvimTreeToggle<CR>')
-vim.keymap.set('', '<F6>', vim.cmd.UndotreeToggle)
+vim.keymap.set('', '<F4>', ':NvimTreeToggle<CR>', {desc = 'Toggle file browser'})
+vim.keymap.set('', '<F6>', vim.cmd.UndotreeToggle, {desc = 'Toggle undo tree'})
 vim.g.undotree_WindowLayout = 2
 vim.g.undotree_ShortIndicators = 1
 vim.g.undotree_SetFocusWhenToggle = 1
@@ -179,9 +182,9 @@ vim.g.showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 vim.g.local_vimrc = ".vimrc.local"
 
 vim.opt.wildignore:append('*~,*.pyc')
-vim.keymap.set('n', '<leader>t', ':Files<CR>')
-vim.keymap.set('n', '<leader>r', ':Tags<CR>')
-vim.keymap.set('n', ';', ':Buffers<CR>')
+vim.keymap.set('n', '<leader>t', ':Files<CR>', { desc = 'Fuzzy find files' })
+vim.keymap.set('n', '<leader>r', ':Tags<CR>', { desc = 'Fuzzy find tags' })
+vim.keymap.set('n', ';', ':Buffers<CR>', { desc = 'Fuzzy find buffers' })
 
 -- Persistent undofile
 vim.opt.undofile = true
@@ -330,10 +333,10 @@ end, { range = false })
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setqflist)
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, { desc = 'Open diagnostics float' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic' })
+vim.keymap.set('n', '<space>q', vim.diagnostic.setqflist, { desc = 'Open diagnostics in quickfix' })
 
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
@@ -345,27 +348,32 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 		-- Buffer local mappings.
 		-- See `:help vim.lsp.*` for documentation on any of the below functions
-		local opts = { buffer = ev.buf }
-		vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-		vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-		vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-		vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-		vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-		vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
-		vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+		local function opts(desc)
+			local opts_tbl = { buffer = ev.buf }
+			opts_tbl["desc"] = desc
+			return opts_tbl
+		end
+		vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts('Go to declaration'))
+		vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts('Go to definition'))
+		vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts('Show hover'))
+		vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts('Go to implementation'))
+		vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts('Show signature help'))
+		vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts('Add workspace folder'))
+		vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts('Remove workspace folder'))
 		vim.keymap.set('n', '<space>wl', function()
 			print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-		end, opts)
-		vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-		vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-		vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-		vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+		end, opts('List workspace folders'))
+		vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts('Go to type definition'))
+		vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts('Rename'))
+		vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts('Code action'))
+		vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts('Go to references'))
 		vim.keymap.set('n', '<space>f', function()
 			vim.lsp.buf.format { async = true }
-		end, opts)
+		end, opts('Format'))
 	end,
 })
 
+require("which-key").setup()
 -- TODO
 -- " nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 -- " nmap <silent> <C-j> <Plug>(ale_next_wrap)
