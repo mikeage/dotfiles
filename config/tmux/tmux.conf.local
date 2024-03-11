@@ -5,6 +5,16 @@
 #         Copyright 2012— Gregory Pakosz (@gpakosz).
 
 
+# -- bindings ------------------------------------------------------------------
+
+# preserve tmux stock bindings,
+# while adding bindings that don't conflict with these stock bindings
+# /!\ this disables some of Oh my tmux! bindings described in README.md
+#   - true
+#   - false (default)
+tmux_conf_preserve_stock_bindings=false
+
+
 # -- session creation ----------------------------------------------------------
 
 # prompt for session name when creating a new session, possible values are:
@@ -12,6 +22,12 @@
 #   - false (default)
 #   - disabled (do not modify new-session bindings)
 tmux_conf_new_session_prompt=false
+
+# new session retains current path, possible values are:
+#   - true
+#   - false (default)
+#   - disabled (do not modify new-session bindings)
+tmux_conf_new_session_retain_current_path=false
 
 
 # -- windows & pane creation ---------------------------------------------------
@@ -344,19 +360,44 @@ tmux_conf_theme_clock_style="24"
 #   - true
 #   - false (default)
 #   - disabled
-# on macOS, this requires installing reattach-to-user-namespace, see README.md
 # on Linux, this requires xsel, xclip or wl-copy
 tmux_conf_copy_to_os_clipboard=false
 
 
 # -- user customizations -------------------------------------------------------
+
 # this is the place to override or undo settings
+# Powerline
+tmux_conf_theme_left_separator_main='\uE0B0'  # /!\ you don't need to install Powerline
+tmux_conf_theme_left_separator_sub='\uE0B1'   #   you only need fonts patched with
+tmux_conf_theme_right_separator_main='\uE0B2' #   Powerline symbols or the standalone
+tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see README.md
+
+bind | split-window -h
+# Space (or Ctrl-Space, because it's so close) for next window
+bind " " next-window
+bind C-" " next-window
+# Tab used to be last window; we'll use C-a
+bind C-a last-window
+# And Ctrl-a, a will send Ctrl-a
+bind a send-prefix -2
+# Tab switches panes (Shift Tab reverse order)
+unbind Tab
+bind Tab select-pane -t:.+
+unbind BTab
+bind BTab select-pane -t:.-
+set -g default-terminal "alacritty"
+set -ga terminal-overrides ",xterm-256color:RGB"
+set -ga terminal-overrides ",alacritty:RGB"
+
+bind-key -n Home send Escape "OH"
+bind-key -n End send Escape "OF"
 
 # increase history size
-#set -g history-limit 10000
+set -g history-limit 25000
 
 # start with mouse mode enabled
-#set -g mouse on
+set -g mouse on
 
 # force Vi mode
 #   really you should export VISUAL or EDITOR environment variable, see manual
@@ -429,6 +470,8 @@ tmux_conf_uninstall_plugins_on_reload=true
 # then, use #{foo} in e.g. the 'tmux_conf_theme_status_left' or the
 # 'tmux_conf_theme_status_right' variables.
 
+# ------------------------------------------------------------------------------
+
 # # /!\ do not remove the following line
 # EOF
 #
@@ -443,40 +486,16 @@ tmux_conf_uninstall_plugins_on_reload=true
 #   ping -c 1 1.1.1.1 >/dev/null 2>&1 && printf '✔' || printf '✘'
 # }
 #
+# wan_ip_v4() {
+#   curl -f -s -m 2 -4 ifconfig.me
+#   sleep 300                                         # sleep for 5 minutes, throttle network requests whatever the value of status-interval
+# }
+#
+# wan_ip_v6() {
+#   curl -f -s -m 2 -6 ifconfig.me
+#   sleep 300                                         # sleep for 5 minutes, throttle network requests whatever the value of status-interval
+# }
+#
 # "$@"
 # # /!\ do not remove the previous line
-
-set -g history-limit 25000
-set -g mouse on
-bind | split-window -h
-# Space (or Ctrl-Space, because it's so close) for next window
-bind " " next-window
-bind C-" " next-window
-# Tab used to be last window; we'll use C-a
-bind C-a last-window
-# And Ctrl-a, a will send Ctrl-a
-bind a send-prefix -2
-# Tab switches panes (Shift Tab reverse order)
-unbind Tab
-bind Tab select-pane -t:.+
-unbind BTab
-bind BTab select-pane -t:.-
-set -g default-terminal "alacritty"
-set -ga terminal-overrides ",xterm-256color:RGB"
-set -ga terminal-overrides ",alacritty:RGB"
-
-bind -T root F12  \
-  set prefix None \;\
-  set prefix2 None \;\
-  set key-table off \;\
-  if -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
-  refresh-client -S \;\
-
-bind -T off F12 \
-  set -u prefix \;\
-  set -u prefix2 \;\
-  set -u key-table \;\
-  refresh-client -S
-
-bind-key -n Home send Escape "OH"
-bind-key -n End send Escape "OF"
+# #     do not write below this line

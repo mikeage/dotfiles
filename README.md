@@ -12,9 +12,9 @@ Enjoy
 ```bash
 cd ~
 git clone --recursive https://github.com/mikeage/dotfiles.git
-ln -s ~/dotfiles/{.inputrc,.tmux.conf,.tmux.conf.local,.bashrc,.bash_profile,.cvsignore,.rsync-exclude,.pylintrc} ~/ -f
+ln -s ~/dotfiles/{.inputrc,.bashrc,.bash_profile,.cvsignore,.rsync-exclude,.pylintrc} ~/ -f
 mkdir -p ~/.config
-ln -s ~/dotfiles/config/{nvim,alacritty} ~/.config/
+ln -s ~/dotfiles/config/{nvim,alacritty,tmux} ~/.config/
 
 ```
 
