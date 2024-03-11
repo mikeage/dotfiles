@@ -4,9 +4,7 @@ tap "borgbackup/tap"
 tap "carlocab/personal"
 tap "derailed/k9s"
 tap "homebrew/bundle"
-tap "homebrew/cask"
 tap "homebrew/cask-versions"
-tap "homebrew/core"
 tap "homebrew/services"
 tap "hudochenkov/sshpass"
 tap "mongodb/brew"
@@ -242,7 +240,7 @@ brew "rpm2cpio"
 # Utility that provides fast incremental file transfer
 brew "rsync"
 # Program to decode radio transmissions from devices
-brew "rtl_433"
+brew "rtl_433", args: ["HEAD"]
 # Safe, concurrent, practical language
 brew "rust"
 # Display and control your Android device
@@ -374,6 +372,8 @@ cask "maccy"
 cask "macfuse"
 # Remote desktop client
 cask "microsoft-remote-desktop"
+# Neovim Client
+cask "neovide"
 # Desktop sync client for Nextcloud software products
 cask "nextcloud"
 # Reverse proxy, secure introspectable tunnels to localhost
