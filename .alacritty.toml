@@ -18,6 +18,10 @@ chars = "\u001Bb"
 key = "B"
 mods = "Alt"
 
+[[keyboard.bindings]]
+key = "NumpadEnter"
+chars = "\r"
+
 [selection]
 save_to_clipboard = true
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
