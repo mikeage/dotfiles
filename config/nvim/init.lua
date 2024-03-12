@@ -233,7 +233,7 @@ require("nvim-tree").setup {
 -- Set up mason, LSP, and lint
 require("mason").setup()
 require("mason-lspconfig").setup {
-	ensure_installed = { "bashls", "pyright", "pylsp", "yamlls", "lua_ls" },
+	ensure_installed = { "bashls", "eslint", "lua_ls", "pylsp", "pyright", "tsserver", "yamlls", }
 }
 require("mason-lspconfig").setup_handlers {
 	-- Automatically configure all LSP servers
@@ -294,7 +294,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "BufWritePost" }, {
 
 
 require("mason-nvim-lint").setup {
-	ensure_installed = { "pylint" },
+	ensure_installed = { "pylint", "shellcheck", "yamllint" },
 }
 
 require("lsp_lines").setup()
