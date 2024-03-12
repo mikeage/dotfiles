@@ -159,8 +159,8 @@ vim.keymap.set('n', '<space>', ':exe "silent! normal! za".(foldlevel(".")?"":"l"
 -- Don't open a fold on search
 vim.opt.foldopen:remove('search')
 
-vim.keymap.set('', '<F4>', ':NvimTreeToggle<CR>', {desc = 'Toggle file browser'})
-vim.keymap.set('', '<F6>', vim.cmd.UndotreeToggle, {desc = 'Toggle undo tree'})
+vim.keymap.set('', '<F4>', ':NvimTreeToggle<CR>', { desc = 'Toggle file browser' })
+vim.keymap.set('', '<F6>', vim.cmd.UndotreeToggle, { desc = 'Toggle undo tree' })
 vim.g.undotree_WindowLayout = 2
 vim.g.undotree_ShortIndicators = 1
 vim.g.undotree_SetFocusWhenToggle = 1
