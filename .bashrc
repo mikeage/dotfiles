@@ -68,6 +68,11 @@ else
 	export EDITOR=vim
 fi
 
+if which thefuck > /dev/null
+then
+	eval "$(thefuck --alias oof)"
+fi
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
 
