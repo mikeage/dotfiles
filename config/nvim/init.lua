@@ -53,6 +53,7 @@ Plug('https://git.sr.ht/~whynothugo/lsp_lines.nvim')                      -- LSP
 Plug('stevearc/conform.nvim')                                             -- Formatting
 Plug('github/copilot.vim')                                                -- AI enhanced coding
 Plug('mbbill/undotree')                                                   -- Undo tree
+Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })         -- Treesitter
 vim.call('plug#end')
 
 vim.opt.termguicolors = true
@@ -372,6 +373,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		end, opts('Format'))
 	end,
 })
+
+require("nvim-treesitter.configs").setup {
+	ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+
+	highlight = {
+		enable = true,
+	},
+}
+
 
 require("which-key").setup()
 -- TODO
