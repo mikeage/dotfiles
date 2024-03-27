@@ -47,6 +47,8 @@ brew "node"
 brew "bitwarden-cli"
 # Collection of portable C++ source libraries
 brew "boost"
+# Resource monitor. C++ version and continuation of bashtop and bpytop
+brew "btop"
 # Tool to obtain certs from Let's Encrypt and autoenable HTTPS
 brew "certbot"
 # Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
@@ -189,8 +191,6 @@ brew "librtlsdr"
 brew "mas"
 # Unified display of technical and tag data for audio/video
 brew "media-info"
-# Intercept, modify, replay, save HTTP/S traffic
-brew "mitmproxy"
 # Dynamic modification of a user's environment via modulefiles
 brew "modules"
 # Collection of tools that nobody wrote when UNIX was young
@@ -263,6 +263,8 @@ brew "stern"
 brew "stuntman"
 # Tool to build, change, and version infrastructure
 brew "terraform"
+# Programmatically correct mistyped console commands
+brew "thefuck"
 # Terminal multiplexer
 brew "tmux"
 # Lightweight BitTorrent client
@@ -285,7 +287,7 @@ brew "yamllint"
 brew "yarn"
 # Download YouTube videos from the command-line
 brew "youtube-dl"
-# Fork of youtube-dl with additional features and fixes
+# Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # Akeyless CLI
 brew "akeylesslabs/tap/akeyless"
@@ -372,6 +374,8 @@ cask "maccy"
 cask "macfuse"
 # Remote desktop client
 cask "microsoft-remote-desktop"
+# Intercept, modify, replay, save HTTP/S traffic
+cask "mitmproxy"
 # Neovim Client
 cask "neovide"
 # Desktop sync client for Nextcloud software products
