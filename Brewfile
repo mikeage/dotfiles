@@ -249,6 +249,10 @@ brew "scrcpy"
 brew "shellcheck"
 # Autoformat shell script source code
 brew "shfmt"
+# SMART hard drive monitoring
+brew "smartmontools"
+# SOcket CAT: netcat on steroids
+brew "socat"
 # SOund eXchange: universal sound sample translator
 brew "sox"
 # Command-line interface for https://speedtest.net bandwidth tests
@@ -322,8 +326,6 @@ cask "android-studio"
 cask "araxis-merge"
 # Multi-track audio editor and recorder
 cask "audacity"
-# Utility to set a Retina display to custom resolutions
-cask "avibrazil-rdm"
 # Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
 # Tool to customise input devices and automate computer systems
@@ -413,6 +415,8 @@ cask "tunnelblick"
 cask "ultimaker-cura"
 # Management tool for Unity
 cask "unity-hub"
+# Apple II Emulator
+cask "virtual-ii"
 # Virtualiser for x86 hardware
 cask "virtualbox"
 # Open-source code editor
