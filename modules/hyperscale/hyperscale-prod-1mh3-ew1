@@ -10,4 +10,3 @@ module-whatis "This module sets up Hyperscale environment"
 conflict hyperscale
 setenv HYPERSCALE_ENV 1mh3_c1
 module load gcloud/hyperscale-prod-1mh3-ew1
-module load kubeconfig/hyperscale-prod-1mh3-gcp-prod-ui-ew1-c1
