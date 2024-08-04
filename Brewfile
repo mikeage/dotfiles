@@ -81,6 +81,10 @@ brew "docker-compose"
 brew "dog"
 # Convert text between DOS, UNIX, and Mac formats
 brew "dos2unix"
+# GNU version of the tar archiving utility
+brew "gnu-tar"
+# Debian package management system
+brew "dpkg"
 # Simple command-line tool for creating clusters on Amazon EKS
 brew "eksctl"
 # LLVM bytecode to JavaScript compiler
@@ -123,8 +127,6 @@ brew "git"
 brew "git-lfs"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
-# GNU version of the tar archiving utility
-brew "gnu-tar"
 # GNU Pretty Good Privacy (PGP) package
 brew "gnupg"
 # Command-driven, interactive function plotting
