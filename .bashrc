@@ -295,6 +295,18 @@ if [[ -f $BASHRC_DIR/.bashrc.local ]]; then
 	source "$BASHRC_DIR/.bashrc.local"
 fi
 
+function akeyless_cert() {
+	CERT_PATH="$*"
+	AKEYLESS_TOKEN=$(akeyless auth --access-type ldap --access-id "$AKEYLESS_ACCESS_ID" --ldap_proxy_url "$AKEYLESS_LDAP_PROXY_URL" --username "$(whoami)" --password "$(cat ~/.ldappassword)" | grep -o 't-[^"]*')
+	SUFFIX=$(echo "$CERT_PATH" | sed 's/\//_/g')
+	SSH_PUBLIC_KEY="$HOME/.ssh/id_ed25519.${SUFFIX}.pub"
+	if [ ! -f "$SSH_PUBLIC_KEY" ]
+	then
+	  cp ~/.ssh/id_ed25519.pub "$SSH_PUBLIC_KEY"
+	fi
+	akeyless get-ssh-certificate --cert-username centos --cert-issuer-name "${AKEYLESS_CERT_ISSUER_PREFIX}/${CERT_PATH}/${AKEYLESS_CERT_ISSUER_SUFFIX}" --public-key-file-path "$SSH_PUBLIC_KEY"  --legacy-signing-alg-name --token $AKEYLESS_TOKEN
+}
+
 listening() {
 	if [ $# -eq 0 ]; then
 		sudo lsof -iTCP -sTCP:LISTEN -n -P
