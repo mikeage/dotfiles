@@ -54,6 +54,7 @@ Plug('stevearc/conform.nvim')                                             -- For
 Plug('github/copilot.vim')                                                -- AI enhanced coding
 Plug('mbbill/undotree')                                                   -- Undo tree
 Plug('nvim-treesitter/nvim-treesitter', { ['do'] = ':TSUpdate' })         -- Treesitter
+Plug('nvim-treesitter/nvim-treesitter-context')                           -- Treesitter context
 Plug('hrsh7th/cmp-nvim-lsp')                                              -- Completions from LSP
 Plug('hrsh7th/cmp-buffer')                                                -- Completions from buffer names
 Plug('hrsh7th/cmp-path')                                                  -- Completions from file paths
@@ -462,6 +463,9 @@ require("nvim-treesitter.configs").setup {
 		enable = true,
 	},
 }
+require("treesitter-context").setup()
+vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underline = true, sp = "Grey" })
+vim.opt.scrolloff = 10
 
 
 require("which-key").setup()
