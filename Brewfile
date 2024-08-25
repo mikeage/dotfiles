@@ -406,6 +406,8 @@ cask "spotify"
 cask "steam"
 # Command-line client for Steam
 cask "steamcmd"
+# Replacement for RCDefaultApps, written in Swift
+cask "swiftdefaultappsprefpane"
 # Messaging app with a focus on speed and security
 cask "telegram"
 # JDK from the Eclipse Foundation (Adoptium)
