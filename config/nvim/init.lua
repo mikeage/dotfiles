@@ -311,7 +311,7 @@ cmp.setup.filetype('gitcommit', {
 -- Set up mason, LSP, and lint
 require("mason").setup()
 require("mason-lspconfig").setup {
-	ensure_installed = { "bashls", "eslint", "lua_ls", "pylsp", "pyright", "tsserver", "yamlls", }
+	ensure_installed = { "bashls", "eslint", "lua_ls", "pylsp", "pyright", "ts_ls", "yamlls", }
 }
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require("mason-lspconfig").setup_handlers {
