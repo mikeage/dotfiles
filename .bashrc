@@ -146,9 +146,10 @@ fi
 ############
 if which brew > /dev/null
 then
-	export PATH=/usr/local/coreutils/libexec/gnubin:$PATH
+	HOMEBREW_PREFIX="$(brew --prefix)"
+	export PATH=${HOMEBREW_PREFIX}/coreutils/libexec/gnubin:$PATH
 	# Keep python2 in the path, since homebrew breaks the python convention
-	export PATH="/usr/local/opt/python@2/bin:$PATH"
+	export PATH="${HOMEBREW_PREFIX}/opt/python@2/bin:$PATH"
 fi
 
 ##################
@@ -157,22 +158,29 @@ fi
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 [ -f /usr/local/share/bash-completion/bash_completion ] && . /usr/local/share/bash-completion/bash_completion
 [ -f /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc ] && . /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
+[ -f /opt/homebrew/etc/bash_completion ] && . /opt/homebrew/etc/bash_completion
+[ -f /opt/homebrew/share/bash-completion/bash_completion ] && . /opt/homebrew/share/bash-completion/bash_completion
+[ -f /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc ] && . /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc
 
 if type brew &>/dev/null; then
-	HOMEBREW_PREFIX="$(brew --prefix)"
 	for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
 		[[ -r "$COMPLETION" ]] && source "$COMPLETION"
 	done
 fi
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
 	source /usr/local/etc/bash_completion.d/git-prompt.sh
 fi
+if [ -f /opt/homebrew/etc/bash_completion.d/git-prompt.sh ]; then
+	source /opt/homebrew/etc/bash_completion.d/git-prompt.sh
+fi
+
 
 if type brew &>/dev/null; then
 	[ -f "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc" ] && source "$(brew --prefix)/share/google-cloud-sdk/path.bash.inc"
-	source /usr/local/Cellar/modules/*/init/bash_completion
+	source $HOMEBREW_PREFIX/Cellar/modules/*/init/bash_completion
 fi
 ###########################
 # Prompt related goodness #
@@ -261,6 +269,7 @@ fzf_without_args
 [ -f ~/.iterm2_shell_integration.bash ] && source ~/.iterm2_shell_integration.bash
 [ -f /usr/share/doc/fzf/examples/key-bindings.bash ] && source /usr/share/doc/fzf/examples/key-bindings.bash
 [ -f /usr/local/opt/modules/init/bash ] && source /usr/local/opt/modules/init/bash
+[ -f /opt/homebrew/opt/modules/init/bash ] && source /opt/homebrew/opt/modules/init/bash
 export MODULEPATH=$BASHRC_DIR/modules:$MODULEPATH
 
 safari_history() {
@@ -323,6 +332,7 @@ export LC_ALL=en_US.UTF-8
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
 export PATH="/usr/local/sbin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
 # Add .NET Core SDK tools
 export PATH="$PATH:/Users/mikemi/.dotnet/tools"
 export DOTNET_ROOT="/usr/local/opt/dotnet/libexec"
