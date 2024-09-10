@@ -416,8 +416,6 @@ cask "ultimaker-cura"
 cask "unity-hub"
 # Apple II Emulator
 cask "virtual-ii"
-# Virtualiser for x86 hardware
-cask "virtualbox"
 # Open-source code editor
 cask "visual-studio-code"
 # Multimedia player
