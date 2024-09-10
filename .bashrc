@@ -1,6 +1,8 @@
 # Custom .bashrc; collected from quite a few places on the internet. Not even going to attempt to list them all..
 # shellcheck disable=SC2001,SC1091,SC1090
 
+[[ -d /opt/homebrew/bin ]] && export PATH="/opt/homebrew/bin:$PATH"
+
 ###########################
 # Solarized related stuff #
 ###########################
@@ -166,15 +168,15 @@ if type brew &>/dev/null; then
 	for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
 		[[ -r "$COMPLETION" ]] && source "$COMPLETION"
 	done
+        source ${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh
 fi
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-[[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
 
 if [ -f /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
 	source /usr/local/etc/bash_completion.d/git-prompt.sh
 fi
-if [ -f /opt/homebrew/etc/bash_completion.d/git-prompt.sh ]; then
-	source /opt/homebrew/etc/bash_completion.d/git-prompt.sh
+if type brew &>/dev/null; then
+	source ${HOMEBREW_PREFIX}/etc/bash_completion.d/git-prompt.sh
 fi
 
 
@@ -332,7 +334,6 @@ export LC_ALL=en_US.UTF-8
 export GOPATH=$HOME/go
 export PATH="$PATH:$GOPATH/bin"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/opt/homebrew/sbin:$PATH"
 # Add .NET Core SDK tools
 export PATH="$PATH:/Users/mikemi/.dotnet/tools"
 export DOTNET_ROOT="/usr/local/opt/dotnet/libexec"
