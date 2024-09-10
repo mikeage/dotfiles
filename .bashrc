@@ -119,11 +119,11 @@ done
 
 if [ -n "${HOMEBREW_PREFIX}" ]; then
 	[ -r "${HOMEBREW_PREFIX}/etc/bash_completion" ] && . "${HOMEBREW_PREFIX}/etc/bash_completion"
+	source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+	[ -r "${HOMEBREW_PREFIX}/share/bash-completion/bash_completion" ] && . "${HOMEBREW_PREFIX}/share/bash-completion/bash_completion"
 	for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
 		[[ -r "$COMPLETION" ]] && source "$COMPLETION"
 	done
-	source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
-	[ -r "${HOMEBREW_PREFIX}/share/bash-completion/bash_completion" ] && . "${HOMEBREW_PREFIX}/share/bash-completion/bash_completion"
 	[ -r "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc" ] && . "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
 	[ -f "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.bash.inc" ] && source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.bash.inc"
 	source "${HOMEBREW_PREFIX}/Cellar/modules"/*/init/bash_completion
