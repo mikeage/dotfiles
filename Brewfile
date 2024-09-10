@@ -4,7 +4,6 @@ tap "borgbackup/tap"
 tap "carlocab/personal"
 tap "derailed/k9s"
 tap "homebrew/bundle"
-tap "homebrew/cask-versions"
 tap "homebrew/services"
 tap "hudochenkov/sshpass"
 tap "mongodb/brew"
@@ -77,8 +76,6 @@ brew "docker"
 brew "docker-buildx"
 # Isolated development environments using Docker
 brew "docker-compose"
-# Command-line DNS client
-brew "dog"
 # Convert text between DOS, UNIX, and Mac formats
 brew "dos2unix"
 # GNU version of the tar archiving utility
