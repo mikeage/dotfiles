@@ -385,8 +385,6 @@ cask "nextcloud"
 cask "ngrok"
 # Programmable solid 3D CAD modeller
 cask "openscad"
-# File system integration
-cask "osxfuse"
 # Collaboration platform for API development
 cask "postman"
 # Archive manager for data compression and backups
