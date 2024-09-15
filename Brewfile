@@ -357,10 +357,14 @@ cask "firefox"
 cask "ghidra"
 # Web browser
 cask "google-chrome"
+# Web browser
+cask "google-chrome@beta"
 # Set of tools to manage resources and applications hosted on Google Cloud
 cask "google-cloud-sdk"
 # Software-defined radio receiver powered by GNU Radio and Qt
 cask "gqrx"
+# Game launcher
+cask "heroic"
 # Utility to hide menu bar items
 cask "hiddenbar"
 # Standalone Java Decompiler GUI
@@ -373,30 +377,20 @@ cask "keyboard-cleaner"
 cask "maccy"
 # File system integration
 cask "macfuse"
-# Remote desktop client
-cask "microsoft-remote-desktop"
 # Intercept, modify, replay, save HTTP/S traffic
 cask "mitmproxy"
-# Neovim Client
-cask "neovide"
+# Document scanning application
+cask "naps2"
 # Desktop sync client for Nextcloud software products
 cask "nextcloud"
 # Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
-# Programmable solid 3D CAD modeller
-cask "openscad"
 # Collaboration platform for API development
 cask "postman"
 # Archive manager for data compression and backups
 cask "rar"
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
-# MongoDB management tool
-cask "robo-3t"
-# Team communication and collaboration software
-cask "slack"
-# Music streaming service
-cask "spotify"
 # Video game digital distribution service
 cask "steam"
 # Command-line client for Steam
@@ -408,22 +402,14 @@ cask "telegram"
 # JDK from the Eclipse Foundation (Adoptium)
 cask "temurin"
 cask "transmission-remote-gui"
-# Free and open-source OpenVPN client
-cask "tunnelblick"
 # 3D printer and slicing GUI
 cask "ultimaker-cura"
 # Management tool for Unity
 cask "unity-hub"
-# Apple II Emulator
-cask "virtual-ii"
 # Open-source code editor
 cask "visual-studio-code"
 # Multimedia player
 cask "vlc"
-# Remote desktop application focusing on security
-cask "vnc-viewer"
-# Desktop Backup Client for Borg
-cask "vorta"
 # Native desktop client for WhatsApp
 cask "whatsapp"
 # Network protocol analyzer
@@ -432,21 +418,11 @@ cask "wireshark"
 cask "xquartz"
 # Video communication and virtual meeting platform
 cask "zoom"
-# Desktop client for the Zulip team chat platform
-cask "zulip"
 mas "Amphetamine", id: 937984704
 mas "Bitwarden", id: 1352778147
-mas "Blackmagic RAW Speed Test", id: 1466185689
-mas "Disk Speed Test", id: 425264550
-mas "Flowchart Designer 3", id: 1512570906
-mas "GarageBand", id: 682658836
-mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft PowerPoint", id: 462062816
-mas "MQTT Explorer", id: 1455214828
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
 mas "Speedtest", id: 1153157709
 mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
