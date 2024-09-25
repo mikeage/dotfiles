@@ -24,8 +24,6 @@ brew "autoconf"
 brew "automake"
 # Use AWS IAM credentials to authenticate to Kubernetes
 brew "aws-iam-authenticator"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.11"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Light UNIX download accelerator
@@ -182,8 +180,6 @@ brew "libconfig"
 brew "libfido2"
 # Implementation of the file(1) command
 brew "libmagic"
-# GLib ICE implementation
-brew "libnice"
 # Use Realtek DVB-T dongles as a cheap SDR
 brew "librtlsdr"
 # Mac App Store command-line interface
@@ -202,6 +198,8 @@ brew "mr"
 brew "ncdu"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# No Nonsense Neovim Client in Rust
+brew "neovide"
 # Utility for managing network connections
 brew "netcat"
 # Port scanning utility for large networks
@@ -228,6 +226,8 @@ brew "pssh"
 brew "pstree"
 # Sound system for POSIX OSes
 brew "pulseaudio"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.11"
 # Tools for and transforming and inspecting PDF files
 brew "qpdf"
 # Reverse engineering framework
@@ -288,8 +288,6 @@ brew "wireguard-tools"
 brew "yamllint"
 # JavaScript package manager
 brew "yarn"
-# Download YouTube videos from the command-line
-brew "youtube-dl"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
 # Akeyless CLI
@@ -307,16 +305,12 @@ brew "stateful/tap/runme"
 brew "wswenyue/apkparser/apkparser"
 # View, print, and comment on PDF documents
 cask "adobe-acrobat-reader"
-# JDK from the Java User Group (JUG)
-cask "adoptopenjdk"
 # GPU-accelerated terminal emulator
 cask "alacritty"
 # Menu bar tool to limit maximum charging percentage
 cask "aldente"
 # Communications service
 cask "amazon-chime"
-# Desktop client for Android Messages
-cask "android-messages"
 # Android SDK component
 cask "android-platform-tools"
 # Tools for building Android applications
@@ -327,8 +321,6 @@ cask "araxis-merge"
 cask "audacity"
 # Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
-# Tool to customise input devices and automate computer systems
-cask "bettertouchtool"
 # Web security testing toolkit
 cask "burp-suite"
 # E-books management software
@@ -363,8 +355,6 @@ cask "google-chrome@beta"
 cask "google-cloud-sdk"
 # Software-defined radio receiver powered by GNU Radio and Qt
 cask "gqrx"
-# Game launcher
-cask "heroic"
 # Utility to hide menu bar items
 cask "hiddenbar"
 # Standalone Java Decompiler GUI
