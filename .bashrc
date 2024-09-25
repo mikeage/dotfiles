@@ -104,6 +104,7 @@ fi
 if which brew >/dev/null; then
 	HOMEBREW_PREFIX="$(brew --prefix)"
 	export PATH=${HOMEBREW_PREFIX}/coreutils/libexec/gnubin:$PATH
+	export PATH=${HOMEBREW_PREFIX}/sbin:$PATH
 fi
 
 ##################
