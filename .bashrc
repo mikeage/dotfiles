@@ -250,3 +250,6 @@ export PATH="/usr/local/sbin:$PATH"
 # Add .NET Core SDK tools
 export PATH="$PATH:/Users/mikemi/.dotnet/tools"
 export DOTNET_ROOT="/usr/local/opt/dotnet/libexec"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/mikemi/.cache/lm-studio/bin"
