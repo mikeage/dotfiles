@@ -8,6 +8,7 @@ tap "homebrew/services"
 tap "hudochenkov/sshpass"
 tap "mongodb/brew"
 tap "stateful/tap"
+tap "vladkens/tap"
 tap "weaveworks/tap"
 tap "wswenyue/apkparser"
 # Tool for reverse engineering 3rd party, closed, binary Android apps
@@ -16,6 +17,8 @@ brew "apktool"
 brew "aria2"
 # Record and share terminal sessions
 brew "asciinema"
+# Perf monitoring CLI tool for Apple Silicon
+brew "asitop"
 # Protocol definitions and daemon for D-Bus at-spi
 brew "at-spi2-core"
 # Automatic configure script builder
@@ -54,6 +57,14 @@ brew "clang-format"
 brew "cmake"
 # Container runtimes on MacOS (and Linux) with minimal setup
 brew "colima", restart_service: true
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
+# Generic library support script
+brew "libtool"
+# Granddaddy of HTML tools, with support for modern standards
+brew "tidy-html5"
+# Dependency Manager for PHP
+brew "composer"
 # Diff your Docker containers
 brew "container-diff"
 # GNU File, Shell, and Text utilities
@@ -62,8 +73,6 @@ brew "coreutils"
 brew "cscope"
 # Reimplementation of ctags(1)
 brew "ctags"
-# Get a file from an HTTP, HTTPS or FTP server
-brew "curl"
 # Tools to work with Android .dex and Java .class files
 brew "dex2jar"
 # Tool for exploring each layer in a docker image
@@ -106,8 +115,6 @@ brew "pango"
 brew "ffmpeg"
 # C routines to compute the Discrete Fourier Transform
 brew "fftw"
-# Generic library support script
-brew "libtool"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # GNU awk utility
@@ -128,8 +135,8 @@ brew "gnupg"
 brew "gnuplot"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
-# Manage compile and link flags for libraries
-brew "pkg-config"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
 # Toolkit for creating graphical user interfaces
@@ -204,14 +211,14 @@ brew "neovide"
 brew "netcat"
 # Port scanning utility for large networks
 brew "nmap"
+# Create, run, and share large language models (LLMs)
+brew "ollama", restart_service: true
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
 # Tool for creating identical machine images for multiple platforms
 brew "packer"
-# Granddaddy of HTML tools, with support for modern standards
-brew "tidy-html5"
 # Check coding standards in PHP, JavaScript and CSS
 brew "php-code-sniffer"
 # Minimal dumb-terminal emulation program
@@ -228,6 +235,8 @@ brew "pstree"
 brew "pulseaudio"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.11"
+# Generic machine emulator and virtualizer
+brew "qemu"
 # Tools for and transforming and inspecting PDF files
 brew "qpdf"
 # Reverse engineering framework
@@ -264,6 +273,8 @@ brew "st"
 brew "stern"
 # Implementation of the STUN protocol
 brew "stuntman"
+# Version control system designed to be a better CVS
+brew "subversion"
 # Tool to build, change, and version infrastructure
 brew "terraform"
 # Programmatically correct mistyped console commands
@@ -276,6 +287,8 @@ brew "transmission-cli"
 brew "urlview"
 # Vi 'workalike' with many additional features
 brew "vim"
+# Tool for creating isolated virtual python environments
+brew "virtualenv"
 # Web Assembly Binary Toolkit
 brew "wabt"
 # Executes a program periodically, showing output fullscreen
@@ -301,6 +314,8 @@ brew "hudochenkov/sshpass/sshpass"
 brew "mongodb/brew/mongodb-community"
 # Execute your runbooks, docs, and READMEs.
 brew "stateful/tap/runme"
+# Sudoless performance monitoring CLI tool for Apple Silicon processors
+brew "vladkens/tap/macmon"
 # Android apk file parsing tool
 brew "wswenyue/apkparser/apkparser"
 # View, print, and comment on PDF documents
@@ -321,6 +336,8 @@ cask "araxis-merge"
 cask "audacity"
 # Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
+# 3D model slicing software for 3D printers, maintained by Bambu Lab
+cask "bambu-studio"
 # Web security testing toolkit
 cask "burp-suite"
 # E-books management software
@@ -361,14 +378,20 @@ cask "hiddenbar"
 cask "jd-gui"
 # Jellyfin desktop client
 cask "jellyfin-media-player"
+# Note taking and to-do application with synchronisation capabilities
+cask "joplin"
 # Desktop shield and keystroke interceptor
 cask "keyboard-cleaner"
+# Discover, download, and run local LLMs
+cask "lm-studio"
 # Clipboard manager
 cask "maccy"
 # File system integration
 cask "macfuse"
 # Intercept, modify, replay, save HTTP/S traffic
 cask "mitmproxy"
+# Power management and monitoring for Apple Mx processors
+cask "mx-power-gadget"
 # Document scanning application
 cask "naps2"
 # Desktop sync client for Nextcloud software products
@@ -416,14 +439,3 @@ mas "Microsoft PowerPoint", id: 462062816
 mas "Speedtest", id: 1153157709
 mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
-vscode "janjoerke.jenkins-pipeline-linter-connector"
-vscode "ms-azuretools.vscode-docker"
-vscode "ms-dotnettools.csharp"
-vscode "ms-dotnettools.vscode-dotnet-runtime"
-vscode "ms-vscode-remote.remote-containers"
-vscode "ms-vscode-remote.remote-ssh"
-vscode "ms-vscode-remote.remote-ssh-edit"
-vscode "ms-vscode-remote.remote-wsl"
-vscode "ms-vscode-remote.vscode-remote-extensionpack"
-vscode "ms-vscode.remote-explorer"
-vscode "ms-vscode.remote-server"
