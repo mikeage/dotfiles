@@ -6,6 +6,10 @@ proc ModulesHelp { } {
 
 module-whatis "This module sets up Hyperscale environment"
 
+if { [is-loaded gcloud ] } {
+    module unload gcloud
+}
+
 # https://modules.readthedocs.io/en/latest/cookbook/tips-for-code-reuse.html
 conflict gcloud
 setenv CLOUDSDK_ACTIVE_CONFIG_NAME hyperscale-dev2-vqhx

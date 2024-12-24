@@ -6,7 +6,11 @@ proc ModulesHelp { } {
 
 module-whatis "This module sets up Hyperscale environment"
 
+if { [is-loaded hyperscale] } {
+    module unload hyperscale
+}
+
 # https://modules.readthedocs.io/en/latest/cookbook/tips-for-code-reuse.html
 conflict hyperscale
-setenv HYPERSCALE_ENV 1mh3_c1
+setenv HYPERSCALE_ENV 1mh3_ew1
 module load gcloud/hyperscale-prod-1mh3-ew1
