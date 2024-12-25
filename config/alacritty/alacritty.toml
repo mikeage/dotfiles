@@ -1,5 +1,5 @@
 [general]
-import = ["/Users/mikemi/dotfiles/alacritty-theme/themes/solarized_dark.toml"]
+import = ["/Users/mikemi/dotfiles/alacritty-theme/themes/material_theme_mod.toml"]
 live_config_reload = true
 
 [font]
