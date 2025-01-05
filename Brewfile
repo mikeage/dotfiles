@@ -285,10 +285,14 @@ brew "tmux"
 brew "transmission-cli"
 # URL extractor/launcher
 brew "urlview"
+# Extremely fast Python package installer and resolver, written in Rust
+brew "uv"
 # Vi 'workalike' with many additional features
 brew "vim"
 # Tool for creating isolated virtual python environments
 brew "virtualenv"
+# Generator for LS_COLORS with support for multiple color themes
+brew "vivid"
 # Web Assembly Binary Toolkit
 brew "wabt"
 # Executes a program periodically, showing output fullscreen
@@ -433,9 +437,11 @@ cask "xquartz"
 cask "zoom"
 mas "Amphetamine", id: 937984704
 mas "Bitwarden", id: 1352778147
+mas "FakespotSafari", id: 1592541616
 mas "Keynote", id: 409183694
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft PowerPoint", id: 462062816
 mas "Speedtest", id: 1153157709
+mas "Userscripts-Mac-App", id: 1463298887
 mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
