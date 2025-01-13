@@ -56,7 +56,7 @@ brew "clang-format"
 # Cross-platform make
 brew "cmake"
 # Container runtimes on MacOS (and Linux) with minimal setup
-brew "colima", restart_service: true
+brew "colima", restart_service: :changed
 # Get a file from an HTTP, HTTPS or FTP server
 brew "curl"
 # Generic library support script
@@ -212,7 +212,7 @@ brew "netcat"
 # Port scanning utility for large networks
 brew "nmap"
 # Create, run, and share large language models (LLMs)
-brew "ollama", restart_service: true
+brew "ollama", restart_service: :changed
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
 # 7-Zip (high compression file archiver) implementation
@@ -223,8 +223,6 @@ brew "packer"
 brew "php-code-sniffer"
 # Minimal dumb-terminal emulation program
 brew "picocom"
-# Execute binaries from Python packages in isolated environments
-brew "pipx"
 # Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
 brew "prettier"
 # Parallel versions of OpenSSH and related tools
