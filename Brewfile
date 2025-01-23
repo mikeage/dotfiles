@@ -400,6 +400,8 @@ cask "naps2"
 cask "nextcloud"
 # Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
+# G-code generator for 3D printers
+cask "orcaslicer"
 # Collaboration platform for API development
 cask "postman"
 # Archive manager for data compression and backups
