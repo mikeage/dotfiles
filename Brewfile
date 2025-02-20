@@ -189,6 +189,8 @@ brew "libfido2"
 brew "libmagic"
 # Use Realtek DVB-T dongles as a cheap SDR
 brew "librtlsdr"
+# Drop-in replacement for MySQL
+brew "mariadb"
 # Mac App Store command-line interface
 brew "mas"
 # Unified display of technical and tag data for audio/video
@@ -223,6 +225,8 @@ brew "packer"
 brew "php-code-sniffer"
 # Minimal dumb-terminal emulation program
 brew "picocom"
+# Cross-platform library for audio I/O
+brew "portaudio"
 # Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
 brew "prettier"
 # Parallel versions of OpenSSH and related tools
@@ -336,6 +340,8 @@ cask "android-studio"
 cask "araxis-merge"
 # Multi-track audio editor and recorder
 cask "audacity"
+# Integrated CAD, CAM, CAE, and PCB software
+cask "autodesk-fusion"
 # Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
 # 3D model slicing software for 3D printers, maintained by Bambu Lab
@@ -386,6 +392,8 @@ cask "joplin"
 cask "keyboard-cleaner"
 # Discover, download, and run local LLMs
 cask "lm-studio"
+# Software for Logitech devices
+cask "logi-options+"
 # Clipboard manager
 cask "maccy"
 # File system integration
