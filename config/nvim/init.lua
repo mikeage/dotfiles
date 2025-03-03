@@ -292,20 +292,20 @@ cmp.setup.filetype('gitcommit', {
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 --cmp.setup.cmdline({ '/', '?' }, {
-	--mapping = cmp.mapping.preset.cmdline(),
-	--sources = {
-		--{ name = 'buffer' }
-	--}
+--mapping = cmp.mapping.preset.cmdline(),
+--sources = {
+--{ name = 'buffer' }
+--}
 --})
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 --cmp.setup.cmdline(':', {
-	--mapping = cmp.mapping.preset.cmdline(),
-	--sources = cmp.config.sources({
-		--{ name = 'path' }
-	--}, {
-		--{ name = 'cmdline' }
-	--})
+--mapping = cmp.mapping.preset.cmdline(),
+--sources = cmp.config.sources({
+--{ name = 'path' }
+--}, {
+--{ name = 'cmdline' }
+--})
 --})
 
 -- Set up mason, LSP, and lint
@@ -392,9 +392,8 @@ vim.diagnostic.config {
 require("conform").setup({
 	formatters_by_ft = {
 		python = { "isort", "black" },
-		-- Use a sub-list to run only the first available formatter
-		javascript = { { "prettierd", "prettier" } },
-		yaml = { { "yamlfmt", "yamlfix" } },
+		javascript = { "prettierd", "prettier" },
+		yaml = { "yamlfmt", "yamlfix" },
 	},
 })
 
@@ -407,7 +406,7 @@ vim.api.nvim_create_user_command("Format", function(args)
 			["end"] = { args.line2, end_line:len() },
 		}
 	end
-	require("conform").format({ async = true, lsp_fallback = true, range = range })
+	require("conform").format({ async = true, lsp_fallback = true, range = range, stop_after_first = vim.bo.filetype == "javascript" or vim.bo.filetype == "yaml", })
 end, { range = true })
 
 vim.api.nvim_create_user_command("Lint", function()
