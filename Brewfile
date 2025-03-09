@@ -141,7 +141,7 @@ brew "pkgconf"
 brew "graphviz"
 # Toolkit for creating graphical user interfaces
 brew "gtk+3"
-# Data and connectivity library for the icecast server
+# Data and connectivity library for the Icecast server
 brew "libshout"
 # HTTP client/server library for GNOME
 brew "libsoup"
@@ -380,14 +380,14 @@ cask "google-chrome@beta"
 cask "google-cloud-sdk"
 # Software-defined radio receiver powered by GNU Radio and Qt
 cask "gqrx"
-# Utility to hide menu bar items
-cask "hiddenbar"
 # Standalone Java Decompiler GUI
 cask "jd-gui"
 # Jellyfin desktop client
 cask "jellyfin-media-player"
 # Note taking and to-do application with synchronisation capabilities
 cask "joplin"
+# Menu bar manager
+cask "jordanbaird-ice"
 # Desktop shield and keystroke interceptor
 cask "keyboard-cleaner"
 # Discover, download, and run local LLMs
