@@ -216,7 +216,7 @@ require("lazy").setup({
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			require("mason-lspconfig").setup {
-				ensure_installed = { "bashls", "eslint", "lua_ls", "pylsp", "pyright", "ts_ls", "yamlls" },
+				ensure_installed = { "bashls", "eslint", "lua_ls", "pylsp", "ts_ls", "yamlls" },
 			}
 
 			-- Set up handlers for all installed servers
