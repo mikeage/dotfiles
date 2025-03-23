@@ -53,11 +53,21 @@ require("lazy").setup({
 	-- -------------------------------------------------------------------
 	-- Language-specific
 	-- -------------------------------------------------------------------
-	{ "ekalinin/Dockerfile.vim" },
-	{ "martinda/Jenkinsfile-vim-syntax" },
-	{ "saltstack/salt-vim" },
+	{
+		"ekalinin/Dockerfile.vim",
+		ft = { "dockerfile", "Dockerfile" },
+	},
+	{
+		"martinda/Jenkinsfile-vim-syntax",
+		ft = { "Jenkinsfile" }, -- or "jenkinsfile"
+	},
+	{
+		"saltstack/salt-vim",
+		ft = { "sls", "salt" },
+	},
 	{
 		"fatih/vim-go",
+		ft = "go",
 		config = function()
 			-- Your vim-go settings
 			vim.g.go_fmt_command = "goimports"
@@ -65,16 +75,31 @@ require("lazy").setup({
 			vim.g.go_list_height = 10
 		end,
 	},
-	{ "tmux-plugins/vim-tmux" },
-	{ "mtdl9/vim-log-highlighting" },
-	{ "glench/vim-jinja2-syntax" },
-	{ "chrisbra/csv.vim" },
+	{
+		"tmux-plugins/vim-tmux",
+		ft = { "tmux" },
+	},
+	{
+		"mtdl9/vim-log-highlighting",
+		ft = { "log", "text" },
+	},
+	{
+		"glench/vim-jinja2-syntax",
+		ft = { "jinja", "jinja2", "htmldjango" },
+	},
+	{
+		"chrisbra/csv.vim",
+		ft = "csv",
+	},
 
 	-- -------------------------------------------------------------------
 	-- Diff & Utility
 	-- -------------------------------------------------------------------
 	{ "AndrewRadev/linediff.vim" },
-	{ "sindrets/diffview.nvim" },
+	{
+		"sindrets/diffview.nvim",
+		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+	},
 	{ "mikeage/occur.vim" },
 
 	-- -------------------------------------------------------------------
@@ -82,6 +107,7 @@ require("lazy").setup({
 	-- -------------------------------------------------------------------
 	{
 		"vim-airline/vim-airline",
+		event = "VeryLazy", -- Load it a bit later
 		config = function()
 			-- Airline global settings
 			vim.g.airline_solarized_bg = "dark"
@@ -120,6 +146,10 @@ require("lazy").setup({
 	{
 		"nvim-tree/nvim-tree.lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		cmd = { "NvimTreeToggle", "NvimTreeFindFile" }, -- Only load on these commands
+		keys = {
+			{ "<F4>", "<cmd>NvimTreeToggle<CR>", desc = "Toggle file browser" },
+		},
 		config = function()
 			require("nvim-tree").setup({
 				renderer = {
@@ -431,7 +461,6 @@ vim.keymap.set("n", "<leader>t", ":Files<CR>", { desc = "Fuzzy find files" })
 vim.keymap.set("n", "<leader>r", ":Tags<CR>", { desc = "Fuzzy find tags" })
 vim.keymap.set("n", ";", ":Buffers<CR>", { desc = "Fuzzy find buffers" })
 
-vim.keymap.set("", "<F4>", ":NvimTreeToggle<CR>", { desc = "Toggle file browser" })
 vim.keymap.set("", "<F6>", vim.cmd.UndotreeToggle, { desc = "Toggle undo tree" })
 
 -- Mark config
