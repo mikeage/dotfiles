@@ -30,7 +30,7 @@ Plug('mikeage/occur.vim')                                                 -- Sho
 Plug('vim-airline/vim-airline')                                           -- Status bar
 Plug('vim-airline/vim-airline-themes')                                    -- Status bar themes
 Plug('tpope/vim-fugitive')                                                -- Git helper
-Plug('airblade/vim-gitgutter')                                            -- Show git changes in the signs column
+Plug('lewis6991/gitsigns.nvim')                                           -- Show git changes in the signs column
 Plug('nathanaelkane/vim-indent-guides')                                   -- Highlight indentation
 Plug('prettier/vim-prettier', { ['do'] = 'yarn install     --frozen-lockfile --production' })
 Plug('kshenoy/vim-signature')                                             -- Show marks in the signs column
@@ -82,6 +82,16 @@ require('neosolarized').setup({
 
 vim.opt.tabstop = 4               -- Tabs are shown as 4
 vim.opt.shiftwidth = 4            -- Indentation is 4
+-- Use 2 space indents for JavaScript and TypeScript
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "javascript", "typescript", "typescriptreact" },
+  callback = function()
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.tabstop = 2
+	vim.opt_local.expandtab = true
+  end,
+})
+
 vim.opt.wildmode = 'longest,list' -- Mimic bash- tabs expand as far as they can go, and then show a list of the options
 
 vim.g.c_space_errors = 1          -- Trailing whitespace
@@ -232,8 +242,7 @@ vim.opt.updatetime = 100
 -- Use up to 5 columns for the signs (1 for git gutter, 2 for vim-signature, and 2 reserved)
 vim.opt.signcolumn = 'auto:1-5'
 
-vim.g.gitgutter_highlight_linenrs = 1
-vim.g.gitgutter_set_sign_backgrounds = 1
+require('gitsigns').setup()
 
 require("nvim-tree").setup {
 	renderer = {
