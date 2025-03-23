@@ -65,7 +65,8 @@ Plug('hrsh7th/vim-vsnip')                                                 -- Sni
 vim.call('plug#end')
 
 vim.opt.termguicolors = true
-vim.opt.foldmethod = 'syntax'
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr  = 'nvim_treesitter#foldexpr()'
 vim.opt.foldcolumn = '8'
 vim.opt.foldlevel = 99
 vim.opt.number = true -- Show line numbers
