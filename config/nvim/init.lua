@@ -387,6 +387,15 @@ require("lazy").setup({
 			vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underline = true, sp = "Grey" })
 		end,
 	},
+	{
+		"windwp/nvim-ts-autotag",
+		event = "InsertEnter",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		config = function()
+			require("nvim-ts-autotag").setup()
+		end,
+	},
+
 
 	-- -------------------------------------------------------------------
 	-- Completion
