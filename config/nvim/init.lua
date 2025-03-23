@@ -9,6 +9,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- Loader caching
+if vim.loader and vim.loader.enable then
+	vim.loader.enable()
+end
 
 require("lazy").setup({
 	-- -------------------------------------------------------------------
