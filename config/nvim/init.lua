@@ -204,6 +204,11 @@ require("lazy").setup({
 	-- LSP, Lint, Format
 	-- -------------------------------------------------------------------
 	{
+		"b0o/SchemaStore.nvim",
+		version = false, -- or pin a version
+		lazy = true, -- optional
+	},
+	{
 		"williamboman/mason.nvim",
 		config = function()
 			require("mason").setup()
@@ -216,7 +221,7 @@ require("lazy").setup({
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			require("mason-lspconfig").setup {
-				ensure_installed = { "bashls", "eslint", "lua_ls", "pylsp", "ts_ls", "yamlls" },
+				ensure_installed = { "bashls", "eslint", "lua_ls", "pylsp", "ts_ls", "yamlls", "tailwindcss", "jsonls" },
 			}
 
 			-- Set up handlers for all installed servers
@@ -262,6 +267,15 @@ require("lazy").setup({
 							},
 						},
 					}
+				end,
+				["jsonls"] = function()
+					require("lspconfig").jsonls.setup({
+						settings = {
+							json = {
+								schemas = require("schemastore").json.schemas(),
+							},
+						},
+					})
 				end,
 			}
 		end,
