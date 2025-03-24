@@ -101,7 +101,20 @@ require("lazy").setup({
 		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
 	},
 	{ "mikeage/occur.vim" },
-
+    -- Telescope
+	{ "nvim-lua/popup.nvim" },
+	{
+		"nvim-telescope/telescope.nvim",
+		dependencies = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
+		opts = {
+			defaults = {
+				file_ignore_patterns = { ".git", "node_modules", "vendor" },
+				layout_config = {
+					prompt_position = "top",
+				},
+			},
+		},
+	},
 	-- -------------------------------------------------------------------
 	-- Status bar (Airline)
 	-- -------------------------------------------------------------------
