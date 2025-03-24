@@ -101,7 +101,6 @@ require("lazy").setup({
 		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
 	},
 	{ "mikeage/occur.vim" },
-    -- Telescope
 	{ "nvim-lua/popup.nvim" },
 	{
 		"nvim-telescope/telescope.nvim",
@@ -373,7 +372,47 @@ require("lazy").setup({
 	-- AI
 	-- -------------------------------------------------------------------
 	{ "github/copilot.vim" },
-
+	{
+		"olimorris/codecompanion.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		opts = {
+			adapters = {
+				copilot = function()
+					return require("codecompanion.adapters").extend("copilot", {
+						name = "copilot",
+						schema = {
+							model = {
+								default = "claude-3.7-sonnet",
+							},
+						}
+					})
+				end,
+			},
+			strategies = {
+				chat = {
+					adapter = "copilot",
+					keymaps = { close = { modes = { n = "<NOP>", i = "<NOP>" } }, },
+				},
+				inline = {
+					adapter = "copilot",
+				},
+				command = {
+					adapter = "copilot",
+				},
+			},
+			opts = {
+				log_level = "DEBUG",
+			},
+			display = {
+				action_palette = {
+					provider = "telescope"
+				}
+			}
+		},
+	},
 	-- -------------------------------------------------------------------
 	-- Treesitter
 	-- -------------------------------------------------------------------
@@ -382,7 +421,7 @@ require("lazy").setup({
 		build = ":TSUpdate",
 		config = function()
 			require("nvim-treesitter.configs").setup {
-				ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+				ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "yaml" },
 				highlight = { enable = true },
 			}
 		end,
@@ -463,6 +502,17 @@ require("lazy").setup({
 	},
 })
 
+-- Disable Copilot and Completions in CodeCompanion buffers
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "codecompanion", "markdown.codecompanion", "CodeCompanion" },
+	callback = function()
+		-- Disable nvim-cmp
+		require("cmp").setup.buffer({ enabled = false })
+
+		-- Disable Copilot
+		vim.b.copilot_enabled = false
+	end,
+})
 
 -----------------------------------------------------------------------
 -- 3) GLOBAL (NON–PLUGIN-SPECIFIC) CONFIG
@@ -510,6 +560,13 @@ vim.keymap.set("n", "<leader>r", ":Tags<CR>", { desc = "Fuzzy find tags" })
 vim.keymap.set("n", ";", ":Buffers<CR>", { desc = "Fuzzy find buffers" })
 
 vim.keymap.set("", "<F6>", vim.cmd.UndotreeToggle, { desc = "Toggle undo tree" })
+
+-- Code companion keymaps
+vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v" }, "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
+vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
+-- Expand 'cc' into 'CodeCompanion' in the command line
+vim.cmd([[cab cc CodeCompanion]])
 
 -- Mark config
 vim.g.showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
