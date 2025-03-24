@@ -2,14 +2,8 @@ tap "adoptopenjdk/openjdk"
 tap "akeylesslabs/tap"
 tap "borgbackup/tap"
 tap "carlocab/personal"
-tap "derailed/k9s"
-tap "homebrew/bundle"
-tap "homebrew/services"
-tap "hudochenkov/sshpass"
+tap "hashicorp/tap"
 tap "mongodb/brew"
-tap "stateful/tap"
-tap "vladkens/tap"
-tap "weaveworks/tap"
 tap "wswenyue/apkparser"
 # Tool for reverse engineering 3rd party, closed, binary Android apps
 brew "apktool"
@@ -65,8 +59,6 @@ brew "libtool"
 brew "tidy-html5"
 # Dependency Manager for PHP
 brew "composer"
-# Diff your Docker containers
-brew "container-diff"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Tool for browsing source code
@@ -189,6 +181,10 @@ brew "libfido2"
 brew "libmagic"
 # Use Realtek DVB-T dongles as a cheap SDR
 brew "librtlsdr"
+# Package manager for the Lua programming language
+brew "luarocks"
+# Sudoless performance monitoring for Apple Silicon processors
+brew "macmon"
 # Drop-in replacement for MySQL
 brew "mariadb"
 # Mac App Store command-line interface
@@ -219,8 +215,6 @@ brew "ollama", restart_service: :changed
 brew "openssh"
 # 7-Zip (high compression file archiver) implementation
 brew "p7zip"
-# Tool for creating identical machine images for multiple platforms
-brew "packer"
 # Check coding standards in PHP, JavaScript and CSS
 brew "php-code-sniffer"
 # Minimal dumb-terminal emulation program
@@ -245,12 +239,16 @@ brew "qpdf"
 brew "radare2"
 # Reattach process (e.g., tmux) to background
 brew "reattach-to-user-namespace"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
 # Tool to convert RPM package to CPIO archive
 brew "rpm2cpio"
 # Utility that provides fast incremental file transfer
 brew "rsync"
 # Program to decode radio transmissions from devices
 brew "rtl_433", args: ["HEAD"]
+# Execute commands inside your runbooks, docs, and READMEs
+brew "runme"
 # Safe, concurrent, practical language
 brew "rust"
 # Display and control your Android device
@@ -269,6 +267,8 @@ brew "sox"
 brew "speedtest-cli"
 # Compressed read-only file system for Linux
 brew "squashfs"
+# Non-interactive SSH password auth
+brew "sshpass"
 # Statistics from the command-line
 brew "st"
 # Tail multiple Kubernetes pods & their containers
@@ -277,8 +277,6 @@ brew "stern"
 brew "stuntman"
 # Version control system designed to be a better CVS
 brew "subversion"
-# Tool to build, change, and version infrastructure
-brew "terraform"
 # Programmatically correct mistyped console commands
 brew "thefuck"
 # Terminal multiplexer
@@ -313,15 +311,12 @@ brew "yt-dlp"
 brew "akeylesslabs/tap/akeyless"
 # Deduplicating archiver with compression and authenticated encryption
 brew "borgbackup/tap/borgbackup-fuse"
-# Kubernetes CLI To Manage Your Clusters In Style!
-brew "derailed/k9s/k9s"
-brew "hudochenkov/sshpass/sshpass"
+# Packer
+brew "hashicorp/tap/packer"
+# Terraform
+brew "hashicorp/tap/terraform"
 # High-performance, schema-free, document-oriented database
 brew "mongodb/brew/mongodb-community"
-# Execute your runbooks, docs, and READMEs.
-brew "stateful/tap/runme"
-# Sudoless performance monitoring CLI tool for Apple Silicon processors
-brew "vladkens/tap/macmon"
 # Android apk file parsing tool
 brew "wswenyue/apkparser/apkparser"
 # View, print, and comment on PDF documents
