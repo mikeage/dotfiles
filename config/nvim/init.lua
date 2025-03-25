@@ -407,7 +407,10 @@ require("lazy").setup({
 				enabled = true,
 				auto_trigger = true,
 				keymap = {
-					accept = "<Tab>",
+					--accept = "<Tab>",
+					dismiss = "<C-]>",
+					next = "<C-j>",
+					prev = "<C-k>",
 				},
 			},
 		},
@@ -674,6 +677,36 @@ vim.g.c_space_errors = 1
 vim.g.csv_nomap_space = 1
 vim.g.csv_nomap_cr = 1
 vim.g.csv_highlight_column = 1
+
+-- Improved Tab key handling function for both indentation and Copilot
+vim.keymap.set('i', '<Tab>', function()
+	-- If Copilot has a suggestion and it's visible
+	if require('copilot.suggestion').is_visible() then
+		return require('copilot.suggestion').accept()
+	end
+
+	-- Check if we're at the beginning of a line or after whitespace only
+	local col = vim.fn.col('.') - 1
+	local line = vim.fn.getline('.')
+	local at_indent_position = col == 0 or line:sub(1, col):match("^%s*$")
+
+	if at_indent_position then
+		-- Use tab for indentation
+		return vim.api.nvim_replace_termcodes('<Tab>', true, false, true)
+	else
+		-- Try completion first
+		local has_completion = vim.fn.pumvisible() == 1
+		if has_completion then
+			return vim.api.nvim_replace_termcodes('<C-n>', true, false, true)
+		else
+			-- Regular Tab
+			return vim.api.nvim_replace_termcodes('<Tab>', true, false, true)
+		end
+	end
+end, { expr = true, silent = true })
+vim.keymap.set('i', '<S-Tab>', function()
+	return vim.api.nvim_replace_termcodes('<C-d>', true, false, true)
+end, { expr = true, silent = true })
 
 -- Quick toggles & keymaps
 vim.keymap.set("", "<leader>w", ":set nowrap!<CR>", { desc = "Toggle wordwrap" })
