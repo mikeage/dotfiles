@@ -391,7 +391,23 @@ require("lazy").setup({
 	-- -------------------------------------------------------------------
 	-- AI
 	-- -------------------------------------------------------------------
-	{ "github/copilot.vim" },
+	{
+		'zbirenbaum/copilot.lua',
+		cmd = 'Copilot',
+		event = 'InsertEnter',
+		opts = {
+			panel = {
+				enabled = false,
+			},
+			suggestion = {
+				enabled = true,
+				auto_trigger = true,
+				keymap = {
+					accept = "<Tab>",
+				},
+			},
+		},
+	},
 	{
 		"olimorris/codecompanion.nvim",
 		dependencies = {
