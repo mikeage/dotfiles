@@ -170,13 +170,17 @@ require("lazy").setup({
 			message_template = " <summary> • <date> • <author> • <sha>",
 			date_format = "%r",
 			virtual_text_column = 80,
-		},
+		}
 	},
 
 	-- -------------------------------------------------------------------
 	-- Misc
 	-- -------------------------------------------------------------------
-	{ "nathanaelkane/vim-indent-guides" },
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = {},
+	},
 	{
 		"prettier/vim-prettier",
 		build = "yarn install --frozen-lockfile --production",
