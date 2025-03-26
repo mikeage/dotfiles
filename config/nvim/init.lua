@@ -569,8 +569,26 @@ require("lazy").setup({
 	},
 	{
 		"j-hui/fidget.nvim",
+		event = "LspAttach",
 		opts = {
-			-- options
+			-- Use the new v2.0 config format
+			notification = {
+				window = {
+					winblend = 0,
+					border = "rounded",
+					relative = "editor",
+					align = "bottom",
+				},
+			},
+			-- For progress display
+			progress = {
+				display = {
+					done_icon = "✓",
+					progress_style = { fg = "#76946A" },
+				},
+				ignore = {},
+			},
+			-- Remove any animation or pattern configs that are causing issues
 		},
 	},
 	-- -------------------------------------------------------------------
