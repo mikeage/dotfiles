@@ -16,21 +16,17 @@ end
 
 require("lazy").setup({
 	-- -------------------------------------------------------------------
-	-- Sensible Defaults
+	-- Basic settings and colorschemes
 	-- -------------------------------------------------------------------
-	{ "tpope/vim-sensible" },
-
-	-- -------------------------------------------------------------------
-	-- Colorschemes
-	-- -------------------------------------------------------------------
+	{ "tpope/vim-sensible" },  -- Provides sensible vim defaults
 	{
-		"tjdevries/colorbuddy.nvim",
+		"tjdevries/colorbuddy.nvim", -- Color scheme framework for Neovim
 		config = function()
 			require("colorbuddy").setup()
 		end,
 	},
 	{
-		"svrana/neosolarized.nvim",
+		"svrana/neosolarized.nvim", -- Modern implementation of Solarized colorscheme
 		dependencies = { "tjdevries/colorbuddy.nvim" },
 		config = function()
 			require("neosolarized").setup({
@@ -40,11 +36,8 @@ require("lazy").setup({
 		end,
 	},
 
-	-- -------------------------------------------------------------------
-	-- which-key
-	-- -------------------------------------------------------------------
 	{
-		"folke/which-key.nvim",
+		"folke/which-key.nvim", -- Displays popup with possible key bindings
 		config = function()
 			require("which-key").setup()
 		end,
@@ -54,66 +47,62 @@ require("lazy").setup({
 	-- Language-specific
 	-- -------------------------------------------------------------------
 	{
-		"ekalinin/Dockerfile.vim",
+		"ekalinin/Dockerfile.vim", -- Syntax highlighting for Dockerfiles
 		ft = { "dockerfile", "Dockerfile" },
 	},
 	{
-		"martinda/Jenkinsfile-vim-syntax",
-		ft = { "Jenkinsfile" }, -- or "jenkinsfile"
+		"martinda/Jenkinsfile-vim-syntax", -- Syntax highlighting for Jenkinsfiles
+		ft = { "Jenkinsfile" },
 	},
 	{
-		"saltstack/salt-vim",
+		"saltstack/salt-vim", -- Salt state file syntax highlighting
 		ft = { "sls", "salt" },
 	},
 	{
-		"fatih/vim-go",
+		"fatih/vim-go", -- Go language support
 		ft = "go",
 		config = function()
-			-- Your vim-go settings
-			vim.g.go_fmt_command = "goimports"
-			vim.g.go_list_type = "quickfix"
-			vim.g.go_list_height = 10
+			vim.g.go_fmt_command = "goimports" -- Use goimports for formatting
+			vim.g.go_list_type = "quickfix" -- Use quickfix window for errors
+			vim.g.go_list_height = 10 -- Set quickfix window height
 		end,
 	},
 	{
-		"tmux-plugins/vim-tmux",
+		"tmux-plugins/vim-tmux", -- Syntax highlighting for tmux configuration files
 		ft = { "tmux" },
 	},
 	{
-		"mtdl9/vim-log-highlighting",
+		"mtdl9/vim-log-highlighting", -- Better highlighting for log files
 		ft = { "log", "text" },
 	},
 	{
-		"glench/vim-jinja2-syntax",
+		"glench/vim-jinja2-syntax", -- Jinja2 template syntax highlighting
 		ft = { "jinja", "jinja2", "htmldjango" },
 	},
 	{
-		"chrisbra/csv.vim",
+		"chrisbra/csv.vim", -- CSV file manipulation and highlighting
 		ft = "csv",
 	},
-
 	{
-		'MeanderingProgrammer/render-markdown.nvim',
-		--dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-		---@module 'render-markdown'
-		---@type render.md.UserConfig
+		'MeanderingProgrammer/render-markdown.nvim', -- Enhanced markdown rendering
+		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
 		opts = {},
 		ft = { "markdown", "codecompanion" }
 	},
+
 	-- -------------------------------------------------------------------
 	-- Diff & Utility
 	-- -------------------------------------------------------------------
-	{ "AndrewRadev/linediff.vim" },
+	{ "AndrewRadev/linediff.vim" }, -- Compare and edit text line-by-line
+
 	{
-		"sindrets/diffview.nvim",
+		"sindrets/diffview.nvim", -- Git diff viewer with enhanced features
 		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
 	},
-	{ "mikeage/occur.vim" },
-	{ "nvim-lua/popup.nvim" },
+	{ "mikeage/occur.vim" },       -- Show all lines matching a pattern in a buffer
+	{ "nvim-lua/popup.nvim" },     -- Popup API implementation from vim to neovim
 	{
-		"nvim-telescope/telescope.nvim",
+		"nvim-telescope/telescope.nvim", -- Fuzzy finder over lists
 		dependencies = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
 		opts = {
 			defaults = {
@@ -124,46 +113,57 @@ require("lazy").setup({
 			},
 		},
 	},
+	{
+		"mbbill/undotree", -- Visual navigation of undo history
+		config = function()
+			vim.g.undotree_WindowLayout = 2
+			vim.g.undotree_ShortIndicators = 1
+			vim.g.undotree_SetFocusWhenToggle = 1
+		end,
+		keys = {
+			{ "<F6>", vim.cmd.UndotreeToggle, desc = "Toggle undo tree" },
+		},
+	},
+
 	-- -------------------------------------------------------------------
 	-- Status bar (Airline)
 	-- -------------------------------------------------------------------
 	{
-		"vim-airline/vim-airline",
-		event = "VeryLazy", -- Load it a bit later
+		"vim-airline/vim-airline", -- Lightweight but feature-rich status line
+		event = "VeryLazy",  -- Load it a bit later
 		config = function()
-			-- Airline global settings
 			vim.g.airline_solarized_bg = "dark"
 			vim.g.airline_theme = "molokai"
-			vim.g["airline#extensions#tabline#enabled"] = 1
-			vim.g["airline#extensions#tabline#formatter"] = "unique_tail_improved"
-			vim.g["airline_powerline_fonts"] = 1
+			vim.g["airline#extensions#tabline#enabled"] = 1               -- Enable the tabline
+			vim.g["airline#extensions#tabline#formatter"] = "unique_tail_improved" -- Format tab names
+			vim.g["airline_powerline_fonts"] = 1                          -- Use powerline fonts for symbols
 		end,
 	},
 	{
-		"vim-airline/vim-airline-themes",
+		"vim-airline/vim-airline-themes", -- Themes for airline status bar
 		dependencies = { "vim-airline/vim-airline" },
 	},
 
 	-- -------------------------------------------------------------------
 	-- Git
 	-- -------------------------------------------------------------------
-	{ "tpope/vim-fugitive" },
 	{
-		"lewis6991/gitsigns.nvim",
-		config = function()
-			require("gitsigns").setup({
-				signs = {
-					add          = { text = "+" },
-					change       = { text = "~" },
-					delete       = { text = "_" },
-					topdelete    = { text = "‾" },
-					changedelete = { text = "~" },
-				},
-			})
-		end,
+		"tpope/vim-fugitive", -- Git commands and integration within Vim
 	},
 	{
-		"f-person/git-blame.nvim",
+		"lewis6991/gitsigns.nvim", -- Git decorations (added/modified/removed lines)
+		opts = {
+			signs = {
+				add          = { text = "+" },
+				change       = { text = "~" },
+				delete       = { text = "_" },
+				topdelete    = { text = "‾" },
+				changedelete = { text = "~" },
+			},
+		},
+	},
+	{
+		"f-person/git-blame.nvim", -- Inline git blame information
 		event = "VeryLazy",
 		opts = {
 			enabled = true,
@@ -177,29 +177,30 @@ require("lazy").setup({
 	-- Misc
 	-- -------------------------------------------------------------------
 	{
-		"lukas-reineke/indent-blankline.nvim",
+		"lukas-reineke/indent-blankline.nvim", -- Visual indentation guides
 		main = "ibl",
 		opts = {},
 	},
 	{
-		"prettier/vim-prettier",
+		"prettier/vim-prettier", -- Code formatter for various web languages
 		build = "yarn install --frozen-lockfile --production",
 	},
-	{ "kshenoy/vim-signature" },
-	{ "preservim/nerdcommenter" },
+	{ "kshenoy/vim-signature" },                  -- Display and navigate marks
+	{ "preservim/nerdcommenter" },                -- Easy commenting of code blocks
 	{
-		"nvim-tree/nvim-tree.lua",
+		"nvim-tree/nvim-tree.lua",                -- File explorer sidebar
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		cmd = { "NvimTreeToggle", "NvimTreeFindFile" }, -- Only load on these commands
 		keys = {
 			{ "<F4>", "<cmd>NvimTreeToggle<CR>", desc = "Toggle file browser" },
 		},
-		config = function()
-			require("nvim-tree").setup({
-				renderer = {
-					group_empty = true,
-				},
-			})
+		opts = {
+			renderer = {
+				group_empty = true,
+			},
+		},
+		config = function(_, opts)
+			require("nvim-tree").setup(opts)
 			-- Auto-open NvimTree on VimEnter if no file arguments
 			vim.api.nvim_create_autocmd("VimEnter", {
 				callback = function()
@@ -210,48 +211,43 @@ require("lazy").setup({
 			})
 		end,
 	},
-	{ "editorconfig/editorconfig-vim" },
-	{ "tpope/vim-eunuch" },
-	{ "vim-scripts/YankRing.vim" },
-	{ "mikeage/vim-yankmarks" },
+	{ "editorconfig/editorconfig-vim" }, -- Support for .editorconfig files
+	{ "tpope/vim-eunuch" },           -- Unix shell commands inside Vim
+	{ "vim-scripts/YankRing.vim" },   -- Maintains history of yanks and deletes
+	{ "mikeage/vim-yankmarks" },      -- Enhanced mark management
 
 	-- -------------------------------------------------------------------
 	-- FZF
 	-- -------------------------------------------------------------------
 	{
-		"junegunn/fzf",
+		"junegunn/fzf", -- Command-line fuzzy finder
 		build = ":call fzf#install()",
 	},
-	{ "junegunn/fzf.vim" },
-
-	-- -------------------------------------------------------------------
-	-- Undo
-	-- -------------------------------------------------------------------
 	{
-		"mbbill/undotree",
-		config = function()
-			vim.g.undotree_WindowLayout = 2
-			vim.g.undotree_ShortIndicators = 1
-			vim.g.undotree_SetFocusWhenToggle = 1
-		end,
+		"junegunn/fzf.vim", -- Vim commands using fzf
+		keys = {
+			{ "<leader>t", ":Files<CR>",   desc = "Fuzzy find files" },
+			{ "<leader>r", ":Tags<CR>",    desc = "Fuzzy find tags" },
+			{ ";",         ":Buffers<CR>", desc = "Fuzzy find buffers" },
+		},
 	},
 
 	-- -------------------------------------------------------------------
 	-- LSP, Lint, Format
 	-- -------------------------------------------------------------------
 	{
-		"b0o/SchemaStore.nvim",
-		version = false, -- or pin a version
-		lazy = true, -- optional
+		"b0o/SchemaStore.nvim", -- JSON schema store for LSP servers
+		version = false,
+		lazy = true,
 	},
 	{
-		"williamboman/mason.nvim",
+		"williamboman/mason.nvim", -- Package manager for LSP servers, linters, formatters
 		config = function()
 			require("mason").setup()
 		end,
 	},
 	{
-		"williamboman/mason-lspconfig.nvim",
+		"williamboman/mason-lspconfig.nvim", -- Bridge between mason.nvim and lspconfig
 		dependencies = { "mason.nvim", "neovim/nvim-lspconfig" },
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -317,7 +313,7 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"mfussenegger/nvim-lint",
+		"mfussenegger/nvim-lint", -- Asynchronous linting framework
 		config = function()
 			require("lint").linters_by_ft = {
 				python = { "pylint" },
@@ -334,7 +330,7 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"rshkarin/mason-nvim-lint",
+		"rshkarin/mason-nvim-lint", -- Integration of mason.nvim with nvim-lint
 		dependencies = { "mason.nvim", "mfussenegger/nvim-lint" },
 		config = function()
 			require("mason-nvim-lint").setup {
@@ -343,7 +339,7 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+		"https://git.sr.ht/~whynothugo/lsp_lines.nvim", -- Show diagnostics using virtual lines
 		config = function()
 			require("lsp_lines").setup()
 
@@ -353,14 +349,14 @@ require("lazy").setup({
 				virtual_text = false,
 				virtual_lines = false,
 			}
-
-			-- Keymap to toggle
-			vim.keymap.set("", "<Leader>l", require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
 		end,
+		keys = {
+			{ "<Leader>l", function() require("lsp_lines").toggle() end, desc = "Toggle lsp_lines" },
+		},
 	},
 	{
-		"folke/trouble.nvim",
-		opts = {}, -- for default options, refer to the configuration section for custom setup.
+		"folke/trouble.nvim", -- Pretty diagnostic list viewer
+		opts = {},      -- for default options, refer to the configuration section for custom setup.
 		cmd = "Trouble",
 		keys = {
 			{
@@ -396,7 +392,7 @@ require("lazy").setup({
 		},
 	},
 	{
-		"stevearc/conform.nvim",
+		"stevearc/conform.nvim", -- Formatter integration for Neovim
 		config = function()
 			require("conform").setup({
 				formatters_by_ft = {
@@ -433,7 +429,7 @@ require("lazy").setup({
 	-- AI
 	-- -------------------------------------------------------------------
 	{
-		'zbirenbaum/copilot.lua',
+		'zbirenbaum/copilot.lua', -- GitHub Copilot integration
 		cmd = 'Copilot',
 		event = 'InsertEnter',
 		opts = {
@@ -444,7 +440,6 @@ require("lazy").setup({
 				enabled = true,
 				auto_trigger = true,
 				keymap = {
-					--accept = "<Tab>",
 					dismiss = "<C-]>",
 					next = "<C-j>",
 					prev = "<C-k>",
@@ -453,7 +448,7 @@ require("lazy").setup({
 		},
 	},
 	{
-		"olimorris/codecompanion.nvim",
+		"olimorris/codecompanion.nvim", -- AI coding assistant
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
@@ -493,7 +488,15 @@ require("lazy").setup({
 				}
 			}
 		},
+		keys = {
+			{ "<C-a>",          "<cmd>CodeCompanionActions<cr>",     mode = { "n", "v" }, desc = "CodeCompanion Actions" },
+			{ "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "Toggle CodeCompanion Chat" },
+			{ "ga",             "<cmd>CodeCompanionChat Add<cr>",    mode = "v",          desc = "Add selection to CodeCompanion Chat" },
+		},
 		init = function()
+			-- Expand 'cc' into 'CodeCompanion' in the command line
+			vim.cmd([[cab cc CodeCompanion]])
+
 			local progress = require("fidget.progress")
 
 			local M = {}
@@ -568,7 +571,7 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"j-hui/fidget.nvim",
+		"j-hui/fidget.nvim", -- Standalone UI for LSP progress messages
 		event = "LspAttach",
 		opts = {
 			-- Use the new v2.0 config format
@@ -595,7 +598,7 @@ require("lazy").setup({
 	-- Treesitter
 	-- -------------------------------------------------------------------
 	{
-		"nvim-treesitter/nvim-treesitter",
+		"nvim-treesitter/nvim-treesitter", -- Syntax highlighting and code parsing
 		build = ":TSUpdate",
 		opts = {
 			ensure_installed = {
@@ -609,11 +612,11 @@ require("lazy").setup({
 		},
 	},
 	{
-		"HiPhish/rainbow-delimiters.nvim",
+		"HiPhish/rainbow-delimiters.nvim", -- Rainbow parentheses for nested structures
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
 	{
-		"nvim-treesitter/nvim-treesitter-context",
+		"nvim-treesitter/nvim-treesitter-context", -- Shows code context at the top of buffer
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		config = function()
 			require("treesitter-context").setup()
@@ -622,7 +625,7 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"windwp/nvim-ts-autotag",
+		"windwp/nvim-ts-autotag", -- Auto-close and auto-rename HTML/XML tags
 		event = "InsertEnter",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		config = function()
@@ -635,14 +638,14 @@ require("lazy").setup({
 	-- Completion
 	-- -------------------------------------------------------------------
 	{
-		"hrsh7th/nvim-cmp",
+		"hrsh7th/nvim-cmp", -- Autocompletion plugin
 		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-cmdline",
-			"hrsh7th/cmp-vsnip",
-			"hrsh7th/vim-vsnip",
+			"hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
+			"hrsh7th/cmp-buffer", -- Buffer words source
+			"hrsh7th/cmp-path", -- Path source
+			"hrsh7th/cmp-cmdline", -- Cmdline source
+			"hrsh7th/cmp-vsnip", -- Snippets source
+			"hrsh7th/vim-vsnip", -- Snippets engine
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -716,6 +719,7 @@ vim.opt.updatetime    = 100
 -- Tab/Indent
 vim.opt.tabstop       = 4
 vim.opt.shiftwidth    = 4
+vim.opt.expandtab     = false
 
 -- Use 2 space indents for JavaScript & TypeScript
 vim.api.nvim_create_autocmd("FileType", {
@@ -728,10 +732,14 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.opt.wildmode = "longest,list"
-vim.g.c_space_errors = 1
-vim.g.csv_nomap_space = 1
-vim.g.csv_nomap_cr = 1
-vim.g.csv_highlight_column = 1
+vim.g.c_space_errors = 1       -- Highlight trailing whitespace in C files
+vim.g.csv_nomap_space = 1      -- Don't map space in CSV mode
+vim.g.csv_nomap_cr = 1         -- Don't map CR in CSV mode
+vim.g.csv_highlight_column = 1 -- Highlight the column under cursor in CSV files
+
+-----------------------------------------------------------------------
+-- 4) KEYMAPPINGS
+-----------------------------------------------------------------------
 
 -- Improved Tab key handling function for both indentation and Copilot
 vim.keymap.set('i', '<Tab>', function()
@@ -759,26 +767,15 @@ vim.keymap.set('i', '<Tab>', function()
 		end
 	end
 end, { expr = true, silent = true })
+
 vim.keymap.set('i', '<S-Tab>', function()
 	return vim.api.nvim_replace_termcodes('<C-d>', true, false, true)
 end, { expr = true, silent = true })
 
--- Quick toggles & keymaps
+-- Quick toggles & general keymaps (not tied to specific plugins)
 vim.keymap.set("", "<leader>w", ":set nowrap!<CR>", { desc = "Toggle wordwrap" })
 vim.keymap.set("", "<leader><Tab>", ":confirm bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("", "<leader><leader><Tab>", ":confirm bprevious<CR>", { desc = "Previous buffer" })
-vim.keymap.set("n", "<leader>t", ":Files<CR>", { desc = "Fuzzy find files" })
-vim.keymap.set("n", "<leader>r", ":Tags<CR>", { desc = "Fuzzy find tags" })
-vim.keymap.set("n", ";", ":Buffers<CR>", { desc = "Fuzzy find buffers" })
-
-vim.keymap.set("", "<F6>", vim.cmd.UndotreeToggle, { desc = "Toggle undo tree" })
-
--- Code companion keymaps
-vim.keymap.set({ "n", "v" }, "<C-a>", "<cmd>CodeCompanionActions<cr>", { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "<LocalLeader>a", "<cmd>CodeCompanionChat Toggle<cr>", { noremap = true, silent = true })
-vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { noremap = true, silent = true })
--- Expand 'cc' into 'CodeCompanion' in the command line
-vim.cmd([[cab cc CodeCompanion]])
 
 -- Mark config
 vim.g.showmarks_include = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -805,6 +802,8 @@ function! QFixToggle(forced)
   endif
 endfunction
 ]])
+
+-- Quickfix navigation keymaps
 vim.keymap.set("", "<leader><PageDown>", ":cnext<CR>", { desc = "Next quickfix" })
 vim.keymap.set("", "<leader><PageUp>", ":cprevious<CR>", { desc = "Previous quickfix" })
 vim.keymap.set("n", "<leader>q", ":QFix<CR>", { silent = true, desc = "Toggle quickfix" })
@@ -837,7 +836,7 @@ vim.keymap.set("n", "<space>", ':exe "silent! normal! za".(foldlevel(".")?"":"l"
 	{ silent = true, desc = "Toggle fold" })
 vim.opt.foldopen:remove("search")
 
--- Sample mapping to write a file as root
+-- Write file as root
 vim.keymap.set("c", "w!!", ":w ! sudo tee % > /dev/null", { desc = "Write file as root" })
 
 -- Neovide special keymaps
