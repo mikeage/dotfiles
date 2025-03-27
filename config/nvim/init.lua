@@ -9,7 +9,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- Loader caching
+-- loader caching
 if vim.loader and vim.loader.enable then
 	vim.loader.enable()
 end
@@ -122,22 +122,60 @@ require("lazy").setup({
 	},
 
 	-- -------------------------------------------------------------------
-	-- Status bar (Airline)
+	-- Status bar (lualine)
 	-- -------------------------------------------------------------------
 	{
-		"vim-airline/vim-airline", -- Lightweight but feature-rich status line
-		event = "VeryLazy",  -- Load it a bit later
-		config = function()
-			vim.g.airline_solarized_bg = "dark"
-			vim.g.airline_theme = "molokai"
-			vim.g["airline#extensions#tabline#enabled"] = 1               -- Enable the tabline
-			vim.g["airline#extensions#tabline#formatter"] = "unique_tail_improved" -- Format tab names
-			vim.g["airline_powerline_fonts"] = 1                          -- Use powerline fonts for symbols
-		end,
-	},
-	{
-		"vim-airline/vim-airline-themes", -- Themes for airline status bar
-		dependencies = { "vim-airline/vim-airline" },
+		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		opts = {
+			options = {
+				theme = "molokai",
+				disabled_filetypes = { statusline = { "dashboard", "alpha" } },
+			},
+			sections = {
+				lualine_b = { "branch", "diff", },
+				lualine_c = {
+					{
+						"filename",
+						file_status = true,
+						path = 1, -- relative path
+						symbols = {
+							readonly = "[RO]",
+						},
+					},
+				},
+				lualine_x = {
+					{ "encoding" },
+					{ "fileformat" },
+					{ "filetype" },
+					{
+						"diagnostics",
+						sources = { 'nvim_diagnostic' },
+					},
+				},
+			},
+			tabline = {
+				lualine_a = {
+					{
+						"buffers",
+						show_filename_only = false,
+						mode = 2,
+					}
+				},
+				lualine_b = {},
+				lualine_c = {},
+				lualine_x = {},
+				lualine_y = {},
+				lualine_z = {
+					{
+						"tabs",
+						mode = 0,
+					},
+				},
+			},
+			extensions = { "nvim-tree", "quickfix", "fugitive", "trouble", "lazy", "mason" },
+		},
 	},
 
 	-- -------------------------------------------------------------------
