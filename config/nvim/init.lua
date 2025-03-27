@@ -837,45 +837,28 @@ vim.opt.undofile = true
 -- Other ignoring
 vim.opt.wildignore:append("*~,*.pyc")
 
--- Quickfix toggle commands
-vim.cmd([[
-command! -bang -nargs=? QFix call QFixToggle(<bang>0)
-function! QFixToggle(forced)
-  if exists("g:qfix_win") && a:forced == 0
-    cclose
-    unlet g:qfix_win
-  else
-    botright copen 10
-    let g:qfix_win = bufnr("$")
-  endif
-endfunction
-]])
+-- Quickfix toggle functionality
+_G.qfix_win = nil
+
+function _G.QFixToggle(forced)
+	if _G.qfix_win and forced ~= 1 then
+		vim.cmd("cclose")
+		_G.qfix_win = nil
+	else
+		vim.cmd("botright copen 10")
+		_G.qfix_win = vim.fn.bufnr("$")
+	end
+end
+
+-- Create a user command for QFixToggle
+vim.api.nvim_create_user_command("QFix", function(opts)
+	_G.QFixToggle(opts.bang and 1 or 0)
+end, { bang = true })
 
 -- Quickfix navigation keymaps
 vim.keymap.set("", "<leader><PageDown>", ":cnext<CR>", { desc = "Next quickfix" })
 vim.keymap.set("", "<leader><PageUp>", ":cprevious<CR>", { desc = "Previous quickfix" })
-vim.keymap.set("n", "<leader>q", ":QFix<CR>", { silent = true, desc = "Toggle quickfix" })
-
--- Convert fancy characters to ASCII
-vim.cmd([[
-function! ToAscii()
-  normal mZ
-  %s///ge
-  %s/\n\n\+/\r/ge
-  %s/\t/ /ge
-  %s/  \+/ /ge
-  %s/[]/"/ge
-  %s/[]/'/ge
-  %s/ç/c/ge
-  %s/[éë]/e/ge
-  %s/ü/u/ge
-  %s/[äâ]/a/ge
-  %s/[óö]/o/ge
-  %s/©/(c)/ge
-  %s//-/ge
-  normal `Z
-endfunction
-]])
+vim.keymap.set("n", "<leader>q", function() _G.QFixToggle(0) end, { silent = true, desc = "Toggle quickfix" })
 
 -- Folding maps
 vim.keymap.set("", "<leader>z", ':set foldexpr=getline(v:lnum)!~@/ foldlevel=0 foldmethod=expr<CR>',
