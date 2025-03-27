@@ -205,8 +205,72 @@ require("lazy").setup({
 	},
 	{ "editorconfig/editorconfig-vim" }, -- Support for .editorconfig files
 	{ "tpope/vim-eunuch" },           -- Unix shell commands inside Vim
-	{ "vim-scripts/YankRing.vim" },   -- Maintains history of yanks and deletes
 	{ "mikeage/vim-yankmarks" },      -- Enhanced mark management
+	{
+		"gbprod/yanky.nvim",
+		dependencies = {
+			{ "nvim-telescope/telescope.nvim" }
+		},
+		opts = {
+			ring = {
+				history_length = 100,
+				storage = "shada",
+				sync_with_numbered_registers = true,
+			},
+			highlight = {
+				on_put = true,
+				on_yank = true,
+				timer = 300,
+			},
+			preserve_cursor_position = {
+				enabled = true,
+			},
+			system_clipboard = {
+				sync_with_ring = true,
+			},
+		},
+		config = function(_, opts)
+			-- Setup base configuration
+			require("yanky").setup(opts)
+
+			-- Configure telescope mappings inside the config function
+			local mapping = require("yanky.telescope.mapping")
+			require("telescope").load_extension("yank_history")
+
+			-- Configure telescope picker
+			require("yanky").setup({
+				picker = {
+					telescope = {
+						use_default_mappings = false,
+						mappings = {
+							default = mapping.put("p"),
+							i = {
+								["<c-p>"] = mapping.put("p"),
+								["<c-k>"] = mapping.put("P"),
+								["<c-d>"] = mapping.delete(),
+								["<c-r>"] = mapping.set_register(),
+							},
+							n = {
+								p = mapping.put("p"),
+								P = mapping.put("P"),
+								d = mapping.delete(),
+								r = mapping.set_register(),
+							}
+						}
+					}
+				}
+			})
+
+			-- Default yanky keymaps
+			vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+			vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+			vim.keymap.set({ "n", "x" }, "<C-p>", "<Plug>(YankyCycleForward)")
+			vim.keymap.set({ "n", "x" }, "<C-n>", "<Plug>(YankyCycleBackward)")
+
+			-- Replace your neoclip mapping with yanky's telescope
+			vim.keymap.set("n", "<leader>y", "<cmd>Telescope yank_history<cr>", { desc = "Yanky History" })
+		end
+	},
 
 	-- -------------------------------------------------------------------
 	-- FZF
