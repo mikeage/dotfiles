@@ -47,10 +47,6 @@ require("lazy").setup({
 	-- Language-specific
 	-- -------------------------------------------------------------------
 	{
-		"ekalinin/Dockerfile.vim", -- Syntax highlighting for Dockerfiles
-		ft = { "dockerfile", "Dockerfile" },
-	},
-	{
 		"martinda/Jenkinsfile-vim-syntax", -- Syntax highlighting for Jenkinsfiles
 		ft = { "Jenkinsfile" },
 	},
@@ -180,10 +176,6 @@ require("lazy").setup({
 		"lukas-reineke/indent-blankline.nvim", -- Visual indentation guides
 		main = "ibl",
 		opts = {},
-	},
-	{
-		"prettier/vim-prettier", -- Code formatter for various web languages
-		build = "yarn install --frozen-lockfile --production",
 	},
 	{ "kshenoy/vim-signature" },                  -- Display and navigate marks
 	{ "preservim/nerdcommenter" },                -- Easy commenting of code blocks
