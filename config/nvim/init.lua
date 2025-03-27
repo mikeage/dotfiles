@@ -289,7 +289,7 @@ require("lazy").setup({
 	},
 
 	-- -------------------------------------------------------------------
-	-- LSP, Lint, Format
+	-- LSP, Format
 	-- -------------------------------------------------------------------
 	{
 		"b0o/SchemaStore.nvim", -- JSON schema store for LSP servers
@@ -347,6 +347,7 @@ require("lazy").setup({
 						settings = {
 							pylsp = {
 								plugins = {
+									pylint = { enabled = true },
 									pycodestyle = { enabled = false },
 									mccabe = { enabled = false },
 									pyflakes = { enabled = false },
@@ -369,29 +370,24 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"mfussenegger/nvim-lint", -- Asynchronous linting framework
+		"nvimtools/none-ls.nvim",
 		config = function()
-			require("lint").linters_by_ft = {
-				python = { "pylint" },
-				yaml   = { "yamllint" },
-			}
-			vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "BufWritePost" }, {
-				callback = function()
-					local lint_status, lint = pcall(require, "lint")
-					if lint_status then
-						lint.try_lint()
-					end
-				end,
+			local null_ls = require("null-ls")
+			null_ls.setup({
+				sources = {
+					null_ls.builtins.diagnostics.yamllint,
+				},
 			})
 		end,
 	},
 	{
-		"rshkarin/mason-nvim-lint", -- Integration of mason.nvim with nvim-lint
-		dependencies = { "mason.nvim", "mfussenegger/nvim-lint" },
+		"jay-babu/mason-null-ls.nvim",
+		dependencies = { "mason.nvim", "nvimtools/none-ls.nvim" },
 		config = function()
-			require("mason-nvim-lint").setup {
-				ensure_installed = { "pylint", "shellcheck", "yamllint" },
-			}
+			require("mason-null-ls").setup({
+				ensure_installed = { "yamllint" },
+				automatic_installation = true,
+			})
 		end,
 	},
 	{
@@ -474,10 +470,6 @@ require("lazy").setup({
 					stop_after_first = vim.bo.filetype == "javascript" or vim.bo.filetype == "yaml",
 				})
 			end, { range = true })
-
-			vim.api.nvim_create_user_command("Lint", function()
-				require("lint").try_lint()
-			end, { range = false })
 		end,
 	},
 
@@ -904,24 +896,6 @@ if vim.g.neovide then
 	vim.keymap.set("c", "<D-v>", "<C-R>+")   -- Paste command mode
 	vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
 end
-
--- Extra airline config (for whitespace, linter status, etc.)
-vim.cmd([[
-function! Get_linter_status()
-  let linter = luaeval('require("lint").get_running()')
-  if len(linter) == 0
-    return ''
-  else
-    return 'L: ' .. join(linter, ', ')
-  end
-endfunction
-call airline#parts#define_function('GetLinterStatus', 'Get_linter_status')
-let g:airline_section_warning = airline#section#create_right([
-  \ airline#extensions#nvimlsp#get_warning(),
-  \ airline#extensions#whitespace#check(),
-  \ 'GetLinterStatus'
-\ ])
-]])
 
 -- Terraform
 vim.g.terraform_fmt_on_save = 1
