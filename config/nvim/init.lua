@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
 	-- Clone lazy.nvim
 	vim.fn.system({
 		"git", "clone", "--filter=blob:none",
@@ -371,8 +371,8 @@ require("lazy").setup({
 								},
 								workspace = {
 									library = {
-										[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-										[vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+										vim.env.VIMRUNTIME,
+										"${3rd}/luv/library"
 									},
 								},
 							},
