@@ -109,6 +109,7 @@ require("lazy").setup({
 			},
 		},
 	},
+	{ 'nvim-telescope/telescope-ui-select.nvim' },
 	{
 		"mbbill/undotree", -- Visual navigation of undo history
 		config = function()
