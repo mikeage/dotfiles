@@ -187,6 +187,11 @@ require("lazy").setup({
 	{
 		"lewis6991/gitsigns.nvim", -- Git decorations (added/modified/removed lines)
 		opts = {
+			current_line_blame = true,
+			current_line_blame_opts = {
+				delay = 100,
+				virt_text_pos = "right_align",
+			},
 			signs = {
 				add          = { text = "+" },
 				change       = { text = "~" },
@@ -194,17 +199,14 @@ require("lazy").setup({
 				topdelete    = { text = "‾" },
 				changedelete = { text = "~" },
 			},
+			signs_staged = {
+				add          = { text = "+" },
+				change       = { text = "~" },
+				delete       = { text = "_" },
+				topdelete    = { text = "‾" },
+				changedelete = { text = "~" },
+			},
 		},
-	},
-	{
-		"f-person/git-blame.nvim", -- Inline git blame information
-		event = "VeryLazy",
-		opts = {
-			enabled = true,
-			message_template = " <summary> • <date> • <author> • <sha>",
-			date_format = "%r",
-			virtual_text_column = 80,
-		}
 	},
 
 	-- -------------------------------------------------------------------
