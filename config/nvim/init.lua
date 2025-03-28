@@ -880,25 +880,25 @@ vim.opt.wildignore:append("*~,*.pyc")
 -- Quickfix toggle functionality
 _G.qfix_win = nil
 
-function _G.QFixToggle(forced)
-	if _G.qfix_win and forced ~= 1 then
+local toggle_quickfix = function()
+	local is_open = false
+	for _, win in ipairs(vim.fn.getwininfo()) do
+		if win.quickfix == 1 then
+			is_open = true
+			break
+		end
+	end
+	if is_open then
 		vim.cmd("cclose")
-		_G.qfix_win = nil
 	else
 		vim.cmd("botright copen 10")
-		_G.qfix_win = vim.fn.bufnr("$")
 	end
 end
 
--- Create a user command for QFixToggle
-vim.api.nvim_create_user_command("QFix", function(opts)
-	_G.QFixToggle(opts.bang and 1 or 0)
-end, { bang = true })
-
 -- Quickfix navigation keymaps
+vim.keymap.set("n", "<leader>q", toggle_quickfix, { desc = "Toggle Quickfix" })
 vim.keymap.set("", "<leader><PageDown>", ":cnext<CR>", { desc = "Next quickfix" })
 vim.keymap.set("", "<leader><PageUp>", ":cprevious<CR>", { desc = "Previous quickfix" })
-vim.keymap.set("n", "<leader>q", function() _G.QFixToggle(0) end, { silent = true, desc = "Toggle quickfix" })
 
 -- Folding maps
 vim.keymap.set("", "<leader>z", ':set foldexpr=getline(v:lnum)!~@/ foldlevel=0 foldmethod=expr<CR>',
