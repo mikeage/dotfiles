@@ -248,3 +248,11 @@ export DOTNET_ROOT="/usr/local/opt/dotnet/libexec"
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/Users/mikemi/.cache/lm-studio/bin"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+if [ -n "${HOMEBREW_PREFIX}" ]; then
+	[ -s "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" ] && \. "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh"
+	[ -s "${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm" ] && \. "${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm"
+fi
