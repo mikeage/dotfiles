@@ -933,7 +933,7 @@ end
 vim.g.terraform_fmt_on_save = 1
 
 -- Toggle diagnostics for all lines or just the current line
-local default_diagnostic_config = { float = { border = "rounded" }, virtual_text = false, virtual_lines = { current_line = true } }
+local default_diagnostic_config = { float = { border = "rounded" }, virtual_text = false, virtual_lines = false }
 vim.diagnostic.config(default_diagnostic_config)
 vim.keymap.set('n', '<leader>l', function()
 	if vim.diagnostic.config().virtual_lines == true then
