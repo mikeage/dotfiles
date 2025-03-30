@@ -18,24 +18,9 @@ require("lazy").setup({
 	-- -------------------------------------------------------------------
 	-- Basic settings and colorschemes
 	-- -------------------------------------------------------------------
-	{ "tpope/vim-sensible" },  -- Provides sensible vim defaults
-	{
-		"tjdevries/colorbuddy.nvim", -- Color scheme framework for Neovim
-		config = function()
-			require("colorbuddy").setup()
-		end,
-	},
-	{
-		"svrana/neosolarized.nvim", -- Modern implementation of Solarized colorscheme
-		dependencies = { "tjdevries/colorbuddy.nvim" },
-		config = function()
-			require("neosolarized").setup({
-				comment_italics = true,
-				background_set = true,
-			})
-		end,
-	},
-
+	{ "tpope/vim-sensible" }, -- Provides sensible vim defaults
+	{ "folke/tokyonight.nvim", },
+	{ 'marko-cerovac/material.nvim' },
 	{
 		"folke/which-key.nvim", -- Displays popup with possible key bindings
 		config = function()
@@ -164,7 +149,7 @@ require("lazy").setup({
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
 			options = {
-				theme = "molokai",
+				theme = "auto",
 				disabled_filetypes = { statusline = { "dashboard", "alpha" } },
 			},
 			sections = {
@@ -828,6 +813,8 @@ vim.api.nvim_create_autocmd("FileType", {
 -----------------------------------------------------------------------
 -- 3) GLOBAL (NON–PLUGIN-SPECIFIC) CONFIG
 -----------------------------------------------------------------------
+--vim.cmd([[color tokyonight-night]])
+vim.cmd([[color material-deep-ocean]])
 vim.opt.termguicolors = true
 vim.opt.foldmethod    = "expr"
 vim.opt.foldexpr      = "nvim_treesitter#foldexpr()"
