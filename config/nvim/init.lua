@@ -96,7 +96,6 @@ require("lazy").setup({
 		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
 	},
 	{ "mikeage/occur.vim" },       -- Show all lines matching a pattern in a buffer
-	{ "nvim-lua/popup.nvim" },     -- Popup API implementation from vim to neovim
 	{
 		"nvim-telescope/telescope.nvim", -- Fuzzy finder over lists
 		dependencies = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
