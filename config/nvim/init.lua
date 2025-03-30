@@ -97,18 +97,52 @@ require("lazy").setup({
 	},
 	{ "mikeage/occur.vim" },       -- Show all lines matching a pattern in a buffer
 	{
-		"nvim-telescope/telescope.nvim", -- Fuzzy finder over lists
-		dependencies = { "nvim-lua/popup.nvim", "nvim-lua/plenary.nvim" },
+		"nvim-telescope/telescope.nvim", -- Fuzzy finder and file search
+		dependencies = { "nvim-lua/plenary.nvim" },
+		cmd = "Telescope",
 		opts = {
 			defaults = {
 				file_ignore_patterns = { ".git", "node_modules", "vendor" },
 				layout_config = {
-					prompt_position = "top",
+					prompt_position = "bottom",
+				},
+				sorting_strategy = "ascending",
+				mappings = {
+					i = {
+						["<C-j>"] = "move_selection_next",
+						["<C-k>"] = "move_selection_previous",
+					},
+				},
+			},
+			extensions = {
+				["ui-select"] = {
+					-- Use a simple table here instead of requiring themes directly
+					theme = "dropdown",
 				},
 			},
 		},
+		config = function(_, opts)
+			-- First setup with the opts
+			require("telescope").setup(opts)
+			-- Then load extensions
+			require("telescope").load_extension("ui-select")
+		end,
+		keys = {
+			-- Port over your FZF mappings to Telescope
+			{ "<leader>t",  "<cmd>Telescope find_files<cr>",  desc = "Find files" },
+			{ "<leader>r",  "<cmd>Telescope tags<cr>",        desc = "Find tags" },
+			{ ";",          "<cmd>Telescope buffers<cr>",     desc = "Find buffers" },
+
+			-- Additional useful Telescope mappings
+			{ "<leader>fg", "<cmd>Telescope live_grep<cr>",   desc = "Live grep" },
+			{ "<leader>fh", "<cmd>Telescope help_tags<cr>",   desc = "Help tags" },
+			{ "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
+		},
 	},
-	{ 'nvim-telescope/telescope-ui-select.nvim' },
+	{
+		'nvim-telescope/telescope-ui-select.nvim',
+		dependencies = { "nvim-telescope/telescope.nvim" }
+	},
 	{
 		"mbbill/undotree", -- Visual navigation of undo history
 		config = function()
@@ -310,22 +344,6 @@ require("lazy").setup({
 			-- Replace your neoclip mapping with yanky's telescope
 			vim.keymap.set("n", "<leader>y", "<cmd>Telescope yank_history<cr>", { desc = "Yanky History" })
 		end
-	},
-
-	-- -------------------------------------------------------------------
-	-- FZF
-	-- -------------------------------------------------------------------
-	{
-		"junegunn/fzf", -- Command-line fuzzy finder
-		build = ":call fzf#install()",
-	},
-	{
-		"junegunn/fzf.vim", -- Vim commands using fzf
-		keys = {
-			{ "<leader>t", ":Files<CR>",   desc = "Fuzzy find files" },
-			{ "<leader>r", ":Tags<CR>",    desc = "Fuzzy find tags" },
-			{ ";",         ":Buffers<CR>", desc = "Fuzzy find buffers" },
-		},
 	},
 
 	-- -------------------------------------------------------------------
