@@ -454,22 +454,6 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"https://git.sr.ht/~whynothugo/lsp_lines.nvim", -- Show diagnostics using virtual lines
-		config = function()
-			require("lsp_lines").setup()
-
-			-- Diagnostic config
-			vim.diagnostic.config {
-				float = { border = "rounded" },
-				virtual_text = false,
-				virtual_lines = false,
-			}
-		end,
-		keys = {
-			{ "<Leader>l", function() require("lsp_lines").toggle() end, desc = "Toggle lsp_lines" },
-		},
-	},
-	{
 		"folke/trouble.nvim", -- Pretty diagnostic list viewer
 		opts = {},      -- for default options, refer to the configuration section for custom setup.
 		cmd = "Trouble",
@@ -947,3 +931,14 @@ end
 
 -- Terraform
 vim.g.terraform_fmt_on_save = 1
+
+-- Toggle diagnostics for all lines or just the current line
+local default_diagnostic_config = { float = { border = "rounded" }, virtual_text = false, virtual_lines = { current_line = true } }
+vim.diagnostic.config(default_diagnostic_config)
+vim.keymap.set('n', '<leader>l', function()
+	if vim.diagnostic.config().virtual_lines == true then
+		vim.diagnostic.config(default_diagnostic_config)
+	else
+		vim.diagnostic.config({ virtual_lines = true })
+	end
+end, { desc = "Toggle showing all diagnostics or just the current line's" })
