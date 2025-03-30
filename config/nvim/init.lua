@@ -251,29 +251,49 @@ require("lazy").setup({
 		main = "ibl",
 		opts = {},
 	},
-	{ "kshenoy/vim-signature" },                  -- Display and navigate marks
-	{ "preservim/nerdcommenter" },                -- Easy commenting of code blocks
+	{ "kshenoy/vim-signature" }, -- Display and navigate marks
+	{ "preservim/nerdcommenter" }, -- Easy commenting of code blocks
 	{
-		"nvim-tree/nvim-tree.lua",                -- File explorer sidebar
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		cmd = { "NvimTreeToggle", "NvimTreeFindFile" }, -- Only load on these commands
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
+		},
+		lazy = false,
 		keys = {
-			{ "<F4>", "<cmd>NvimTreeToggle<CR>", desc = "Toggle file browser" },
+			{ "<F4>",       "<cmd>Neotree toggle<CR>", desc = "Toggle file browser" },
+			{ "<leader>nf", "<cmd>Neotree reveal<CR>", desc = "Find current file in tree" },
 		},
 		opts = {
-			renderer = {
-				group_empty = true,
+			close_if_last_window = true,
+			filesystem = {
+				follow_current_file = { enabled = true },
+				group_empty_dirs = true,
+				use_libuv_file_watcher = true,
+				window = {
+					mappings = {
+						["<space>"] = "none", -- Prevent conflict with your fold toggle
+					},
+				},
+			},
+			default_component_configs = {
+				indent = {
+					with_expanders = true,
+				},
 			},
 		},
 		config = function(_, opts)
-			require("nvim-tree").setup(opts)
-			-- Auto-open NvimTree on VimEnter if no file arguments
+			require("neo-tree").setup(opts)
+			-- Auto-open Neo-tree on VimEnter if no file arguments
 			vim.api.nvim_create_autocmd("VimEnter", {
 				callback = function()
 					if vim.fn.argc() == 0 then
-						require("nvim-tree.api").tree.toggle()
+						vim.cmd("Neotree toggle")
 					end
-				end
+				end,
+				nested = true, -- Allow other autocmds to run
 			})
 		end,
 	},
