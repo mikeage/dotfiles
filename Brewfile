@@ -209,6 +209,8 @@ brew "neovide"
 brew "netcat"
 # Port scanning utility for large networks
 brew "nmap"
+# Manage multiple Node.js versions
+brew "nvm"
 # Create, run, and share large language models (LLMs)
 brew "ollama", restart_service: :changed
 # OpenBSD freely-licensed SSH connectivity tools
