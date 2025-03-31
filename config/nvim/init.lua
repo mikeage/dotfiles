@@ -173,6 +173,10 @@ require("lazy").setup({
 	-- Status bar (lualine)
 	-- -------------------------------------------------------------------
 	{
+		'AndreM222/copilot-lualine',
+		dependencies = { "nvim-lualine/lualine.nvim" },
+	},
+	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -180,6 +184,7 @@ require("lazy").setup({
 			options = {
 				theme = "auto",
 				disabled_filetypes = { statusline = { "dashboard", "alpha" } },
+				globalstatus = true, -- Show one statusline for all windows, regardless of splits
 			},
 			sections = {
 				lualine_b = { "branch", "diff", },
@@ -194,9 +199,53 @@ require("lazy").setup({
 					},
 				},
 				lualine_x = {
+					{
+						"copilot",
+						show_colors = true,
+					},
+					{
+						function()
+							local function get_venv()
+								local venv = os.getenv("VIRTUAL_ENV")
+								if venv then
+									-- Extract the venv name (last part of the path)
+									local venv_name = venv:match("([^/\\]+)$")
+									return "󰆧 " .. venv_name
+								end
+								return ""
+							end
+
+							-- Create the autocmd only once
+							if not vim.g.venv_autocmd_created then
+								vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "TermLeave" }, {
+									callback = function()
+										require('lualine').refresh()
+									end
+								})
+								vim.g.venv_autocmd_created = true
+							end
+
+							return get_venv()
+						end,
+					},
 					{ "encoding" },
 					{ "fileformat" },
 					{ "filetype" },
+					{
+						function()
+							local clients = vim.lsp.get_clients({ bufnr = 0 })
+							if #clients == 0 then
+								return "[N/A]"
+							end
+
+							local client_names = {}
+							for _, client in ipairs(clients) do
+								table.insert(client_names, client.name)
+							end
+
+							return table.concat(client_names, ", ")
+						end,
+					},
 					{
 						"diagnostics",
 						sources = { 'nvim_diagnostic' },
