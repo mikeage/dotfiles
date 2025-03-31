@@ -23,9 +23,6 @@ require("lazy").setup({
 	{ 'marko-cerovac/material.nvim' },
 	{
 		"folke/which-key.nvim", -- Displays popup with possible key bindings
-		config = function()
-			require("which-key").setup()
-		end,
 	},
 
 	-- -------------------------------------------------------------------
@@ -42,7 +39,7 @@ require("lazy").setup({
 	{
 		"fatih/vim-go", -- Go language support
 		ft = "go",
-		config = function()
+		init = function()
 			vim.g.go_fmt_command = "goimports" -- Use goimports for formatting
 			vim.g.go_list_type = "quickfix" -- Use quickfix window for errors
 			vim.g.go_list_height = 10 -- Set quickfix window height
