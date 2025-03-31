@@ -65,31 +65,31 @@ Plug('hrsh7th/vim-vsnip')                                                 -- Sni
 vim.call('plug#end')
 
 vim.opt.termguicolors = true
-vim.opt.foldmethod = 'expr'
-vim.opt.foldexpr  = 'nvim_treesitter#foldexpr()'
-vim.opt.foldcolumn = '8'
-vim.opt.foldlevel = 99
-vim.opt.number = true -- Show line numbers
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.incsearch = true
-vim.opt.autowriteall = true
+vim.opt.foldmethod    = 'expr'
+vim.opt.foldexpr      = 'nvim_treesitter#foldexpr()'
+vim.opt.foldcolumn    = '8'
+vim.opt.foldlevel     = 99
+vim.opt.number        = true -- Show line numbers
+vim.opt.ignorecase    = true
+vim.opt.smartcase     = true
+vim.opt.incsearch     = true
+vim.opt.autowriteall  = true
 require('colorbuddy').setup()
 require('neosolarized').setup({
 	comment_italics = true,
 	background_set = true,
 })
 
-vim.opt.tabstop = 4               -- Tabs are shown as 4
-vim.opt.shiftwidth = 4            -- Indentation is 4
+vim.opt.tabstop = 4    -- Tabs are shown as 4
+vim.opt.shiftwidth = 4 -- Indentation is 4
 -- Use 2 space indents for JavaScript and TypeScript
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "javascript", "typescript", "typescriptreact" },
-  callback = function()
-    vim.opt_local.shiftwidth = 2
-    vim.opt_local.tabstop = 2
-	vim.opt_local.expandtab = true
-  end,
+	pattern = { "javascript", "typescript", "typescriptreact" },
+	callback = function()
+		vim.opt_local.shiftwidth = 2
+		vim.opt_local.tabstop = 2
+		vim.opt_local.expandtab = true
+	end,
 })
 
 vim.opt.wildmode = 'longest,list' -- Mimic bash- tabs expand as far as they can go, and then show a list of the options
@@ -416,7 +416,8 @@ vim.api.nvim_create_user_command("Format", function(args)
 			["end"] = { args.line2, end_line:len() },
 		}
 	end
-	require("conform").format({ async = true, lsp_fallback = true, range = range, stop_after_first = vim.bo.filetype == "javascript" or vim.bo.filetype == "yaml", })
+	require("conform").format({ async = true, lsp_fallback = true, range = range, stop_after_first = vim.bo.filetype ==
+	"javascript" or vim.bo.filetype == "yaml", })
 end, { range = true })
 
 vim.api.nvim_create_user_command("Lint", function()
