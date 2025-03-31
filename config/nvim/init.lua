@@ -20,7 +20,39 @@ require("lazy").setup({
 	-- -------------------------------------------------------------------
 	{ "tpope/vim-sensible" }, -- Provides sensible vim defaults
 	{ "folke/tokyonight.nvim", },
-	{ 'marko-cerovac/material.nvim' },
+	{
+		'marko-cerovac/material.nvim',
+		opts = {
+			contrast = {
+				sidebars = true,
+				floating_windows = true,
+				cursor_line = true,
+				lsp_virtual_text = true,
+			},
+			styles = {
+				comments = { italic = true },
+				functions = { bold = true },
+			},
+			plugins = {
+				"fidget",
+				"gitsigns",
+				"neo-tree",
+				"nvim-web-devicons",
+				"telescope",
+				"which-key",
+				"trouble",
+			},
+			disable = {
+				colored_cursor = true, -- This makes it too hard to read the letter under the cursor when on a highlight.
+			},
+		},
+		config = function(_, opts)
+			-- Configure material theme
+			require('material').setup(opts)
+			vim.g.material_style = "deep ocean"
+			vim.cmd([[colorscheme material]])
+		end
+	},
 	{
 		"folke/which-key.nvim", -- Displays popup with possible key bindings
 	},
@@ -795,7 +827,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- 3) GLOBAL (NON–PLUGIN-SPECIFIC) CONFIG
 -----------------------------------------------------------------------
 --vim.cmd([[color tokyonight-night]])
-vim.cmd([[color material-deep-ocean]])
+
 vim.opt.termguicolors = true
 vim.opt.foldmethod    = "expr"
 vim.opt.foldexpr      = "nvim_treesitter#foldexpr()"
