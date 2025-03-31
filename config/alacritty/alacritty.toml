@@ -7,7 +7,7 @@ size = 12
 
 [font.normal]
 #family = "monaco"
-family = "Monaco Nerd Font"
+family = "Monaco Nerd Font Mono"
 
 [[keyboard.bindings]]
 chars = "\u001Bf"

@@ -22,12 +22,18 @@ ln -s ~/dotfiles/config/{nvim,alacritty,tmux} ~/.config/
 
 ## Font(s)
 
+### Building locally
+
 ```bash
 mkdir ~/fonts-to-patch
 cp /System/Library/Fonts/Monaco.ttf ~/fonts-to-patch/
 docker run --rm -v $HOME/fonts-to-patch:/in -v $HOME/Library/Fonts/:/out nerdfonts/patcher --complete
 rm -rf ~/fonts-to-patch
 ```
+
+### Download prebuilt (better, because Monospaced and with Bold/Italic/BoldItalic)
+
+Download from https://github.com/thep0y/monaco-nerd-font, and choose MonacoNerdFontMono.zip
 
 ## Git config
 
