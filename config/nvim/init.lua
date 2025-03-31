@@ -311,9 +311,8 @@ require("lazy").setup({
 			})
 		end,
 	},
-	{ "editorconfig/editorconfig-vim" }, -- Support for .editorconfig files
-	{ "tpope/vim-eunuch" },           -- Unix shell commands inside Vim
-	{ "mikeage/vim-yankmarks" },      -- Enhanced mark management
+	{ "tpope/vim-eunuch" },   -- Unix shell commands inside Vim
+	{ "mikeage/vim-yankmarks" }, -- Enhanced mark management
 	{
 		"gbprod/yanky.nvim",
 		dependencies = {
