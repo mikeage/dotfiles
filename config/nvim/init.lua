@@ -266,7 +266,7 @@ require("lazy").setup({
 		opts = {},
 	},
 	{ "kshenoy/vim-signature" }, -- Display and navigate marks
-	{ "preservim/nerdcommenter" }, -- Easy commenting of code blocks
+	{ 'numToStr/Comment.nvim' },
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
