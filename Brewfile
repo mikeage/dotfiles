@@ -117,6 +117,8 @@ brew "gcalcli"
 brew "gh"
 # Distributed revision control system
 brew "git"
+# Quickly rewrite git repository history
+brew "git-filter-repo"
 # Git extension for versioning large files
 brew "git-lfs"
 # GNU implementation of the famous stream editor
