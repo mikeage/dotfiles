@@ -3,3 +3,4 @@
 *.swp
 tags
 .bashrc.local
+config/nvim/lazy-lock.json
