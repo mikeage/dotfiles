@@ -99,6 +99,8 @@ brew "faad2"
 brew "ruby"
 # Easiest way to build and release mobile apps
 brew "fastlane"
+# Simple, fast and user-friendly alternative to find
+brew "fd"
 # High quality MPEG Audio Layer III (MP3) encoder
 brew "lame"
 # Framework for layout and rendering of i18n text
@@ -223,6 +225,8 @@ brew "p7zip"
 brew "php-code-sniffer"
 # Minimal dumb-terminal emulation program
 brew "picocom"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
 # Cross-platform library for audio I/O
 brew "portaudio"
 # Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
@@ -257,6 +261,8 @@ brew "runme"
 brew "rust"
 # Display and control your Android device
 brew "scrcpy"
+# 7-Zip is a file archiver with a high compression ratio
+brew "sevenzip"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
 # Autoformat shell script source code
@@ -309,8 +315,12 @@ brew "wireguard-tools"
 brew "yamllint"
 # JavaScript package manager
 brew "yarn"
+# Blazing fast terminal file manager written in Rust, based on async I/O
+brew "yazi"
 # Feature-rich command-line audio/video downloader
 brew "yt-dlp"
+# Shell extension to navigate your filesystem faster
+brew "zoxide"
 # Akeyless CLI
 brew "akeylesslabs/tap/akeyless"
 # Deduplicating archiver with compression and authenticated encryption
