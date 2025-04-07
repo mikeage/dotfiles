@@ -16,7 +16,7 @@ ln -s ~/dotfiles/{.inputrc,.bashrc,.cvsignore,.rsync-exclude,.pylintrc,.zshrc} ~
 rm .bash_profile
 ln -s .bashrc .bash_profile
 mkdir -p ~/.config
-ln -s ~/dotfiles/config/{nvim,alacritty,tmux} ~/.config/
+ln -s ~/dotfiles/config/{nvim,alacritty,tmux,yazi} ~/.config/
 
 ```
 
