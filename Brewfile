@@ -3,6 +3,7 @@ tap "akeylesslabs/tap"
 tap "borgbackup/tap"
 tap "carlocab/personal"
 tap "hashicorp/tap"
+tap "jstkdng/programs"
 tap "mongodb/brew"
 tap "wswenyue/apkparser"
 # Tool for reverse engineering 3rd party, closed, binary Android apps
@@ -45,6 +46,10 @@ brew "boost"
 brew "btop"
 # Tool to obtain certs from Let's Encrypt and autoenable HTTPS
 brew "certbot"
+# Framework for layout and rendering of i18n text
+brew "pango"
+# Versatile and fast Unicode/ASCII/ANSI graphics renderer
+brew "chafa"
 # Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
 brew "clang-format"
 # Cross-platform make
@@ -103,8 +108,6 @@ brew "fastlane"
 brew "fd"
 # High quality MPEG Audio Layer III (MP3) encoder
 brew "lame"
-# Framework for layout and rendering of i18n text
-brew "pango"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
 # C routines to compute the Discrete Fourier Transform
@@ -329,6 +332,8 @@ brew "borgbackup/tap/borgbackup-fuse"
 brew "hashicorp/tap/packer"
 # Terraform
 brew "hashicorp/tap/terraform"
+# Drop in replacement for ueberzug written in C++
+brew "jstkdng/programs/ueberzugpp"
 # High-performance, schema-free, document-oriented database
 brew "mongodb/brew/mongodb-community"
 # Android apk file parsing tool
@@ -399,6 +404,8 @@ cask "joplin"
 cask "jordanbaird-ice"
 # Desktop shield and keystroke interceptor
 cask "keyboard-cleaner"
+# GPU-based terminal emulator
+cask "kitty"
 # Discover, download, and run local LLMs
 cask "lm-studio"
 # Software for Logitech devices
