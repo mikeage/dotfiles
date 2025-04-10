@@ -69,15 +69,6 @@ require("lazy").setup({
 		ft = { "sls", "salt" },
 	},
 	{
-		"fatih/vim-go", -- Go language support
-		ft = "go",
-		init = function()
-			vim.g.go_fmt_command = "goimports" -- Use goimports for formatting
-			vim.g.go_list_type = "quickfix" -- Use quickfix window for errors
-			vim.g.go_list_height = 10 -- Set quickfix window height
-		end,
-	},
-	{
 		"tmux-plugins/vim-tmux", -- Syntax highlighting for tmux configuration files
 		ft = { "tmux" },
 	},
@@ -449,7 +440,7 @@ require("lazy").setup({
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			require("mason-lspconfig").setup {
-				ensure_installed = { "bashls", "eslint", "lua_ls", "pylsp", "ts_ls", "yamlls", "tailwindcss", "jsonls" },
+				ensure_installed = { "bashls", "eslint", "lua_ls", "pylsp", "ts_ls", "yamlls", "tailwindcss", "jsonls", "gopls" },
 			}
 
 			-- Set up handlers for all installed servers
@@ -457,6 +448,23 @@ require("lazy").setup({
 				function(server_name)
 					require("lspconfig")[server_name].setup {
 						capabilities = capabilities,
+					}
+				end,
+				["gopls"] = function()
+					require("lspconfig").gopls.setup {
+						capabilities = capabilities,
+						settings = {
+							gopls = {
+								analyses = {
+									unusedparams = true,
+									shadow = true,
+								},
+								staticcheck = true,
+								gofumpt = true,
+								usePlaceholders = true,
+								completeUnimported = true,
+							},
+						},
 					}
 				end,
 				["lua_ls"] = function()
@@ -525,7 +533,7 @@ require("lazy").setup({
 		dependencies = { "mason.nvim", "nvimtools/none-ls.nvim" },
 		config = function()
 			require("mason-null-ls").setup({
-				ensure_installed = { "yamllint" },
+				ensure_installed = { "yamllint", "goimports", "gofumpt", "gomodifytags", "impl" },
 				automatic_installation = true,
 			})
 		end,
@@ -575,6 +583,7 @@ require("lazy").setup({
 					python     = { "isort", "black" },
 					javascript = { "prettierd", "prettier" },
 					yaml       = { "yamlfmt", "yamlfix" },
+					go         = { "goimports", "gofumpt" },
 				},
 			})
 
@@ -775,7 +784,7 @@ require("lazy").setup({
 		opts = {
 			ensure_installed = {
 				"c", "lua", "vim", "vimdoc", "query", "yaml",
-				"python", "javascript", "typescript", "tsx", "html", "css", "json"
+				"python", "javascript", "typescript", "tsx", "html", "css", "json", "go", "gomod", "gosum", "gowork",
 			},
 			auto_install = true,
 			highlight = { enable = true, disable = { "git_rebase" } },
