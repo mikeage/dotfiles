@@ -1028,3 +1028,43 @@ vim.keymap.set('n', '<leader>l', function()
 		vim.diagnostic.config({ virtual_lines = true })
 	end
 end, { desc = "Toggle showing all diagnostics or just the current line's" })
+
+-- LSP Navigation keymaps
+vim.api.nvim_create_autocmd('LspAttach', {
+	group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+	callback = function(ev)
+		-- Buffer local mappings - only available when LSP is attached
+		local opts = { buffer = ev.buf, silent = true }
+
+		-- Telescope-based navigation
+		vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+		vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
+		vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
+		vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
+		vim.keymap.set("n", "<leader>ds", "<cmd>Telescope lsp_document_symbols<CR>", opts)
+		vim.keymap.set("n", "<leader>ws", "<cmd>Telescope lsp_workspace_symbols<CR>", opts)
+
+		-- Standard LSP functions (no Telescope alternative)
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+		vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+
+		-- Code actions and modifications
+		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+		vim.keymap.set({ 'n', 'v' }, "<leader>ca", vim.lsp.buf.code_action, opts)
+		vim.keymap.set("n", "<leader>bf", function() vim.lsp.buf.format({ async = true }) end, opts)
+
+		-- Diagnostics navigation and display
+		vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1, float = true }) end, opts)
+		vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1, float = true }) end, opts)
+
+		vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+	end,
+})
+
+-- Add some Telescope extensions specific to development
+vim.keymap.set("n", "<leader>fs", "<cmd>Telescope lsp_workspace_symbols<cr>", { desc = "Find symbols in workspace" })
+vim.keymap.set("n", "<leader>fc", "<cmd>Telescope commands<cr>", { desc = "Find commands" })
+vim.keymap.set("n", "<leader>fm", "<cmd>Telescope marks<cr>", { desc = "Find marks" })
+vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
+vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find buffers" })
