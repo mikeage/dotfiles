@@ -30,6 +30,8 @@ brew "axel"
 brew "bash"
 # Programmable completion for Bash 4.2+
 brew "bash-completion@2"
+# Clone of cat(1) with syntax highlighting and Git integration
+brew "bat"
 # Library for USB device access
 brew "libusb"
 # Swiss army knife for network attacks and monitoring
@@ -314,6 +316,8 @@ brew "watch"
 brew "wget"
 # Tools for the WireGuard secure network tunnel
 brew "wireguard-tools"
+# Extensible command-line tool to format YAML files
+brew "yamlfmt"
 # Linter for YAML files
 brew "yamllint"
 # JavaScript package manager
@@ -461,11 +465,10 @@ cask "xquartz"
 cask "zoom"
 mas "Amphetamine", id: 937984704
 mas "Bitwarden", id: 1352778147
-mas "FakespotSafari", id: 1592541616
-mas "Keynote", id: 409183694
+mas "Fakespot", id: 1592541616
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft PowerPoint", id: 462062816
 mas "Speedtest", id: 1153157709
-mas "Userscripts-Mac-App", id: 1463298887
+mas "Userscripts", id: 1463298887
 mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
