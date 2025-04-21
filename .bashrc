@@ -397,10 +397,14 @@ if [[ -d "$HOME/.cache/lm-studio/bin" ]]; then
 	append_path "$HOME/.cache/lm-studio/bin"
 fi
 
-# NVM setup
-export NVM_DIR="$HOME/.nvm"
-safe_source "$NVM_DIR/nvm.sh"
-safe_source "$NVM_DIR/bash_completion"
+# Lazy load nvm
+nvm() {
+	unset -f nvm
+	export NVM_DIR="$HOME/.nvm"
+	safe_source "$NVM_DIR/nvm.sh"
+	safe_source "$NVM_DIR/bash_completion"
+	nvm "$@"
+}
 
 if [[ -n "${HOMEBREW_PREFIX}" ]]; then
 	safe_source "${HOMEBREW_PREFIX}/opt/nvm/nvm.sh"
