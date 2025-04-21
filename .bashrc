@@ -285,13 +285,27 @@ alias gpip2='PIP_REQUIRE_VIRTUALENV="" pip2'
 # Get the directory of this script in a cross-platform way
 BASHRC_DIR="$(dirname "$(get_real_path "${BASH_SOURCE[0]}")")"
 
-# Source fzf-git.sh safely
-FZF_GIT_SCRIPT="${BASHRC_DIR}/fzf-git.sh/fzf-git.sh"
-if [[ -r "$FZF_GIT_SCRIPT" ]]; then
-	source "$FZF_GIT_SCRIPT"
+# Set default options with the appropriate preview command
+# Set file finder command based on available tools
+if command_exists bat; then
+	export FZF_PREVIEW_COMMAND="bat --color=always --style=numbers --line-range=:500 {}"
+else
+	export FZF_PREVIEW_COMMAND="cat {}"
 fi
+if command_exists fd; then
+	export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git --exclude node_modules"
+	export FZF_ALT_C_COMMAND="fd --type d --hidden --follow --exclude .git --exclude node_modules"
+else
+	export FZF_DEFAULT_COMMAND="find . -type f -not -path '*/\.git/*' -not -path '*/node_modules/*' -not -path '*/\.*/' 2>/dev/null"
+	export FZF_ALT_C_COMMAND="find . -type d -not -path '*/\.git/*' -not -path '*/node_modules/*' -not -path '*/\.*/' 2>/dev/null"
+fi
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_DEFAULT_OPTS="--height 40% --border"
+export FZF_CTRL_T_OPTS="--preview '$FZF_PREVIEW_COMMAND' --preview-window=right:60%"
+export FZF_ALT_C_OPTS="--preview 'ls -la {}'"
 
-# Source other fzf-related files
+# Source fzf-git.sh safely
+safe_source "${BASHRC_DIR}/fzf-git.sh/fzf-git.sh"
 safe_source ~/.fzf.bash
 safe_source ~/.iterm2_shell_integration.bash
 safe_source /usr/share/doc/fzf/examples/key-bindings.bash
