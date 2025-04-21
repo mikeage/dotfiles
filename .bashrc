@@ -89,15 +89,21 @@ if [[ "$(set -o | grep 'emacs\|\bvi\b' | cut -f2 | tr '\n' ':')" != 'off:off:' ]
 	bind Space:magic-space
 fi
 
+shopt -s cdspell  # Auto-correct typos in cd commands
+shopt -s dirspell # Auto-correct directory names during completion
+
 ###################
 # History options #
 ###################
 
 export HISTSIZE=100000000
-export HISTCONTROL=ignorespace:ignoredups # erasedups -- this messes with chronology
+# export HISTCONTROL=ignorespace:ignoredups # erasedups -- this messes with chronology
+export HISTTIMEFORMAT="%F %T "
+export HISTIGNORE="ls:cd:pwd:exit:date:* --help:clear"
+
 shopt -s histappend
 
-export PROMPT_COMMAND='history -a'
+export PROMPT_COMMAND='history -a; history -n'
 #; echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
 
 ######################
