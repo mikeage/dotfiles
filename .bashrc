@@ -246,7 +246,7 @@ fi
 # Only define tmux functions if tmux is available
 if command_exists tmux; then
 	# Open the given command in a new tmux session. If the session already exists, re-open it, and don't rerun the command
-	function tmuxify() {
+	tmuxify() {
 		if [[ $# -eq 0 ]]; then
 			echo "Usage: tmuxify <command>" >&2
 			return 1
@@ -327,7 +327,7 @@ if [[ -f "$BASHRC_DIR/.bashrc.local" ]]; then
 fi
 
 # Improved akeyless_cert function with better error handling
-function akeyless_cert() {
+akeyless_cert() {
 	if [[ $# -eq 0 ]]; then
 		echo "Error: Certificate path required" >&2
 		return 1
@@ -418,7 +418,7 @@ if [[ -n "${HOMEBREW_PREFIX}" ]]; then
 fi
 
 # Use yazi to change directories
-function y() {
+y() {
 	if ! command_exists yazi; then
 		echo "Error: yazi is not installed" >&2
 		return 1
