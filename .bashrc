@@ -397,6 +397,11 @@ if [[ -d "$HOME/.cache/lm-studio/bin" ]]; then
 	append_path "$HOME/.cache/lm-studio/bin"
 fi
 
+# GNU binutils
+if [[ -d ${HOMEBREW_PREFIX}/opt/binutils ]]; then
+	append_path "${HOMEBREW_PREFIX}/opt/binutils/bin"
+fi
+#
 # Lazy load nvm
 nvm() {
 	unset -f nvm
