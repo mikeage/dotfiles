@@ -101,7 +101,8 @@ export HISTSIZE=100000000
 export HISTTIMEFORMAT="%F %T "
 export HISTIGNORE="ls:cd:pwd:exit:date:* --help:clear"
 
-shopt -s histappend
+shopt -s histappend # Append to the history file, don't overwrite it
+shopt -s cmdhist # Save multi-line commands as one line
 
 export PROMPT_COMMAND='history -a; history -n'
 #; echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
