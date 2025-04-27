@@ -38,6 +38,8 @@ brew "libusb"
 brew "bettercap"
 # Remove large files or passwords from Git history like git-filter-branch
 brew "bfg"
+# GNU binary tools for native development
+brew "binutils"
 # Platform built on V8 to build network applications
 brew "node"
 # Secure and free password manager for all of your devices
@@ -74,6 +76,8 @@ brew "cscope"
 brew "ctags"
 # Tools to work with Android .dex and Java .class files
 brew "dex2jar"
+# Good-lookin' diffs with diff-highlight and more
+brew "diff-so-fancy"
 # Tool for exploring each layer in a docker image
 brew "dive"
 # Pack, ship and run any application as a lightweight container
@@ -250,6 +254,8 @@ brew "qemu"
 brew "qpdf"
 # Reverse engineering framework
 brew "radare2"
+# Ruby version manager
+brew "rbenv"
 # Reattach process (e.g., tmux) to background
 brew "reattach-to-user-namespace"
 # Search tool like grep and The Silver Searcher
