@@ -355,6 +355,10 @@ if command_exists thefuck; then
 	eval "$(thefuck --alias oof)"
 fi
 
+if command_exists rbenv; then
+	eval "$(rbenv init - --no-rehash bash)"
+fi
+
 # NVM (lazy loading)
 nvm() {
 	unset -f nvm
