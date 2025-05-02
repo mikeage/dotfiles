@@ -872,9 +872,6 @@ require("lazy").setup({
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = { "codecompanion", "markdown.codecompanion", "CodeCompanion" },
 	callback = function()
-		-- Disable nvim-cmp
-		require("cmp").setup.buffer({ enabled = false })
-
 		-- Disable Copilot
 		vim.b.copilot_enabled = false
 	end,
