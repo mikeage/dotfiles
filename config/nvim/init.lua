@@ -428,93 +428,18 @@ require("lazy").setup({
 		lazy = true,
 	},
 	{
-		"williamboman/mason.nvim", -- Package manager for LSP servers, linters, formatters
+		"mason-org/mason.nvim", -- Package manager for LSP servers, linters, formatters
 		config = function()
 			require("mason").setup()
 		end,
 	},
 	{
-		"williamboman/mason-lspconfig.nvim", -- Bridge between mason.nvim and lspconfig
+		"mason-org/mason-lspconfig.nvim", -- Bridge between mason.nvim and lspconfig
 		dependencies = { "mason.nvim", "neovim/nvim-lspconfig" },
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-			require("mason-lspconfig").setup {
+			require("mason-lspconfig").setup({
 				ensure_installed = { "bashls", "eslint", "lua_ls", "pylsp", "ts_ls", "yamlls", "tailwindcss", "jsonls", "gopls" },
-			}
-
-			-- Set up handlers for all installed servers
-			require("mason-lspconfig").setup_handlers {
-				function(server_name)
-					require("lspconfig")[server_name].setup {
-						capabilities = capabilities,
-					}
-				end,
-				["gopls"] = function()
-					require("lspconfig").gopls.setup {
-						capabilities = capabilities,
-						settings = {
-							gopls = {
-								analyses = {
-									unusedparams = true,
-									shadow = true,
-								},
-								staticcheck = true,
-								gofumpt = true,
-								usePlaceholders = true,
-								completeUnimported = true,
-							},
-						},
-					}
-				end,
-				["lua_ls"] = function()
-					require("lspconfig").lua_ls.setup {
-						capabilities = capabilities,
-						settings = {
-							Lua = {
-								runtime = {
-									version = "LuaJIT",
-									path = vim.split(package.path, ";"),
-								},
-								diagnostics = {
-									globals = { "vim" },
-								},
-								workspace = {
-									library = {
-										vim.env.VIMRUNTIME,
-										"${3rd}/luv/library"
-									},
-								},
-							},
-						},
-					}
-				end,
-				["pylsp"] = function()
-					require("lspconfig").pylsp.setup {
-						capabilities = capabilities,
-						settings = {
-							pylsp = {
-								plugins = {
-									pylint = { enabled = true },
-									pycodestyle = { enabled = false },
-									mccabe = { enabled = false },
-									pyflakes = { enabled = false },
-									flake8 = { enabled = false },
-								},
-							},
-						},
-					}
-				end,
-				["jsonls"] = function()
-					require("lspconfig").jsonls.setup({
-						settings = {
-							json = {
-								schemas = require("schemastore").json.schemas(),
-							},
-						},
-					})
-				end,
-			}
+			})
 		end,
 	},
 	{
@@ -865,6 +790,64 @@ require("lazy").setup({
 				})
 			})
 		end,
+	},
+})
+
+vim.lsp.config("*", {
+	capabilities = require("cmp_nvim_lsp").default_capabilities()
+})
+vim.lsp.config("lua_ls", {
+	capabilities = require("cmp_nvim_lsp").default_capabilities(),
+	settings = {
+		Lua = {
+			runtime = {
+				version = "LuaJIT",
+				path = vim.split(package.path, ";"),
+			},
+			diagnostics = {
+				globals = { "vim" },
+			},
+			workspace = {
+				library = {
+					vim.env.VIMRUNTIME,
+					"${3rd}/luv/library"
+				},
+			},
+		},
+	},
+})
+vim.lsp.config("gopls", {
+	settings = {
+		gopls = {
+			analyses = {
+				unusedparams = true,
+				shadow = true,
+			},
+			staticcheck = true,
+			gofumpt = true,
+			usePlaceholders = true,
+			completeUnimported = true,
+		},
+	},
+})
+vim.lsp.config("pylsp", {
+	settings = {
+		pylsp = {
+			plugins = {
+				pylint = { enabled = true },
+				pycodestyle = { enabled = false },
+				mccabe = { enabled = false },
+				pyflakes = { enabled = false },
+				flake8 = { enabled = false },
+			},
+		},
+	},
+})
+vim.lsp.config("jsonls", {
+	settings = {
+		json = {
+			schemas = require("schemastore").json.schemas(),
+		},
 	},
 })
 
