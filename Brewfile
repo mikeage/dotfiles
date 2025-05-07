@@ -26,6 +26,8 @@ brew "aws-iam-authenticator"
 brew "awscli"
 # Light UNIX download accelerator
 brew "axel"
+# Terminal bandwidth utilization tool
+brew "bandwhich"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
 # Programmable completion for Bash 4.2+
@@ -142,6 +144,8 @@ brew "gnuplot"
 brew "go"
 # Package compiler and linker metadata toolkit
 brew "pkgconf"
+# Open-source build automation tool based on the Groovy and Kotlin DSL
+brew "gradle"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
 # Toolkit for creating graphical user interfaces
@@ -166,6 +170,8 @@ brew "htop"
 brew "imagemagick"
 # GNU utilities for networking
 brew "inetutils"
+# Tool to unpack installers created by Inno Setup
+brew "innoextract"
 # Cross-platform application and UI framework
 brew "qt@5"
 # Offline radio signal analyser
@@ -210,6 +216,10 @@ brew "modules"
 brew "moreutils"
 # Message broker implementing the MQTT protocol
 brew "mosquitto"
+# Feature-rich command-line audio/video downloader
+brew "yt-dlp"
+# Media player based on MPlayer and mplayer2
+brew "mpv"
 # Multiple Repository management tool
 brew "mr"
 # NCurses Disk Usage
@@ -294,6 +304,8 @@ brew "sshpass"
 brew "st"
 # Tail multiple Kubernetes pods & their containers
 brew "stern"
+# CLI for extracting streams from various websites to a video player
+brew "streamlink"
 # Implementation of the STUN protocol
 brew "stuntman"
 # Version control system designed to be a better CVS
@@ -330,12 +342,10 @@ brew "yamllint"
 brew "yarn"
 # Blazing fast terminal file manager written in Rust, based on async I/O
 brew "yazi"
-# Feature-rich command-line audio/video downloader
-brew "yt-dlp"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # Akeyless CLI
-brew "akeylesslabs/tap/akeyless"
+brew "akeylesslabs/tap/akeyless", link: false
 # Deduplicating archiver with compression and authenticated encryption
 brew "borgbackup/tap/borgbackup-fuse"
 # Packer
