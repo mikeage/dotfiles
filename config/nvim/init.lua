@@ -14,6 +14,24 @@ if vim.loader and vim.loader.enable then
 	vim.loader.enable()
 end
 
+local function is_go_version_compatible()
+	local handle = io.popen("go version")
+	if not handle then return false end
+
+	local result = handle:read("*a")
+	handle:close()
+
+	if not result or result == "" then return false end
+
+	local major, minor = result:match("go(%d+)%.(%d+)")
+	major, minor = tonumber(major), tonumber(minor)
+
+	if not major or not minor then return false end
+	return (major > 1) or (major == 1 and minor >= 23)
+end
+
+local go_is_compatible = is_go_version_compatible()
+
 require("lazy").setup({
 	-- -------------------------------------------------------------------
 	-- Basic settings and colorschemes
@@ -437,8 +455,14 @@ require("lazy").setup({
 		"mason-org/mason-lspconfig.nvim", -- Bridge between mason.nvim and lspconfig
 		dependencies = { "mason.nvim", "neovim/nvim-lspconfig" },
 		config = function()
+			local ensure_installed = { "bashls", "eslint", "lua_ls", "pylsp", "ts_ls", "yamlls", "tailwindcss", "jsonls" }
+
+			if go_is_compatible then
+				table.insert(ensure_installed, "gopls")
+			end
+
 			require("mason-lspconfig").setup({
-				ensure_installed = { "bashls", "eslint", "lua_ls", "pylsp", "ts_ls", "yamlls", "tailwindcss", "jsonls", "gopls" },
+				ensure_installed = ensure_installed,
 			})
 		end,
 	},
@@ -457,8 +481,17 @@ require("lazy").setup({
 		"jay-babu/mason-null-ls.nvim",
 		dependencies = { "mason.nvim", "nvimtools/none-ls.nvim" },
 		config = function()
+			local ensure_installed = { "yamllint" }
+
+			if go_is_compatible then
+				table.insert(ensure_installed, "goimports")
+				table.insert(ensure_installed, "gofumpt")
+				table.insert(ensure_installed, "gomodifytags")
+				table.insert(ensure_installed, "impl")
+			end
+
 			require("mason-null-ls").setup({
-				ensure_installed = { "yamllint", "goimports", "gofumpt", "gomodifytags", "impl" },
+				ensure_installed = ensure_installed,
 				automatic_installation = true,
 			})
 		end,
@@ -537,6 +570,20 @@ require("lazy").setup({
 	{
 		'zbirenbaum/copilot.lua', -- GitHub Copilot integration
 		cmd = 'Copilot',
+		enabled = function()
+			local handle = io.popen("node -v")
+			if not handle then return false end
+
+			local result = handle:read("*a")
+			handle:close()
+
+			if not result or result == "" then return false end
+
+			-- Extract major version, assume format "v20.1.2"
+			local major = tonumber(result:match("v(%d+)"))
+			local compatible = major and major >= 20
+			return compatible
+		end,
 		event = 'InsertEnter',
 		opts = {
 			panel = {
