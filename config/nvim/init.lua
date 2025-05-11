@@ -666,6 +666,26 @@ require("lazy").setup({
 				action_palette = {
 					provider = "telescope"
 				}
+			},
+			actions = {
+				{
+					name = "Explain this function",
+					handler = function(selection)
+						return "Please explain what this function does in simple terms:\n\n" .. selection.text
+					end,
+				},
+				{
+					name = "Find bugs",
+					handler = function(selection)
+						return "Identify any bugs or issues in this code:\n\n" .. selection.text
+					end,
+				},
+				{
+					name = "Optimize this code",
+					handler = function(selection)
+						return "Suggest optimizations for this code:\n\n" .. selection.text
+					end,
+				},
 			}
 		},
 		keys = {
