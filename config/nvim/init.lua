@@ -455,7 +455,6 @@ require("lazy").setup({
 	{
 		"b0o/SchemaStore.nvim", -- JSON schema store for LSP servers
 		version = false,
-		lazy = true,
 	},
 	{
 		"mason-org/mason.nvim", -- Package manager for LSP servers, linters, formatters
