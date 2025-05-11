@@ -462,6 +462,7 @@ require("lazy").setup({
 			require("mason").setup()
 		end,
 	},
+	{ "neovim/nvim-lspconfig" },
 	{
 		"mason-org/mason-lspconfig.nvim", -- Bridge between mason.nvim and lspconfig
 		dependencies = { "mason.nvim", "neovim/nvim-lspconfig" },
