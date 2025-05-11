@@ -586,9 +586,7 @@ require("lazy").setup({
 		end,
 		event = 'InsertEnter',
 		opts = {
-			panel = {
-				enabled = false,
-			},
+			panel = { enabled = false },
 			suggestion = {
 				enabled = true,
 				auto_trigger = true,
@@ -600,6 +598,29 @@ require("lazy").setup({
 					prev = "<M-[>",
 					dismiss = "<C-]>",
 				},
+			},
+		},
+	},
+	-- -------------------------------------------------------------------
+	-- Completion
+	-- -------------------------------------------------------------------
+	{
+		"saghen/blink.cmp",
+		version = '1.*',
+		enabled = true,
+		opts = {
+			completion = {
+				documentation = {
+					auto_show = true,
+					window = { border = 'single' }
+				},
+				menu = { border = 'single' },
+			},
+			keymap = {
+				preset = 'default',
+			},
+			appearance = {
+				nerd_font_variant = 'mono'
 			},
 		},
 	},
@@ -788,66 +809,9 @@ require("lazy").setup({
 			require("nvim-ts-autotag").setup()
 		end,
 	},
-
-
-	-- -------------------------------------------------------------------
-	-- Completion
-	-- -------------------------------------------------------------------
-	{
-		"hrsh7th/nvim-cmp", -- Autocompletion plugin
-		dependencies = {
-			"hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
-			"hrsh7th/cmp-buffer", -- Buffer words source
-			"hrsh7th/cmp-path", -- Path source
-			"hrsh7th/cmp-cmdline", -- Cmdline source
-			"hrsh7th/cmp-vsnip", -- Snippets source
-			"hrsh7th/vim-vsnip", -- Snippets engine
-		},
-		config = function()
-			local cmp = require("cmp")
-			cmp.setup({
-				snippet = {
-					expand = function(args)
-						vim.fn["vsnip#anonymous"](args.body)
-					end,
-				},
-				window = {
-					completion    = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
-				},
-				experimental = { ghost_text = false },
-				mapping = cmp.mapping.preset.insert({
-					["<C-b>"]     = cmp.mapping.scroll_docs(-4),
-					["<C-f>"]     = cmp.mapping.scroll_docs(4),
-					["<M-Space>"] = cmp.mapping.complete(),
-					["<C-e>"]     = cmp.mapping.abort(),
-					["<CR>"]      = cmp.mapping.confirm({ select = true }),
-				}),
-				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-					{ name = "vsnip" },
-				}, {
-					{ name = "buffer" },
-				}),
-			})
-
-			-- Example: special config for gitcommit
-			cmp.setup.filetype("gitcommit", {
-				sources = cmp.config.sources({
-					-- { name = "git" } -- if using plugin for git completions
-				}, {
-					{ name = "buffer" },
-				})
-			})
-		end,
-	},
 })
 
-vim.lsp.config("*", {
-	capabilities = require("cmp_nvim_lsp").default_capabilities()
-})
 vim.lsp.config("lua_ls", {
-	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 	settings = {
 		Lua = {
 			runtime = {
@@ -955,36 +919,36 @@ vim.g.csv_highlight_column = 1 -- Highlight the column under cursor in CSV files
 -----------------------------------------------------------------------
 
 -- Improved Tab key handling function for both indentation and Copilot
-vim.keymap.set('i', '<Tab>', function()
-	-- If Copilot has a suggestion and it's visible
-	if require('copilot.suggestion').is_visible() then
-		return require('copilot.suggestion').accept()
-	end
-
-	-- Check if we're at the beginning of a line or after whitespace only
-	local col = vim.fn.col('.') - 1
-	local line = vim.fn.getline('.')
-	local at_indent_position = col == 0 or line:sub(1, col):match("^%s*$")
-
-	if at_indent_position then
-		-- Use tab for indentation
-		return vim.api.nvim_replace_termcodes('<Tab>', true, false, true)
-	else
-		-- Try completion first
-		local has_completion = vim.fn.pumvisible() == 1
-		if has_completion then
-			return vim.api.nvim_replace_termcodes('<C-n>', true, false, true)
-		else
-			-- Regular Tab
-			return vim.api.nvim_replace_termcodes('<Tab>', true, false, true)
-		end
-	end
-end, { expr = true, silent = true })
-
-vim.keymap.set('i', '<S-Tab>', function()
-	return vim.api.nvim_replace_termcodes('<C-d>', true, false, true)
-end, { expr = true, silent = true })
-
+-- vim.keymap.set('i', '<Tab>', function()
+-- 	-- If Copilot has a suggestion and it's visible
+-- 	if require('copilot.suggestion').is_visible() then
+-- 		return require('copilot.suggestion').accept()
+-- 	end
+--
+-- 	-- Check if we're at the beginning of a line or after whitespace only
+-- 	local col = vim.fn.col('.') - 1
+-- 	local line = vim.fn.getline('.')
+-- 	local at_indent_position = col == 0 or line:sub(1, col):match("^%s*$")
+--
+-- 	if at_indent_position then
+-- 		-- Use tab for indentation
+-- 		return vim.api.nvim_replace_termcodes('<Tab>', true, false, true)
+-- 	else
+-- 		-- Try completion first
+-- 		local has_completion = vim.fn.pumvisible() == 1
+-- 		if has_completion then
+-- 			return vim.api.nvim_replace_termcodes('<C-n>', true, false, true)
+-- 		else
+-- 			-- Regular Tab
+-- 			return vim.api.nvim_replace_termcodes('<Tab>', true, false, true)
+-- 		end
+-- 	end
+-- end, { expr = true, silent = true })
+--
+-- vim.keymap.set('i', '<S-Tab>', function()
+-- 	return vim.api.nvim_replace_termcodes('<C-d>', true, false, true)
+-- end, { expr = true, silent = true })
+--
 -- Quick toggles & general keymaps (not tied to specific plugins)
 vim.keymap.set("", "<leader>w", ":set nowrap!<CR>", { desc = "Toggle wordwrap" })
 vim.keymap.set("", "<leader><Tab>", ":confirm bnext<CR>", { desc = "Next buffer" })
