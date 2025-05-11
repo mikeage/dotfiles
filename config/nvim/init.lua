@@ -586,6 +586,9 @@ require("lazy").setup({
 		end,
 		event = 'InsertEnter',
 		opts = {
+			filetypes = {
+				codecompanion = false,
+			},
 			panel = { enabled = false },
 			suggestion = {
 				enabled = true,
@@ -863,15 +866,6 @@ vim.lsp.config("jsonls", {
 			schemas = require("schemastore").json.schemas(),
 		},
 	},
-})
-
--- Disable Copilot and Completions in CodeCompanion buffers
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "codecompanion", "markdown.codecompanion", "CodeCompanion" },
-	callback = function()
-		-- Disable Copilot
-		vim.b.copilot_enabled = false
-	end,
 })
 
 -----------------------------------------------------------------------
