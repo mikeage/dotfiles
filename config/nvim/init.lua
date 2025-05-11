@@ -186,9 +186,13 @@ require("lazy").setup({
 		dependencies = { "nvim-lualine/lualine.nvim" },
 	},
 	{
+		'SmiteshP/nvim-navic',
+		dependencies = { "neovim/nvim-lspconfig" },
+	},
+	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		dependencies = { "nvim-tree/nvim-web-devicons", "SmiteshP/nvim-navic" },
 		opts = {
 			options = {
 				theme = "auto",
@@ -205,6 +209,14 @@ require("lazy").setup({
 						symbols = {
 							readonly = "[RO]",
 						},
+					},
+					{
+						function()
+							return require("nvim-navic").get_location()
+						end,
+						cond = function()
+							return require("nvim-navic").is_available()
+						end,
 					},
 				},
 				lualine_x = {
@@ -816,15 +828,6 @@ require("lazy").setup({
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 	},
 	{
-		"nvim-treesitter/nvim-treesitter-context", -- Shows code context at the top of buffer
-		dependencies = { "nvim-treesitter/nvim-treesitter" },
-		config = function()
-			require("treesitter-context").setup()
-			-- Extra highlight
-			vim.api.nvim_set_hl(0, "TreesitterContextBottom", { underline = true, sp = "Grey" })
-		end,
-	},
-	{
 		"windwp/nvim-ts-autotag", -- Auto-close and auto-rename HTML/XML tags
 		event = "InsertEnter",
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
@@ -832,6 +835,14 @@ require("lazy").setup({
 			require("nvim-ts-autotag").setup()
 		end,
 	},
+})
+
+vim.lsp.config("*", {
+	on_attach = function(client, bufnr)
+		if client.server_capabilities.documentSymbolProvider then
+			require("nvim-navic").attach(client, bufnr)
+		end
+	end,
 })
 
 vim.lsp.config("lua_ls", {
