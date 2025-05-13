@@ -1089,6 +1089,6 @@ vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fin
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find buffers" })
 
 -- If there's a tmux session open, nvim detects the clipboard provider as tmux. This doesn't work on remote servers. See https://github.com/neovim/neovim/issues/33986
-if vim.env.SSH_TTY ~= nil and vim.env.TMUX == nil then
+if vim.env.SSH_TTY ~= nil and vim.env.TMUX == nil and vim.env.TERM ~= "tmux-256color" then
 	vim.g.clipboard = "osc52"
 end
