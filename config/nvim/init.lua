@@ -15,12 +15,7 @@ if vim.loader and vim.loader.enable then
 end
 
 local function is_go_version_compatible()
-	local handle = io.popen("go version")
-	if not handle then return false end
-
-	local result = handle:read("*a")
-	handle:close()
-
+	local result = vim.fn.system("go version")
 	if not result or result == "" then return false end
 
 	local major, minor = result:match("go(%d+)%.(%d+)")
