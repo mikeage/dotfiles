@@ -73,34 +73,15 @@ require("lazy").setup({
 	-- -------------------------------------------------------------------
 	-- Language-specific
 	-- -------------------------------------------------------------------
-	{
-		"martinda/Jenkinsfile-vim-syntax", -- Syntax highlighting for Jenkinsfiles
-		ft = { "Jenkinsfile" },
-	},
-	{
-		"saltstack/salt-vim", -- Salt state file syntax highlighting
-		ft = { "sls", "salt" },
-	},
-	{
-		"tmux-plugins/vim-tmux", -- Syntax highlighting for tmux configuration files
-		ft = { "tmux" },
-	},
-	{
-		"mtdl9/vim-log-highlighting", -- Better highlighting for log files
-		ft = { "log", "text" },
-	},
-	{
-		"glench/vim-jinja2-syntax", -- Jinja2 template syntax highlighting
-		ft = { "jinja", "jinja2", "htmldjango" },
-	},
-	{
-		"chrisbra/csv.vim", -- CSV file manipulation and highlighting
-		ft = "csv",
-	},
+	{ "martinda/Jenkinsfile-vim-syntax", ft = { "Jenkinsfile" }, },
+	{ "saltstack/salt-vim",              ft = { "sls", "salt" }, },
+	{ "tmux-plugins/vim-tmux",           ft = { "tmux" }, },
+	{ "mtdl9/vim-log-highlighting",      ft = { "log", "text" }, },
+	{ "glench/vim-jinja2-syntax",        ft = { "jinja", "jinja2", "htmldjango" }, },
+	{ "chrisbra/csv.vim",                ft = { "csv" } },
 	{
 		'MeanderingProgrammer/render-markdown.nvim', -- Enhanced markdown rendering
 		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
-		opts = {},
 		ft = { "markdown", "codecompanion" }
 	},
 
