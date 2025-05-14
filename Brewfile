@@ -422,6 +422,8 @@ cask "jellyfin-media-player"
 cask "joplin"
 # Menu bar manager
 cask "jordanbaird-ice"
+# Keyboard customiser
+cask "karabiner-elements"
 # Desktop shield and keystroke interceptor
 cask "keyboard-cleaner"
 # GPU-based terminal emulator
