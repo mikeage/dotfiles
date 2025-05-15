@@ -82,7 +82,10 @@ require("lazy").setup({
 	{
 		'MeanderingProgrammer/render-markdown.nvim', -- Enhanced markdown rendering
 		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
-		ft = { "markdown", "codecompanion" }
+		ft = { "markdown", "codecompanion" },
+		opts = {
+			render_modes = { 'n', 'c', 't' },
+		}
 	},
 
 	-- -------------------------------------------------------------------
