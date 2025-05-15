@@ -599,6 +599,9 @@ require("lazy").setup({
 		"saghen/blink.cmp",
 		version = '1.*',
 		enabled = true,
+		dependencies = {
+			"moyiz/blink-emoji.nvim",
+		},
 		opts = {
 			completion = {
 				documentation = {
@@ -612,6 +615,20 @@ require("lazy").setup({
 			},
 			appearance = {
 				nerd_font_variant = 'mono'
+			},
+			sources = {
+				default = { 'lsp', 'buffer', 'snippets', 'path', 'emoji' },
+				providers = {
+					emoji = {
+						module = "blink-emoji",
+						name = "Emoji",
+						score_offset = 15,
+						opts = { insert = true },
+						should_show_items = function()
+							return vim.tbl_contains({ "gitcommit", "markdown" }, vim.o.filetype)
+						end,
+					},
+				},
 			},
 		},
 	},
