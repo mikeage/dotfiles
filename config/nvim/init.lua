@@ -133,7 +133,6 @@ require("lazy").setup({
 			-- Port over your FZF mappings to Telescope
 			{ "<leader>t",  "<cmd>Telescope find_files<cr>",  desc = "Find files" },
 			{ "<leader>r",  "<cmd>Telescope tags<cr>",        desc = "Find tags" },
-			{ ";",          "<cmd>Telescope buffers<cr>",     desc = "Find buffers" },
 
 			-- Additional useful Telescope mappings
 			{ "<leader>fg", "<cmd>Telescope live_grep<cr>",   desc = "Live grep" },
