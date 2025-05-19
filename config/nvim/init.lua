@@ -839,6 +839,12 @@ require("lazy").setup({
 			require("nvim-ts-autotag").setup()
 		end,
 	},
+	{
+		"m4xshen/hardtime.nvim",
+		lazy = false,
+		dependencies = { "MunifTanjim/nui.nvim", },
+		opts = {},
+	},
 })
 
 vim.lsp.config("*", {
@@ -908,24 +914,25 @@ vim.lsp.config("jsonls", {
 -----------------------------------------------------------------------
 --vim.cmd([[color tokyonight-night]])
 
-vim.opt.termguicolors = true
-vim.opt.foldmethod    = "expr"
-vim.opt.foldexpr      = "nvim_treesitter#foldexpr()"
-vim.opt.foldcolumn    = "8"
-vim.opt.foldlevel     = 99
-vim.opt.number        = true
-vim.opt.ignorecase    = true
-vim.opt.smartcase     = true
-vim.opt.incsearch     = true
-vim.opt.autowriteall  = true
-vim.opt.scrolloff     = 10
-vim.opt.signcolumn    = "auto:1-5"
-vim.opt.updatetime    = 100
+vim.opt.termguicolors  = true
+vim.opt.foldmethod     = "expr"
+vim.opt.foldexpr       = "nvim_treesitter#foldexpr()"
+vim.opt.foldcolumn     = "8"
+vim.opt.foldlevel      = 99
+vim.opt.number         = true
+vim.opt.ignorecase     = true
+vim.opt.smartcase      = true
+vim.opt.incsearch      = true
+vim.opt.autowriteall   = true
+vim.opt.scrolloff      = 10
+vim.opt.signcolumn     = "auto:1-5"
+vim.opt.updatetime     = 100
+vim.opt.relativenumber = true
 
 -- Tab/Indent
-vim.opt.tabstop       = 4
-vim.opt.shiftwidth    = 4
-vim.opt.expandtab     = false
+vim.opt.tabstop        = 4
+vim.opt.shiftwidth     = 4
+vim.opt.expandtab      = false
 
 -- Use 2 space indents for JavaScript & TypeScript
 vim.api.nvim_create_autocmd("FileType", {
