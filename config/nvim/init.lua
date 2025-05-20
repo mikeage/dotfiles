@@ -84,12 +84,13 @@ require("lazy").setup({
 		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
 		ft = { "markdown", "codecompanion" },
 		opts = {
+			latex = { enabled = false },
 			render_modes = { 'n', 'c', 't' },
 			overrides = {
 				filetype = {
 					-- Even though we enable the plugin for codecompanion, we need this override, because the default buftype is nofile and render-markdown ignores the regular render_modes for nofile.
 					codecompanion = {
-						render_modes = { 'n', 'c', 'v' },
+						render_modes = { 'n', 'c', 't' },
 					},
 				},
 			},
