@@ -49,6 +49,7 @@ require("lazy").setup({
 				functions = { bold = true },
 			},
 			plugins = {
+				"blink",
 				"fidget",
 				"gitsigns",
 				"neo-tree",
