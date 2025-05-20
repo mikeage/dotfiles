@@ -470,32 +470,40 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"nvimtools/none-ls.nvim",
-		config = function()
-			local null_ls = require("null-ls")
-			null_ls.setup({
-				sources = {
-					null_ls.builtins.diagnostics.yamllint,
-				},
-			})
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		dependencies = { "mason.nvim" },
+		opts = function()
+			local tools = {
+				"yamllint",
+				"isort", "black",
+				"prettier",
+				"yamlfmt", "yamlfix",
+			}
+			if go_is_compatible then
+				vim.list_extend(tools, { "goimports", "gofumpt" })
+			end
+			return {
+				ensure_installed = tools,
+				auto_update = true,
+				run_on_start = true,
+			}
 		end,
 	},
 	{
-		"jay-babu/mason-null-ls.nvim",
-		dependencies = { "mason.nvim", "nvimtools/none-ls.nvim" },
+		"mfussenegger/nvim-lint",
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
-			local ensure_installed = { "yamllint" }
+			local lint = require("lint")
+			lint.linters_by_ft = {
+				yaml = { "yamllint" },
+			}
 
-			if go_is_compatible then
-				table.insert(ensure_installed, "goimports")
-				table.insert(ensure_installed, "gofumpt")
-				table.insert(ensure_installed, "gomodifytags")
-				table.insert(ensure_installed, "impl")
-			end
-
-			require("mason-null-ls").setup({
-				ensure_installed = ensure_installed,
-				automatic_installation = true,
+			-- Create an autocmd to run linters on events.
+			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+				group = vim.api.nvim_create_augroup("nvim-lint-autogroup", { clear = true }),
+				callback = function()
+					lint.try_lint()
+				end,
 			})
 		end,
 	},
