@@ -1009,8 +1009,6 @@ vim.opt.undofile = true
 vim.opt.wildignore:append("*~,*.pyc")
 
 -- Quickfix toggle functionality
-_G.qfix_win = nil
-
 local toggle_quickfix = function()
 	local is_open = false
 	for _, win in ipairs(vim.fn.getwininfo()) do
