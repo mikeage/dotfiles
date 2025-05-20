@@ -85,7 +85,15 @@ require("lazy").setup({
 		ft = { "markdown", "codecompanion" },
 		opts = {
 			render_modes = { 'n', 'c', 't' },
-		}
+			overrides = {
+				filetype = {
+					-- Even though we enable the plugin for codecompanion, we need this override, because the default buftype is nofile and render-markdown ignores the regular render_modes for nofile.
+					codecompanion = {
+						render_modes = { 'n', 'c', 'v' },
+					},
+				},
+			},
+		},
 	},
 
 	-- -------------------------------------------------------------------
