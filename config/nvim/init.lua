@@ -1062,9 +1062,6 @@ if vim.g.neovide then
 	vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
 end
 
--- Terraform
-vim.g.terraform_fmt_on_save = 1
-
 -- Toggle diagnostics for all lines or just the current line
 local default_diagnostic_config = { float = { border = "rounded" }, virtual_text = false, virtual_lines = false }
 vim.diagnostic.config(default_diagnostic_config)
