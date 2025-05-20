@@ -648,14 +648,6 @@ require("lazy").setup({
 		},
 	},
 	{
-		"j-hui/fidget.nvim", -- Standalone UI for LSP progress messages
-		opts = {
-			notification = {
-				override_vim_notify = true,
-			},
-		},
-	},
-	{
 		"olimorris/codecompanion.nvim", -- AI coding assistant
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -800,10 +792,9 @@ require("lazy").setup({
 	},
 	{
 		"j-hui/fidget.nvim", -- Standalone UI for LSP progress messages
-		event = "LspAttach",
 		opts = {
-			-- Use the new v2.0 config format
 			notification = {
+				override_vim_notify = true,
 				window = {
 					winblend = 0,
 					border = "rounded",
