@@ -32,6 +32,8 @@ require("lazy").setup({
 	-- Basic settings and colorschemes
 	-- -------------------------------------------------------------------
 	{ "tpope/vim-sensible" }, -- Provides sensible vim defaults
+	{ "nvim-tree/nvim-web-devicons" },
+	{ "echasnovski/mini.icons" },
 	{ "folke/tokyonight.nvim", },
 	{
 		'marko-cerovac/material.nvim',
@@ -68,6 +70,7 @@ require("lazy").setup({
 	},
 	{
 		"folke/which-key.nvim", -- Displays popup with possible key bindings
+		dependencies = { "nvim-tree/nvim-web-devicons", "echasnovski/mini.icons" },
 	},
 
 	-- -------------------------------------------------------------------
