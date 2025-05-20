@@ -956,6 +956,11 @@ vim.g.csv_nomap_space = 1      -- Don't map space in CSV mode
 vim.g.csv_nomap_cr = 1         -- Don't map CR in CSV mode
 vim.g.csv_highlight_column = 1 -- Highlight the column under cursor in CSV files
 
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_python3_provider = 0
+
 -----------------------------------------------------------------------
 -- 4) KEYMAPPINGS
 -----------------------------------------------------------------------
