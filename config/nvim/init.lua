@@ -449,9 +449,7 @@ require("lazy").setup({
 	},
 	{
 		"mason-org/mason.nvim", -- Package manager for LSP servers, linters, formatters
-		config = function()
-			require("mason").setup()
-		end,
+		opts = {},
 	},
 	{ "neovim/nvim-lspconfig" },
 	{
