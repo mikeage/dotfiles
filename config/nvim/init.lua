@@ -825,6 +825,7 @@ require("lazy").setup({
 	{
 		"nvim-treesitter/nvim-treesitter", -- Syntax highlighting and code parsing
 		build = ":TSUpdate",
+		branch = "master",
 		opts = {
 			ensure_installed = {
 				"c", "lua", "vim", "vimdoc", "query", "yaml",
