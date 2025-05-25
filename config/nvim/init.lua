@@ -145,6 +145,10 @@ require("lazy").setup({
 		keys = {
 			-- Port over your FZF mappings to Telescope
 			{ "<leader>t",  "<cmd>Telescope find_files<cr>",  desc = "Find files" },
+			{ "<leader>ff", "<cmd>Telescope find_files<cr>",  desc = "Find files" },
+			{ "<leader>fb", "<cmd>Telescope buffers<cr>",     desc = "Find buffers" },
+			{ "<leader>fc", "<cmd>Telescope commands<cr>",    desc = "Find commands" },
+			{ "<leader>fm", "<cmd>Telescope marks<cr>",       desc = "Find marks" },
 			{ "<leader>r",  "<cmd>Telescope tags<cr>",        desc = "Find tags" },
 
 			-- Additional useful Telescope mappings
@@ -1079,38 +1083,33 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		-- Buffer local mappings - only available when LSP is attached
 		local opts = { buffer = ev.buf, silent = true }
 
-		-- Telescope-based navigation
+		-- Go-to navigation (g prefix)
 		vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts)
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration", buffer = ev.buf, silent = true })
 		vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
 		vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts)
 		vim.keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts)
-		vim.keymap.set("n", "<leader>ds", "<cmd>Telescope lsp_document_symbols<CR>", opts)
-		vim.keymap.set("n", "<leader>ws", "<cmd>Telescope lsp_workspace_symbols<CR>", opts)
 
-		-- Standard LSP functions (no Telescope alternative)
-		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+		-- Documentation & information
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 		vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
 
-		-- Code actions and modifications
-		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-		vim.keymap.set({ 'n', 'v' }, "<leader>ca", vim.lsp.buf.code_action, opts)
-		vim.keymap.set("n", "<leader>bf", function() vim.lsp.buf.format({ async = true }) end, opts)
+		-- LSP actions (<leader>l prefix)
+		vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
+		vim.keymap.set({ 'n', 'v' }, "<leader>la", vim.lsp.buf.code_action, opts)
+		vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format({ async = true }) end, opts)
 
-		-- Diagnostics navigation and display
+		-- Symbols & outline navigation
+		vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", opts)
+		vim.keymap.set("n", "<leader>lS", "<cmd>Telescope lsp_workspace_symbols<CR>", opts)
+
+		-- Diagnostics navigation
 		vim.keymap.set('n', '[d', function() vim.diagnostic.jump({ count = -1, float = true }) end, opts)
 		vim.keymap.set('n', ']d', function() vim.diagnostic.jump({ count = 1, float = true }) end, opts)
-
-		vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
+		vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, opts)
+		vim.keymap.set('n', '<leader>lq', "<cmd>Telescope diagnostics<CR>", opts)
 	end,
 })
-
--- Add some Telescope extensions specific to development
-vim.keymap.set("n", "<leader>fs", "<cmd>Telescope lsp_workspace_symbols<cr>", { desc = "Find symbols in workspace" })
-vim.keymap.set("n", "<leader>fc", "<cmd>Telescope commands<cr>", { desc = "Find commands" })
-vim.keymap.set("n", "<leader>fm", "<cmd>Telescope marks<cr>", { desc = "Find marks" })
-vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
-vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find buffers" })
 
 -- If there's a tmux session open, nvim detects the clipboard provider as tmux. This doesn't work on remote servers. See https://github.com/neovim/neovim/issues/33986
 if vim.env.SSH_TTY ~= nil and vim.env.TMUX == nil and vim.env.TERM ~= "tmux-256color" then
