@@ -1111,6 +1111,52 @@ vim.api.nvim_create_autocmd('LspAttach', {
 	end,
 })
 
+vim.api.nvim_create_user_command('GenCompileCommands', function()
+	local uv = vim.loop
+	local json = vim.fn.json_encode
+
+	local function get_all_c_files()
+		local c_files = {}
+		local function scan(dir)
+			for _, name in ipairs(vim.fn.readdir(dir)) do
+				local path = dir .. '/' .. name
+				local stat = uv.fs_stat(path)
+				if stat then
+					if stat.type == 'directory' and name ~= '.git' and name ~= '.svn' then
+						scan(path)
+					elseif stat.type == 'file' and name:match('%.c$') then
+						table.insert(c_files, path)
+					end
+				end
+			end
+		end
+		scan('.')
+		return c_files
+	end
+
+	local function generate_compile_commands()
+		local c_files = get_all_c_files()
+		local commands = {}
+		for _, file in ipairs(c_files) do
+			table.insert(commands, {
+				directory = vim.fn.getcwd(),
+				file = file,
+				command = string.format("cc -I. %s", file) -- Edit flags as needed
+			})
+		end
+		local out, err = io.open("compile_commands.json", "w")
+		if not out then
+			vim.notify("Failed to open compile_commands.json for writing: " .. (err or "unknown error"),
+				vim.log.levels.ERROR)
+			return
+		end
+		out:write(json(commands))
+		out:close()
+		vim.notify("Wrote compile_commands.json with " .. #c_files .. " files.", vim.log.levels.INFO)
+	end
+
+	generate_compile_commands()
+end, { desc = 'Generate a basic compile_commands.json for all .c files' })
 -- If there's a tmux session open, nvim detects the clipboard provider as tmux. This doesn't work on remote servers. See https://github.com/neovim/neovim/issues/33986
 if vim.env.SSH_TTY ~= nil and vim.env.TMUX == nil and vim.env.TERM ~= "tmux-256color" then
 	vim.g.clipboard = "osc52"
