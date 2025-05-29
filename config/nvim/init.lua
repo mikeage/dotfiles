@@ -665,28 +665,25 @@ require("lazy").setup({
 			"j-hui/fidget.nvim",
 		},
 		opts = {
-			adapters = {
-				copilot = function()
-					return require("codecompanion.adapters").extend("copilot", {
-						name = "copilot",
-						schema = {
-							model = {
-								default = "claude-3.7-sonnet",
-							},
-						}
-					})
-				end,
-			},
 			strategies = {
 				chat = {
-					adapter = "copilot",
+					adapter = {
+						name = "copilot",
+						model = "claude-3.7-sonnet",
+					},
 					keymaps = { close = { modes = { n = "<NOP>", i = "<NOP>" } }, },
 				},
 				inline = {
-					adapter = "copilot",
+					adapter = {
+						name = "copilot",
+						model = "claude-3.7-sonnet",
+					},
 				},
 				command = {
-					adapter = "copilot",
+					adapter = {
+						name = "copilot",
+						model = "claude-3.7-sonnet",
+					},
 				},
 			},
 			opts = {
