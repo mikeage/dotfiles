@@ -10,6 +10,8 @@ tap "wswenyue/apkparser"
 brew "apktool"
 # Download with resuming and segmented downloading
 brew "aria2"
+# ARP scanning and fingerprinting tool
+brew "arp-scan"
 # Record and share terminal sessions
 brew "asciinema"
 # Perf monitoring CLI tool for Apple Silicon
@@ -42,6 +44,10 @@ brew "bettercap"
 brew "bfg"
 # GNU binary tools for native development
 brew "binutils"
+# 7-Zip (high compression file archiver) implementation
+brew "p7zip"
+# Searches a binary image for embedded files and executable code
+brew "binwalk"
 # Platform built on V8 to build network applications
 brew "node"
 # Secure and free password manager for all of your devices
@@ -50,6 +56,8 @@ brew "bitwarden-cli"
 brew "boost"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
+# CD/DVD/Blu-ray premastering and recording software
+brew "cdrtools"
 # Tool to obtain certs from Let's Encrypt and autoenable HTTPS
 brew "certbot"
 # Framework for layout and rendering of i18n text
@@ -58,6 +66,8 @@ brew "pango"
 brew "chafa"
 # Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
 brew "clang-format"
+# Command-line tool for Amazon Route 53
+brew "cli53"
 # Cross-platform make
 brew "cmake"
 # Container runtimes on MacOS (and Linux) with minimal setup
@@ -204,8 +214,6 @@ brew "librtlsdr"
 brew "luarocks"
 # Sudoless performance monitoring for Apple Silicon processors
 brew "macmon"
-# Drop-in replacement for MySQL
-brew "mariadb"
 # Mac App Store command-line interface
 brew "mas"
 # Unified display of technical and tag data for audio/video
@@ -238,8 +246,8 @@ brew "nvm"
 brew "ollama", restart_service: :changed
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
-# 7-Zip (high compression file archiver) implementation
-brew "p7zip"
+# Swiss-army knife of markup format conversion
+brew "pandoc"
 # Check coding standards in PHP, JavaScript and CSS
 brew "php-code-sniffer"
 # Minimal dumb-terminal emulation program
@@ -258,6 +266,8 @@ brew "pstree"
 brew "pulseaudio"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.11"
+# Command-line interface for qBittorrent written in Go
+brew "qbittorrent-cli"
 # Generic machine emulator and virtualizer
 brew "qemu"
 # Tools for and transforming and inspecting PDF files
@@ -288,6 +298,8 @@ brew "sevenzip"
 brew "shellcheck"
 # Autoformat shell script source code
 brew "shfmt"
+# Tool to convert Android sparse images to raw images and back
+brew "simg2img"
 # SMART hard drive monitoring
 brew "smartmontools"
 # SOcket CAT: netcat on steroids
@@ -312,6 +324,8 @@ brew "stuntman"
 brew "subversion"
 # Programmatically correct mistyped console commands
 brew "thefuck"
+# MUD client
+brew "tintin"
 # Terminal multiplexer
 brew "tmux"
 # Lightweight BitTorrent client
@@ -345,7 +359,7 @@ brew "yazi"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # Akeyless CLI
-brew "akeylesslabs/tap/akeyless", link: false
+brew "akeylesslabs/tap/akeyless"
 # Deduplicating archiver with compression and authenticated encryption
 brew "borgbackup/tap/borgbackup-fuse"
 # Packer
@@ -380,6 +394,8 @@ cask "autodesk-fusion"
 cask "balenaetcher"
 # 3D model slicing software for 3D printers, maintained by Bambu Lab
 cask "bambu-studio"
+# Compact TeX distribution as alternative to the full TeX Live / MacTeX
+cask "basictex"
 # Web security testing toolkit
 cask "burp-suite"
 # E-books management software
@@ -404,14 +420,14 @@ cask "disk-inventory-x"
 cask "dotnet-sdk"
 # Web browser
 cask "firefox"
+# Set of tools to manage resources and applications hosted on Google Cloud
+cask "gcloud-cli"
 # Software reverse engineering (SRE) suite of tools
 cask "ghidra"
 # Web browser
 cask "google-chrome"
 # Web browser
 cask "google-chrome@beta"
-# Set of tools to manage resources and applications hosted on Google Cloud
-cask "google-cloud-sdk"
 # Software-defined radio receiver powered by GNU Radio and Qt
 cask "gqrx"
 # Standalone Java Decompiler GUI
@@ -460,13 +476,15 @@ cask "steam"
 cask "steamcmd"
 # Replacement for RCDefaultApps, written in Swift
 cask "swiftdefaultappsprefpane"
+# Mesh VPN based on WireGuard
+cask "tailscale-app"
 # Messaging app with a focus on speed and security
 cask "telegram"
 # JDK from the Eclipse Foundation (Adoptium)
 cask "temurin"
+# Finder thumbnail provider for some .gcode, .bgcode and .3mf files
+cask "thumbhost3mf"
 cask "transmission-remote-gui"
-# 3D printer and slicing GUI
-cask "ultimaker-cura"
 # Management tool for Unity
 cask "unity-hub"
 # Open-source code editor
@@ -476,17 +494,17 @@ cask "vlc"
 # Native desktop client for WhatsApp
 cask "whatsapp"
 # Network protocol analyzer
-cask "wireshark"
+cask "wireshark-app"
 # Open-source version of the X.Org X Window System
 cask "xquartz"
 # Video communication and virtual meeting platform
 cask "zoom"
 mas "Amphetamine", id: 937984704
 mas "Bitwarden", id: 1352778147
-mas "Fakespot", id: 1592541616
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft PowerPoint", id: 462062816
 mas "Speedtest", id: 1153157709
+mas "udm14 for Safari", id: 6520379591
 mas "Userscripts", id: 1463298887
 mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
