@@ -214,7 +214,7 @@ if [[ -n "${HOMEBREW_PREFIX}" ]]; then
 	source_completion_dir "${HOMEBREW_PREFIX}/etc/bash_completion.d"
 
 	# GCP specific completions
-	safe_source "${HOMEBREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
+	safe_source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/completion.bash.inc"
 	safe_source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.bash.inc"
 
 	# Modules completion
