@@ -441,3 +441,7 @@ listening() {
 if [[ -f "$BASHRC_DIR/.bashrc.local" ]]; then
 	source "$BASHRC_DIR/.bashrc.local"
 fi
+#
+# Fix terminal mode after command execution (for vi mode)
+export PROMPT_COMMAND='tput rmkx; '"$PROMPT_COMMAND"
+
