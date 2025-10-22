@@ -4,7 +4,10 @@ tap "borgbackup/tap"
 tap "carlocab/personal"
 tap "hashicorp/tap"
 tap "jstkdng/programs"
+tap "krishkrosh/apps"
 tap "mongodb/brew"
+tap "osx-cross/avr"
+tap "supersonic-app/supersonic"
 tap "wswenyue/apkparser"
 # Tool for reverse engineering 3rd party, closed, binary Android apps
 brew "apktool"
@@ -370,12 +373,14 @@ brew "hashicorp/tap/terraform"
 brew "jstkdng/programs/ueberzugpp"
 # High-performance, schema-free, document-oriented database
 brew "mongodb/brew/mongodb-community"
+# GNU compiler collection for AVR 8-bit and 32-bit Microcontrollers
+brew "osx-cross/avr/avr-gcc@14", link: true
+# GNU compiler collection for AVR 8-bit and 32-bit Microcontrollers
+brew "osx-cross/avr/avr-gcc@9", link: false
 # Android apk file parsing tool
 brew "wswenyue/apkparser/apkparser"
 # View, print, and comment on PDF documents
 cask "adobe-acrobat-reader"
-# GPU-accelerated terminal emulator
-cask "alacritty"
 # Menu bar tool to limit maximum charging percentage
 cask "aldente"
 # Communications service
@@ -402,6 +407,8 @@ cask "burp-suite"
 cask "calibre"
 # Web debugging Proxy application
 cask "charles"
+# OpenAI's official ChatGPT desktop app
+cask "chatgpt"
 # Tool to show live information about the batteries in various devices
 cask "coconutbattery"
 # Metadata editor for digital comics
@@ -420,6 +427,8 @@ cask "disk-inventory-x"
 cask "dotnet-sdk"
 # Web browser
 cask "firefox"
+# Pre-built GNU bare-metal toolchain for 32-bit Arm processors
+cask "gcc-arm-embedded"
 # Set of tools to manage resources and applications hosted on Google Cloud
 cask "gcloud-cli"
 # Software reverse engineering (SRE) suite of tools
@@ -430,6 +439,8 @@ cask "google-chrome"
 cask "google-chrome@beta"
 # Software-defined radio receiver powered by GNU Radio and Qt
 cask "gqrx"
+# Desktop automation application
+cask "hammerspoon"
 # Standalone Java Decompiler GUI
 cask "jd-gui"
 # Jellyfin desktop client
@@ -444,8 +455,6 @@ cask "karabiner-elements"
 cask "keyboard-cleaner"
 # GPU-based terminal emulator
 cask "kitty"
-# Discover, download, and run local LLMs
-cask "lm-studio"
 # Software for Logitech devices
 cask "logi-options+"
 # Clipboard manager
@@ -474,6 +483,8 @@ cask "rectangle"
 cask "steam"
 # Command-line client for Steam
 cask "steamcmd"
+# A lightweight and full-featured cross-platform desktop client for self-hosted music servers
+cask "supersonic"
 # Replacement for RCDefaultApps, written in Swift
 cask "swiftdefaultappsprefpane"
 # Mesh VPN based on WireGuard
@@ -484,6 +495,8 @@ cask "telegram"
 cask "temurin"
 # Finder thumbnail provider for some .gcode, .bgcode and .3mf files
 cask "thumbhost3mf"
+# Turn your MacBook's trackpad into a precise digital weighing scale
+cask "trackweight"
 cask "transmission-remote-gui"
 # Management tool for Unity
 cask "unity-hub"
@@ -495,16 +508,34 @@ cask "vlc"
 cask "whatsapp"
 # Network protocol analyzer
 cask "wireshark-app"
+# Photo viewer, image manager, image resiser and more
+cask "xnviewmp"
 # Open-source version of the X.Org X Window System
 cask "xquartz"
 # Video communication and virtual meeting platform
 cask "zoom"
 mas "Amphetamine", id: 937984704
 mas "Bitwarden", id: 1352778147
+mas "karakeeper Bookmarker", id: 6746722790
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft PowerPoint", id: 462062816
 mas "Speedtest", id: 1153157709
 mas "udm14 for Safari", id: 6520379591
 mas "Userscripts", id: 1463298887
 mas "WireGuard", id: 1451685025
-mas "Xcode", id: 497799835
+go "github.com/klauspost/asmfmt/cmd/asmfmt"
+go "github.com/go-delve/delve/cmd/dlv"
+go "github.com/kisielk/errcheck"
+go "github.com/davidrjenni/reftools/cmd/fillstruct"
+go "github.com/rogpeppe/godef"
+go "golang.org/x/tools/cmd/goimports"
+go "github.com/golangci/golangci-lint/cmd/golangci-lint"
+go "github.com/fatih/gomodifytags"
+go "golang.org/x/tools/gopls"
+go "golang.org/x/tools/cmd/gorename"
+go "github.com/jstemmer/gotags"
+go "github.com/koron/iferr"
+go "github.com/josharian/impl"
+go "github.com/fatih/motion"
+go "github.com/mgechev/revive"
+go "honnef.co/go/tools/cmd/staticcheck"
