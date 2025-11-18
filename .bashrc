@@ -33,9 +33,21 @@ get_real_path() {
 # Path manipulation   #
 #######################
 prepend_path() {
-	if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
-		export PATH="$1:$PATH"
-	fi
+	local dir="$1"
+
+	[[ -d "$dir" ]] || return
+
+	# Wrap PATH in ':' to make whole-component removal easier
+	local p=":${PATH}:"
+	# Remove ALL existing occurrences of the directory
+	p="${p//:$dir:/:}"
+
+	# Trim leading and trailing colons
+	p="${p#:}"
+	p="${p%:}"
+
+	# Prepend the directory
+	export PATH="$dir:$p"
 }
 
 append_path() {
@@ -355,9 +367,9 @@ if command_exists thefuck; then
 	eval "$(thefuck --alias oof)"
 fi
 
-if command_exists rbenv; then
-	eval "$(rbenv init - --no-rehash bash)"
-fi
+# if command_exists rbenv; then
+# 	eval "$(rbenv init - --no-rehash bash)"
+# fi
 
 # NVM (lazy loading)
 nvm() {
@@ -444,4 +456,3 @@ fi
 #
 # Fix terminal mode after command execution (for vi mode)
 export PROMPT_COMMAND='tput rmkx; '"$PROMPT_COMMAND"
-
