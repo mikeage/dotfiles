@@ -669,20 +669,20 @@ require("lazy").setup({
 				chat = {
 					adapter = {
 						name = "copilot",
-						model = "claude-3.7-sonnet",
+						model = "claude-sonnet-4.5",
 					},
 					keymaps = { close = { modes = { n = "<NOP>", i = "<NOP>" } }, },
 				},
 				inline = {
 					adapter = {
 						name = "copilot",
-						model = "claude-3.7-sonnet",
+						model = "claude-sonnet-4.5",
 					},
 				},
 				command = {
 					adapter = {
 						name = "copilot",
-						model = "claude-3.7-sonnet",
+						model = "claude-sonnet-4.5",
 					},
 				},
 			},
