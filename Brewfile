@@ -23,6 +23,8 @@ brew "asitop"
 brew "at-spi2-core"
 # Automatic configure script builder
 brew "autoconf"
+# Collection of over 500 reusable autoconf macros
+brew "autoconf-archive"
 # Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
 # Use AWS IAM credentials to authenticate to Kubernetes
@@ -51,7 +53,7 @@ brew "binutils"
 brew "p7zip"
 # Searches a binary image for embedded files and executable code
 brew "binwalk"
-# Platform built on V8 to build network applications
+# Open-source, cross-platform JavaScript runtime environment
 brew "node"
 # Secure and free password manager for all of your devices
 brew "bitwarden-cli"
@@ -91,6 +93,8 @@ brew "cscope"
 brew "ctags"
 # Tools to work with Android .dex and Java .class files
 brew "dex2jar"
+# Display user-friendly message boxes from shell scripts
+brew "dialog"
 # Good-lookin' diffs with diff-highlight and more
 brew "diff-so-fancy"
 # Tool for exploring each layer in a docker image
@@ -141,6 +145,8 @@ brew "gawk"
 brew "gcalcli"
 # GitHub command-line tool
 brew "gh"
+# Multi-platform software reverse engineering framework
+brew "ghidra"
 # Distributed revision control system
 brew "git"
 # Quickly rewrite git repository history
