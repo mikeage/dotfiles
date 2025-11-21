@@ -188,107 +188,100 @@ require("lazy").setup({
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		dependencies = { "nvim-tree/nvim-web-devicons", "SmiteshP/nvim-navic" },
-		opts = {
-			options = {
-				theme = "auto",
-				disabled_filetypes = { statusline = { "dashboard", "alpha" } },
-				globalstatus = true, -- Show one statusline for all windows, regardless of splits
-			},
-			sections = {
-				lualine_b = { "branch", "diff", },
-				lualine_c = {
-					{
-						"filename",
-						file_status = true,
-						path = 1, -- relative path
-						symbols = {
-							readonly = "[RO]",
+		config = function()
+			-- Create venv refresh autocmd once, outside the component function
+			vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "TermLeave" }, {
+				callback = function()
+					require('lualine').refresh()
+				end
+			})
+
+			require("lualine").setup({
+				options = {
+					theme = "auto",
+					disabled_filetypes = { statusline = { "dashboard", "alpha" } },
+					globalstatus = true,
+				},
+				sections = {
+					lualine_b = { "branch", "diff", },
+					lualine_c = {
+						{
+							"filename",
+							file_status = true,
+							path = 1,
+							symbols = {
+								readonly = "[RO]",
+							},
+						},
+						{
+							function()
+								return require("nvim-navic").get_location()
+							end,
+							cond = function()
+								return require("nvim-navic").is_available()
+							end,
 						},
 					},
-					{
-						function()
-							return require("nvim-navic").get_location()
-						end,
-						cond = function()
-							return require("nvim-navic").is_available()
-						end,
-					},
-				},
-				lualine_x = {
-					{
-						"copilot",
-						show_colors = true,
-					},
-					{
-						function()
-							local function get_venv()
+					lualine_x = {
+						{
+							"copilot",
+							show_colors = true,
+						},
+						{
+							function()
 								local venv = os.getenv("VIRTUAL_ENV")
 								if venv then
-									-- Extract the venv name (last part of the path)
-									local venv_name = venv:match("([^/\\]+)$")
-									return "󰆧 " .. venv_name
+									return "󰆧 " .. venv:match("([^/\\]+)$")
 								end
 								return ""
-							end
+							end,
+						},
+						{ "encoding" },
+						{ "fileformat" },
+						{ "filetype" },
+						{
+							function()
+								local clients = vim.lsp.get_clients({ bufnr = 0 })
+								if #clients == 0 then
+									return "[N/A]"
+								end
 
-							-- Create the autocmd only once
-							if not vim.g.venv_autocmd_created then
-								vim.api.nvim_create_autocmd({ "BufEnter", "FocusGained", "TermLeave" }, {
-									callback = function()
-										require('lualine').refresh()
-									end
-								})
-								vim.g.venv_autocmd_created = true
-							end
+								local client_names = {}
+								for _, client in ipairs(clients) do
+									table.insert(client_names, client.name)
+								end
 
-							return get_venv()
-						end,
-					},
-					{ "encoding" },
-					{ "fileformat" },
-					{ "filetype" },
-					{
-						function()
-							local clients = vim.lsp.get_clients({ bufnr = 0 })
-							if #clients == 0 then
-								return "[N/A]"
-							end
-
-							local client_names = {}
-							for _, client in ipairs(clients) do
-								table.insert(client_names, client.name)
-							end
-
-							return table.concat(client_names, ", ")
-						end,
-					},
-					{
-						"diagnostics",
-						sources = { 'nvim_diagnostic' },
+								return table.concat(client_names, ", ")
+							end,
+						},
+						{
+							"diagnostics",
+							sources = { 'nvim_diagnostic' },
+						},
 					},
 				},
-			},
-			tabline = {
-				lualine_a = {
-					{
-						"buffers",
-						show_filename_only = false,
-						mode = 2,
-					}
-				},
-				lualine_b = {},
-				lualine_c = {},
-				lualine_x = {},
-				lualine_y = {},
-				lualine_z = {
-					{
-						"tabs",
-						mode = 0,
+				tabline = {
+					lualine_a = {
+						{
+							"buffers",
+							show_filename_only = false,
+							mode = 2,
+						}
+					},
+					lualine_b = {},
+					lualine_c = {},
+					lualine_x = {},
+					lualine_y = {},
+					lualine_z = {
+						{
+							"tabs",
+							mode = 0,
+						},
 					},
 				},
-			},
-			extensions = { "nvim-tree", "quickfix", "fugitive", "trouble", "lazy", "mason" },
-		},
+				extensions = { "nvim-tree", "quickfix", "fugitive", "trouble", "lazy", "mason" },
+			})
+		end,
 	},
 
 	-- -------------------------------------------------------------------
@@ -451,6 +444,16 @@ require("lazy").setup({
 		"b0o/SchemaStore.nvim", -- JSON schema store for LSP servers
 		version = false,
 	},
+	{
+		"folke/lazydev.nvim",
+		ft = "lua",
+		opts = {
+			library = {
+				{ path = "luvit-meta/library", words = { "vim%.uv" } },
+			},
+		},
+	},
+	{ "Bilal2453/luvit-meta", lazy = true },
 	{
 		"mason-org/mason.nvim", -- Package manager for LSP servers, linters, formatters
 		opts = {},
@@ -642,7 +645,7 @@ require("lazy").setup({
 				nerd_font_variant = 'mono'
 			},
 			sources = {
-				default = { 'lsp', 'buffer', 'snippets', 'path', 'emoji' },
+				default = { 'lazydev', 'lsp', 'buffer', 'snippets', 'path', 'emoji' },
 				providers = {
 					emoji = {
 						module = "blink-emoji",
@@ -652,6 +655,12 @@ require("lazy").setup({
 						should_show_items = function()
 							return vim.tbl_contains({ "gitcommit", "markdown" }, vim.o.filetype)
 						end,
+					},
+					lazydev = {
+						name = "LazyDev",
+						module = "lazydev.integrations.blink",
+						-- make lazydev completions top priority (see `:h blink.cmp`)
+						score_offset = 100,
 					},
 				},
 			},
@@ -839,6 +848,16 @@ require("lazy").setup({
 		},
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
+			-- Define Tree-sitter folds for C using Lua
+			vim.treesitter.query.set("c", "folds", [[
+			  (function_definition) @fold
+			  (declaration_list) @fold
+			  (if_statement) @fold
+			  (for_statement) @fold
+			  (while_statement) @fold
+			  (switch_statement) @fold
+			  (initializer_list) @fold
+			]])
 		end,
 	},
 	{
@@ -858,6 +877,21 @@ require("lazy").setup({
 		lazy = false,
 		dependencies = { "MunifTanjim/nui.nvim", },
 		opts = {},
+	},
+}, {
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"gzip",
+				"matchit",
+				"matchparen",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
 	},
 })
 
@@ -930,7 +964,8 @@ vim.lsp.config("jsonls", {
 
 vim.opt.termguicolors  = true
 vim.opt.foldmethod     = "expr"
-vim.opt.foldexpr       = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldexpr       = "nvim_treesitter#foldexpr()"
+vim.opt.foldexpr       = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldcolumn     = "8"
 vim.opt.foldlevel      = 99
 vim.opt.number         = true
@@ -973,37 +1008,6 @@ vim.g.loaded_python3_provider = 0
 -- 4) KEYMAPPINGS
 -----------------------------------------------------------------------
 
--- Improved Tab key handling function for both indentation and Copilot
--- vim.keymap.set('i', '<Tab>', function()
--- 	-- If Copilot has a suggestion and it's visible
--- 	if require('copilot.suggestion').is_visible() then
--- 		return require('copilot.suggestion').accept()
--- 	end
---
--- 	-- Check if we're at the beginning of a line or after whitespace only
--- 	local col = vim.fn.col('.') - 1
--- 	local line = vim.fn.getline('.')
--- 	local at_indent_position = col == 0 or line:sub(1, col):match("^%s*$")
---
--- 	if at_indent_position then
--- 		-- Use tab for indentation
--- 		return vim.api.nvim_replace_termcodes('<Tab>', true, false, true)
--- 	else
--- 		-- Try completion first
--- 		local has_completion = vim.fn.pumvisible() == 1
--- 		if has_completion then
--- 			return vim.api.nvim_replace_termcodes('<C-n>', true, false, true)
--- 		else
--- 			-- Regular Tab
--- 			return vim.api.nvim_replace_termcodes('<Tab>', true, false, true)
--- 		end
--- 	end
--- end, { expr = true, silent = true })
---
--- vim.keymap.set('i', '<S-Tab>', function()
--- 	return vim.api.nvim_replace_termcodes('<C-d>', true, false, true)
--- end, { expr = true, silent = true })
---
 -- Quick toggles & general keymaps (not tied to specific plugins)
 vim.keymap.set("", "<leader>w", ":set nowrap!<CR>", { desc = "Toggle wordwrap" })
 vim.keymap.set("", "<leader><Tab>", ":confirm bnext<CR>", { desc = "Next buffer" })
@@ -1063,7 +1067,11 @@ if vim.g.neovide then
 end
 
 -- Toggle diagnostics for all lines or just the current line
-local default_diagnostic_config = { float = { border = "rounded" }, virtual_text = false, virtual_lines = false }
+local default_diagnostic_config = {
+	float = { border = "rounded" },
+	virtual_text = false,
+	virtual_lines = false
+}
 vim.diagnostic.config(default_diagnostic_config)
 vim.keymap.set('n', '<leader>ll', function()
 	if vim.diagnostic.config().virtual_lines == true then
@@ -1154,6 +1162,21 @@ vim.api.nvim_create_user_command('GenCompileCommands', function()
 
 	generate_compile_commands()
 end, { desc = 'Generate a basic compile_commands.json for all .c files' })
+
+-- Disable semantic tokens from clangd so it stops dimming #ifdef'ed code
+local augroup = vim.api.nvim_create_augroup("DisableClangdSemanticTokens", {})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = augroup,
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if not client then return end
+
+		if client.name == "clangd" then
+			client.server_capabilities.semanticTokensProvider = nil
+		end
+	end,
+})
 -- If there's a tmux session open, nvim detects the clipboard provider as tmux. This doesn't work on remote servers. See https://github.com/neovim/neovim/issues/33986
 if vim.env.SSH_TTY ~= nil and vim.env.TMUX == nil and vim.env.TERM ~= "tmux-256color" then
 	vim.g.clipboard = "osc52"
