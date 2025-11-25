@@ -105,10 +105,9 @@ require("lazy").setup({
 	-- Diff & Utility
 	-- -------------------------------------------------------------------
 	{ "AndrewRadev/linediff.vim" }, -- Compare and edit text line-by-line
-
 	{
-		"sindrets/diffview.nvim", -- Git diff viewer with enhanced features
-		cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+		"esmuellert/vscode-diff.nvim",
+		dependencies = { "MunifTanjim/nui.nvim" },
 	},
 	{ "mikeage/occur.vim" },       -- Show all lines matching a pattern in a buffer
 	{
