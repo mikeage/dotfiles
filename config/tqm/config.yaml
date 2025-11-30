@@ -1,0 +1,68 @@
+---
+clients:
+  qbt:
+    # download_path: /data/torrent_downloads/complete
+    download_path: /export/storage/torrent_downloads/
+    download_path_mapping:
+      # /export/storage/torrent_downloads/: /data/torrent_downloads/
+      /data/torrent_downloads/: /export/storage/torrent_downloads/
+    enabled: true
+    filter: default
+    type: qbittorrent
+    url: https://qbittorrent.internal.mikeage.net/
+    user: admin
+    password: Alpha1
+
+bypassIgnoreIfUnregistered: true
+filters:
+  default:
+    MapHardlinksFor:
+      - clean
+    ignore:
+      # general
+      - TrackerStatus contains "Tracker is down"
+      - Downloaded == false && !IsUnregistered()
+      - SeedingHours < 26 && !IsUnregistered()
+      - HardlinkedOutsideClient == true && !IsUnregistered()
+    orphan:
+      grace_period: 120m
+      ignore_paths:
+        - /export/storage/torrent_downloads/gavriel
+
+    remove:
+      # general
+      - IsUnregistered()
+      - Label in ["sonarr", "radarr", "cross-seed-link"] && SeedingDays >= 14.0
+      # - Label in ["sonarr", "radarr", "cross-seed-link"] && SeedingDays >= 7.0
+      - HasAnyTag("remove-me", "gross") # match if at least 1 tag is present
+    label:
+      # btn 1080p season packs to permaseed (all must evaluate to true)
+      # - name: permaseed-btn
+      #   update:
+      #     - Label == "sonarr-imported"
+      #     - TrackerName == "landof.tv"
+      #     - Name contains "1080p"
+      #     - len(Files) >= 3
+
+      # cleanup btn season packs to autoremove-btn (all must evaluate to true)
+      # - name: autoremove-btn
+      #   update:
+      #     - Label == "sonarr-imported"
+      #     - TrackerName == "landof.tv"
+      #     - not (Name contains "1080p")
+      #     - len(Files) >= 3
+    # Change qbit tags based on filters
+    tag:
+      # - name: low-seed
+      # # This must be set
+      # # "mode: full" means tag will be added to
+      # # torrent if matched and removed from torrent if not
+      # # use `add` or `remove` to only add/remove respectivly
+      # # NOTE: Mode does not change the way torrents are flagged,
+      # # meaning, even with "mode: remove",
+      # # tags will be removed if the torrent does NOT match the conditions.
+      # # "mode: remove" simply means that tags will not be added
+      # # to torrents that do match.
+      #   mode: full
+      #   update:
+      #     - Seeds <= 3
