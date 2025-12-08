@@ -41,6 +41,8 @@ brew "bash"
 brew "bash-completion@2"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
+# Generate compilation database for clang tooling
+brew "bear"
 # Library for USB device access
 brew "libusb"
 # Swiss army knife for network attacks and monitoring
@@ -191,8 +193,6 @@ brew "imagemagick"
 brew "inetutils"
 # Tool to unpack installers created by Inno Setup
 brew "innoextract"
-# Cross-platform application and UI framework
-brew "qt@5"
 # Offline radio signal analyser
 brew "inspectrum"
 # Modular IRC client
@@ -281,6 +281,8 @@ brew "qbittorrent-cli"
 brew "qemu"
 # Tools for and transforming and inspecting PDF files
 brew "qpdf"
+# Cross-platform application and UI framework
+brew "qt@5"
 # Reverse engineering framework
 brew "radare2"
 # Ruby version manager
@@ -437,8 +439,6 @@ cask "firefox"
 cask "gcc-arm-embedded"
 # Set of tools to manage resources and applications hosted on Google Cloud
 cask "gcloud-cli"
-# Software reverse engineering (SRE) suite of tools
-cask "ghidra"
 # Web browser
 cask "google-chrome"
 # Web browser
