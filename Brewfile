@@ -157,7 +157,7 @@ brew "git-filter-repo"
 brew "git-lfs"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
-# GNU Pretty Good Privacy (PGP) package
+# GNU Privacy Guard (OpenPGP)
 brew "gnupg"
 # Command-driven, interactive function plotting
 brew "gnuplot"
@@ -401,8 +401,6 @@ cask "android-studio"
 cask "araxis-merge"
 # Multi-track audio editor and recorder
 cask "audacity"
-# Integrated CAD, CAM, CAE, and PCB software
-cask "autodesk-fusion"
 # Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
 # 3D model slicing software for 3D printers, maintained by Bambu Lab
