@@ -9,6 +9,8 @@ tap "mongodb/brew"
 tap "osx-cross/avr"
 tap "supersonic-app/supersonic"
 tap "wswenyue/apkparser"
+# General-purpose data compression with high compression ratio
+brew "xz"
 # Tool for reverse engineering 3rd party, closed, binary Android apps
 brew "apktool"
 # Download with resuming and segmented downloading
@@ -135,7 +137,7 @@ brew "fastlane"
 brew "fd"
 # High quality MPEG Audio Layer III (MP3) encoder
 brew "lame"
-# Play, record, convert, and stream audio and video
+# Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # C routines to compute the Discrete Fourier Transform
 brew "fftw"
@@ -187,7 +189,7 @@ brew "taglib"
 brew "gstreamer"
 # Improved top (interactive process viewer)
 brew "htop"
-# Tools and libraries to manipulate images in many formats
+# Tools and libraries to manipulate images in select formats
 brew "imagemagick"
 # GNU utilities for networking
 brew "inetutils"
@@ -213,6 +215,8 @@ brew "kubernetes-cli"
 brew "lftp"
 # Configuration file processing library
 brew "libconfig"
+# ELF object file access library
+brew "libelf"
 # Provides library functionality for FIDO U2F & FIDO 2.0, including USB
 brew "libfido2"
 # Implementation of the file(1) command
@@ -225,6 +229,8 @@ brew "luarocks"
 brew "macmon"
 # Mac App Store command-line interface
 brew "mas"
+# CLI for interacting with MCP servers using both stdio and HTTP transport
+brew "mcptools"
 # Unified display of technical and tag data for audio/video
 brew "media-info"
 # Dynamic modification of a user's environment via modulefiles
@@ -265,6 +271,8 @@ brew "picocom"
 brew "poppler"
 # Cross-platform library for audio I/O
 brew "portaudio"
+# Pre-commit re-implemented in Rust
+brew "prek"
 # Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
 brew "prettier"
 # Parallel versions of OpenSSH and related tools
@@ -333,14 +341,10 @@ brew "streamlink"
 brew "stuntman"
 # Version control system designed to be a better CVS
 brew "subversion"
-# Programmatically correct mistyped console commands
-brew "thefuck"
 # MUD client
 brew "tintin"
 # Terminal multiplexer
 brew "tmux"
-# Lightweight BitTorrent client
-brew "transmission-cli"
 # URL extractor/launcher
 brew "urlview"
 # Extremely fast Python package installer and resolver, written in Rust
@@ -417,6 +421,10 @@ cask "charles"
 cask "chatgpt"
 # Tool to show live information about the batteries in various devices
 cask "coconutbattery"
+# OpenAI's coding agent that runs in your terminal
+cask "codex"
+# OpenAI's Codex desktop app for managing coding agents
+cask "codex-app"
 # Metadata editor for digital comics
 cask "comictagger"
 # Tool to run Windows software
@@ -475,6 +483,8 @@ cask "naps2"
 cask "nextcloud"
 # Reverse proxy, secure introspectable tunnels to localhost
 cask "ngrok"
+# Open-source software for live streaming and screen recording
+cask "obs"
 # G-code generator for 3D printers
 cask "orcaslicer"
 # Collaboration platform for API development
@@ -488,7 +498,7 @@ cask "steam"
 # Command-line client for Steam
 cask "steamcmd"
 # A lightweight and full-featured cross-platform desktop client for self-hosted music servers
-cask "supersonic"
+cask "supersonic-app/supersonic/supersonic"
 # Replacement for RCDefaultApps, written in Swift
 cask "swiftdefaultappsprefpane"
 # Mesh VPN based on WireGuard
@@ -499,9 +509,10 @@ cask "telegram"
 cask "temurin"
 # Finder thumbnail provider for some .gcode, .bgcode and .3mf files
 cask "thumbhost3mf"
+# Customizable email client
+cask "thunderbird"
 # Turn your MacBook's trackpad into a precise digital weighing scale
-cask "trackweight"
-cask "transmission-remote-gui"
+cask "krishkrosh/apps/trackweight"
 # Management tool for Unity
 cask "unity-hub"
 # Open-source code editor
