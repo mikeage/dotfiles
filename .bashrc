@@ -446,7 +446,34 @@ listening() {
 		return 1
 	fi
 }
+convert_timelapse() {
+    local input="$1"
 
+    if [[ -z "$input" ]]; then
+        echo "Usage: convert_timelapse <file.avi>"
+        return 1
+    fi
+
+    if [[ ! -f "$input" ]]; then
+        echo "File not found: $input"
+        return 1
+    fi
+
+    local dir
+    dir="$(dirname "$input")"
+
+    local base
+    base="$(basename "$input" .avi)"
+
+    local output="${dir}/${base}.mp4"
+
+    ffmpeg -i "$input" \
+        -c:v libx264 \
+        -profile:v baseline \
+        -level 3.0 \
+        -pix_fmt yuv420p \
+        "$output"
+}
 #######################
 # Local configuration #
 #######################
