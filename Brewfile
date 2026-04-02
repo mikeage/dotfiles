@@ -3,6 +3,7 @@ tap "akeylesslabs/tap"
 tap "borgbackup/tap"
 tap "carlocab/personal"
 tap "hashicorp/tap"
+tap "homebrew-ffmpeg/ffmpeg"
 tap "jstkdng/programs"
 tap "krishkrosh/apps"
 tap "mongodb/brew"
@@ -135,10 +136,6 @@ brew "ruby"
 brew "fastlane"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
-# High quality MPEG Audio Layer III (MP3) encoder
-brew "lame"
-# Play, record, convert, and stream select audio and video codecs
-brew "ffmpeg"
 # C routines to compute the Discrete Fourier Transform
 brew "fftw"
 # Command-line fuzzy finder written in Go
@@ -171,6 +168,12 @@ brew "pkgconf"
 brew "gradle"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# High quality MPEG Audio Layer III (MP3) encoder
+brew "lame"
+# Subtitle renderer for the ASS/SSA subtitle format
+brew "libass"
+# Play, record, convert, and stream select audio and video codecs
+brew "ffmpeg"
 # Toolkit for creating graphical user interfaces
 brew "gtk+3"
 # Data and connectivity library for the Icecast server
@@ -281,8 +284,6 @@ brew "pssh"
 brew "pstree"
 # Sound system for POSIX OSes
 brew "pulseaudio"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.11"
 # Command-line interface for qBittorrent written in Go
 brew "qbittorrent-cli"
 # Generic machine emulator and virtualizer
@@ -345,6 +346,8 @@ brew "subversion"
 brew "tintin"
 # Terminal multiplexer
 brew "tmux"
+# Parser generator tool
+brew "tree-sitter-cli"
 # URL extractor/launcher
 brew "urlview"
 # Extremely fast Python package installer and resolver, written in Rust
@@ -361,6 +364,8 @@ brew "wabt"
 brew "watch"
 # Internet file retriever
 brew "wget"
+# Library to create, extract, and modify Windows Imaging files
+brew "wimlib"
 # Tools for the WireGuard secure network tunnel
 brew "wireguard-tools"
 # Extensible command-line tool to format YAML files
@@ -381,6 +386,8 @@ brew "borgbackup/tap/borgbackup-fuse"
 brew "hashicorp/tap/packer"
 # Terraform
 brew "hashicorp/tap/terraform"
+# Play, record, convert, and stream audio and video
+brew "homebrew-ffmpeg/ffmpeg/ffmpeg"
 # Drop in replacement for ueberzug written in C++
 brew "jstkdng/programs/ueberzugpp"
 # High-performance, schema-free, document-oriented database
@@ -461,6 +468,8 @@ cask "jellyfin-media-player"
 cask "joplin"
 # Menu bar manager
 cask "jordanbaird-ice"
+# Subtitle editor
+cask "jubler"
 # Keyboard customiser
 cask "karabiner-elements"
 # Desktop shield and keystroke interceptor
@@ -532,12 +541,12 @@ cask "zoom"
 mas "Amphetamine", id: 937984704
 mas "Bitwarden", id: 1352778147
 mas "karakeeper Bookmarker", id: 6746722790
-mas "Microsoft Excel", id: 462058435
-mas "Microsoft PowerPoint", id: 462062816
 mas "Speedtest", id: 1153157709
 mas "udm14 for Safari", id: 6520379591
+mas "Universal Print", id: 6450432292
 mas "Userscripts", id: 1463298887
 mas "WireGuard", id: 1451685025
+mas "Xcode", id: 497799835
 go "github.com/klauspost/asmfmt/cmd/asmfmt"
 go "github.com/go-delve/delve/cmd/dlv"
 go "github.com/kisielk/errcheck"
@@ -554,3 +563,23 @@ go "github.com/josharian/impl"
 go "github.com/fatih/motion"
 go "github.com/mgechev/revive"
 go "honnef.co/go/tools/cmd/staticcheck"
+uv "abxrcli"
+uv "aws-sso"
+uv "black"
+uv "data-hacks3"
+uv "esphome"
+uv "flake8"
+uv "isort"
+uv "jinjanator"
+uv "llm", with: ["llm-gemini", "llm-ollama"]
+uv "llm-benchmark"
+uv "nb-clean"
+uv "platformio"
+uv "pylint"
+uv "qbit-manage"
+uv "reclaim"
+uv "sebastientromp-chat-downloader"
+uv "static-ffmpeg"
+uv "transcribe-anything"
+uv "whisperx"
+uv "yamlfix"
