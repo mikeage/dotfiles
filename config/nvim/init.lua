@@ -833,30 +833,22 @@ require("lazy").setup({
 	-- -------------------------------------------------------------------
 	{
 		"nvim-treesitter/nvim-treesitter", -- Syntax highlighting and code parsing
+		lazy = false,
 		build = ":TSUpdate",
-		branch = "master",
-		opts = {
-			ensure_installed = {
+		config = function()
+			local ts = require("nvim-treesitter")
+
+			ts.setup({
+				-- optional; shown here only if you want to override the default
+				-- install_dir = vim.fn.stdpath("data") .. "/site",
+			})
+
+			ts.install({
 				"c", "lua", "vim", "vimdoc", "query", "yaml",
-				"python", "javascript", "typescript", "tsx", "html", "css", "json", "go", "gomod", "gosum", "gowork",
-			},
-			auto_install = true,
-			highlight = { enable = true, disable = { "git_rebase" } },
-			indent = { enable = true },
-			incremental_selection = { enable = true },
-		},
-		config = function(_, opts)
-			require("nvim-treesitter.configs").setup(opts)
-			-- Define Tree-sitter folds for C using Lua
-			vim.treesitter.query.set("c", "folds", [[
-			  (function_definition) @fold
-			  (declaration_list) @fold
-			  (if_statement) @fold
-			  (for_statement) @fold
-			  (while_statement) @fold
-			  (switch_statement) @fold
-			  (initializer_list) @fold
-			]])
+				"python", "javascript", "typescript", "tsx",
+				"html", "css", "json",
+				"go", "gomod", "gosum", "gowork",
+			})
 		end,
 	},
 	{
