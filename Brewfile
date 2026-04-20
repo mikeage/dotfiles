@@ -2,6 +2,7 @@ tap "adoptopenjdk/openjdk"
 tap "akeylesslabs/tap"
 tap "borgbackup/tap"
 tap "carlocab/personal"
+tap "ciruz/tap"
 tap "hashicorp/tap"
 tap "homebrew-ffmpeg/ffmpeg"
 tap "jstkdng/programs"
@@ -10,6 +11,8 @@ tap "mongodb/brew"
 tap "osx-cross/avr"
 tap "supersonic-app/supersonic"
 tap "wswenyue/apkparser"
+# Simple, modern, secure file encryption
+brew "age"
 # General-purpose data compression with high compression ratio
 brew "xz"
 # Tool for reverse engineering 3rd party, closed, binary Android apps
@@ -274,6 +277,8 @@ brew "picocom"
 brew "poppler"
 # Cross-platform library for audio I/O
 brew "portaudio"
+# Object-relational database system
+brew "postgresql@18"
 # Pre-commit re-implemented in Rust
 brew "prek"
 # Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
@@ -324,6 +329,8 @@ brew "simg2img"
 brew "smartmontools"
 # SOcket CAT: netcat on steroids
 brew "socat"
+# Editor of encrypted files
+brew "sops"
 # SOund eXchange: universal sound sample translator
 brew "sox"
 # Command-line interface for https://speedtest.net bandwidth tests
@@ -400,6 +407,8 @@ brew "osx-cross/avr/avr-gcc@9", link: false
 brew "wswenyue/apkparser/apkparser"
 # View, print, and comment on PDF documents
 cask "adobe-acrobat-reader"
+# macOS menu bar app for monitoring ADS-B stations
+cask "ciruz/tap/adsbar"
 # Menu bar tool to limit maximum charging percentage
 cask "aldente"
 # Communications service
