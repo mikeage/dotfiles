@@ -835,21 +835,6 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter", -- Syntax highlighting and code parsing
 		lazy = false,
 		build = ":TSUpdate",
-		config = function()
-			local ts = require("nvim-treesitter")
-
-			ts.setup({
-				-- optional; shown here only if you want to override the default
-				-- install_dir = vim.fn.stdpath("data") .. "/site",
-			})
-
-			ts.install({
-				"c", "lua", "vim", "vimdoc", "query", "yaml",
-				"python", "javascript", "typescript", "tsx",
-				"html", "css", "json",
-				"go", "gomod", "gosum", "gowork",
-			})
-		end,
 	},
 	{
 		"HiPhish/rainbow-delimiters.nvim", -- Rainbow parentheses for nested structures
