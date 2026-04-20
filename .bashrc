@@ -483,3 +483,5 @@ fi
 #
 # Fix terminal mode after command execution (for vi mode)
 export PROMPT_COMMAND='tput rmkx; '"$PROMPT_COMMAND"
+
+export SOPS_AGE_KEY_FILE=~/.ssh/sops/age/keys.txt
