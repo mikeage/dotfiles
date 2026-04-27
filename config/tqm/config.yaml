@@ -69,6 +69,7 @@ filters:
       - IsUnregistered()
       - Label in ["FL"] && SeedingDays >= 7.0
       - Label in ["sonarr", "radarr"] && SeedingDays >= 7.0
+      - Label in ["lidarr"] && SeedingDays >= 7.0
       - Label in ["cross-seed-link"] && SeedingDays >= 7.0
       # - HasAnyTag("remove-me", "gross") # match if at least 1 tag is present
     label:
