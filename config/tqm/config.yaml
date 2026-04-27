@@ -31,9 +31,9 @@ clients:
     user: admin
     password: Alpha1
   qbtsonarr:
-    download_path: /export/storage/temporary/sonarr/torrent_downloads/
+    download_path: /export/unreliable/sonarr/torrent_downloads/
     download_path_mapping:
-      /data/torrent_downloads/: /export/storage/temporary/sonarr/torrent_downloads/
+      /data/torrent_downloads/: /export/unreliable/sonarr/torrent_downloads/
     enabled: true
     filter: default
     type: qbittorrent
