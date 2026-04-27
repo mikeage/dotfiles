@@ -1,15 +1,53 @@
 ---
 clients:
-  qbt:
-    # download_path: /data/torrent_downloads/complete
+  qbtmain:
     download_path: /export/storage/torrent_downloads/
     download_path_mapping:
-      # /export/storage/torrent_downloads/: /data/torrent_downloads/
       /data/torrent_downloads/: /export/storage/torrent_downloads/
     enabled: true
     filter: default
     type: qbittorrent
     url: https://qbittorrent.internal.mikeage.net/
+    user: admin
+    password: Alpha1
+  qbtkeep:
+    download_path: /export/storage/permanent/torrent_downloads/
+    download_path_mapping:
+      /data/torrent_downloads/: /export/storage/permanent/torrent_downloads/
+    enabled: true
+    filter: default
+    type: qbittorrent
+    url: https://qbittorrent-keep.internal.mikeage.net/
+    user: admin
+    password: Alpha1
+  qbtfl:
+    download_path: /export/unreliable/FL_torrent_downloads/
+    download_path_mapping:
+      /data/torrent_downloads/: /export/unreliable/FL_torrent_downloads/
+    enabled: true
+    filter: default
+    type: qbittorrent
+    url: https://qbittorrent-fl.internal.mikeage.net/
+    user: admin
+    password: Alpha1
+  qbtsonarr:
+    download_path: /export/storage/temporary/sonarr/torrent_downloads/
+    download_path_mapping:
+      /data/torrent_downloads/: /export/storage/temporary/sonarr/torrent_downloads/
+    enabled: true
+    filter: default
+    type: qbittorrent
+    url: https://qbittorrent-sonarr.internal.mikeage.net/
+    user: admin
+    password: Alpha1
+  qbtradarr:
+    download_path: /export/storage/temporary/radarr/torrent_downloads/
+    download_path_mapping:
+      /data/torrent_downloads/: /export/storage/temporary/radarr/torrent_downloads/
+    enabled: true
+    filter: default
+    type: qbittorrent
+    url: https://qbittorrent-radarr.internal.mikeage.net/
     user: admin
     password: Alpha1
 
