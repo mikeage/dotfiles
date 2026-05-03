@@ -10,6 +10,7 @@ tap "krishkrosh/apps"
 tap "mongodb/brew"
 tap "osx-cross/avr"
 tap "supersonic-app/supersonic"
+tap "teamookla/speedtest"
 tap "wswenyue/apkparser"
 # Simple, modern, secure file encryption
 brew "age"
@@ -139,6 +140,10 @@ brew "ruby"
 brew "fastlane"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
+# High quality MPEG Audio Layer III (MP3) encoder
+brew "lame"
+# Play, record, convert, and stream select audio and video codecs
+brew "ffmpeg"
 # C routines to compute the Discrete Fourier Transform
 brew "fftw"
 # Command-line fuzzy finder written in Go
@@ -157,6 +162,8 @@ brew "git"
 brew "git-filter-repo"
 # Git extension for versioning large files
 brew "git-lfs"
+# Audit git repos for secrets
+brew "gitleaks"
 # GNU implementation of the famous stream editor
 brew "gnu-sed"
 # GNU Privacy Guard (OpenPGP)
@@ -171,14 +178,10 @@ brew "pkgconf"
 brew "gradle"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
-# High quality MPEG Audio Layer III (MP3) encoder
-brew "lame"
-# Subtitle renderer for the ASS/SSA subtitle format
-brew "libass"
-# Play, record, convert, and stream select audio and video codecs
-brew "ffmpeg"
 # Toolkit for creating graphical user interfaces
 brew "gtk+3"
+# Subtitle renderer for the ASS/SSA subtitle format
+brew "libass"
 # Data and connectivity library for the Icecast server
 brew "libshout"
 # HTTP client/server library for GNOME
@@ -264,7 +267,7 @@ brew "nmap"
 # Manage multiple Node.js versions
 brew "nvm"
 # Create, run, and share large language models (LLMs)
-brew "ollama", restart_service: :changed
+brew "ollama"
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
 # Swiss-army knife of markup format conversion
@@ -279,7 +282,7 @@ brew "poppler"
 brew "portaudio"
 # Object-relational database system
 brew "postgresql@18"
-# Pre-commit re-implemented in Rust
+# Fast Git hook manager written in Rust, drop-in alternative to pre-commit
 brew "prek"
 # Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
 brew "prettier"
@@ -333,8 +336,6 @@ brew "socat"
 brew "sops"
 # SOund eXchange: universal sound sample translator
 brew "sox"
-# Command-line interface for https://speedtest.net bandwidth tests
-brew "speedtest-cli"
 # Compressed read-only file system for Linux
 brew "squashfs"
 # Non-interactive SSH password auth
@@ -393,8 +394,6 @@ brew "borgbackup/tap/borgbackup-fuse"
 brew "hashicorp/tap/packer"
 # Terraform
 brew "hashicorp/tap/terraform"
-# Play, record, convert, and stream audio and video
-brew "homebrew-ffmpeg/ffmpeg/ffmpeg"
 # Drop in replacement for ueberzug written in C++
 brew "jstkdng/programs/ueberzugpp"
 # High-performance, schema-free, document-oriented database
@@ -403,6 +402,8 @@ brew "mongodb/brew/mongodb-community"
 brew "osx-cross/avr/avr-gcc@14", link: true
 # GNU compiler collection for AVR 8-bit and 32-bit Microcontrollers
 brew "osx-cross/avr/avr-gcc@9", link: false
+# Ookla Speedtest
+brew "teamookla/speedtest/speedtest"
 # Android apk file parsing tool
 brew "wswenyue/apkparser/apkparser"
 # View, print, and comment on PDF documents
@@ -427,8 +428,6 @@ cask "balenaetcher"
 cask "bambu-studio"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
-# Web security testing toolkit
-cask "burp-suite"
 # E-books management software
 cask "calibre"
 # Web debugging Proxy application
@@ -441,8 +440,6 @@ cask "coconutbattery"
 cask "codex"
 # OpenAI's Codex desktop app for managing coding agents
 cask "codex-app"
-# Metadata editor for digital comics
-cask "comictagger"
 # Tool to run Windows software
 cask "crossover"
 # Reverse engineering platform powered by Rizin
@@ -467,6 +464,8 @@ cask "google-chrome"
 cask "google-chrome@beta"
 # Software-defined radio receiver powered by GNU Radio and Qt
 cask "gqrx"
+# Graphically shows disk usage within a file system
+cask "grandperspective"
 # Desktop automation application
 cask "hammerspoon"
 # Standalone Java Decompiler GUI
@@ -582,6 +581,7 @@ uv "isort"
 uv "jinjanator"
 uv "llm", with: ["llm-gemini", "llm-ollama"]
 uv "llm-benchmark"
+uv "mcp-proxy"
 uv "nb-clean"
 uv "platformio"
 uv "pylint"
