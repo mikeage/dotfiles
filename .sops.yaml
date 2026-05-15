@@ -1,0 +1,5 @@
+---
+creation_rules:
+    - path_regex: config/tqm/config\.yaml$
+      age:
+          - age1dx779tg097xprk3y220678lm97vc9r44r0uc4xndfdm2pan9uu6qzn06wa

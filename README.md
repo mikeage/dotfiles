@@ -19,6 +19,9 @@ mkdir -p ~/.config
 ln -s ~/dotfiles/config/{nvim,alacritty,tmux,yazi,kitty,karabiner,tqm} ~/.config/
 
 ```
+```
+sops --decrypt  --input-type yaml --output-type yaml ~/dotfiles/config/tqm/config.yaml.sops > ~/dotfiles/config/tqm/config.yaml
+```
 
 ## Font(s)
 
