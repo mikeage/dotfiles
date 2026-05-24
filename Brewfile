@@ -24,6 +24,8 @@ brew "aria2"
 brew "arp-scan"
 # Record and share terminal sessions
 brew "asciinema"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.14"
 # Perf monitoring CLI tool for Apple Silicon
 brew "asitop"
 # Protocol definitions and daemon for D-Bus at-spi
@@ -267,7 +269,7 @@ brew "nmap"
 # Manage multiple Node.js versions
 brew "nvm"
 # Create, run, and share large language models (LLMs)
-brew "ollama"
+brew "ollama", restart_service: :changed
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
 # Swiss-army knife of markup format conversion
@@ -298,8 +300,6 @@ brew "qbittorrent-cli"
 brew "qemu"
 # Tools for and transforming and inspecting PDF files
 brew "qpdf"
-# Cross-platform application and UI framework
-brew "qt@5"
 # Reverse engineering framework
 brew "radare2"
 # Ruby version manager
@@ -360,8 +360,6 @@ brew "tree-sitter-cli"
 brew "urlview"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
-# Vi 'workalike' with many additional features
-brew "vim"
 # Tool for creating isolated virtual python environments
 brew "virtualenv"
 # Generator for LS_COLORS with support for multiple color themes
@@ -452,6 +450,8 @@ cask "discord"
 cask "disk-inventory-x"
 # Developer platform
 cask "dotnet-sdk"
+# Matrix collaboration client
+cask "element"
 # Web browser
 cask "firefox"
 # Pre-built GNU bare-metal toolchain for 32-bit Arm processors
@@ -510,6 +510,8 @@ cask "postman"
 cask "rar"
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
+# Open source virtual/remote desktop application
+cask "rustdesk"
 # Video game digital distribution service
 cask "steam"
 # Command-line client for Steam
