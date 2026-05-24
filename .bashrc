@@ -121,7 +121,7 @@ fi
 #######################
 export HISTSIZE=100000000
 # export HISTCONTROL=ignorespace:ignoredups # erasedups -- this messes with chronology
-export HISTTIMEFORMAT="%F %T "
+# export HISTTIMEFORMAT="%F %T "
 export HISTIGNORE="ls:cd:pwd:exit:date:* --help:clear"
 
 shopt -s histappend # Append to the history file, don't overwrite it
