@@ -410,8 +410,6 @@ cask "adobe-acrobat-reader"
 cask "ciruz/tap/adsbar"
 # Menu bar tool to limit maximum charging percentage
 cask "aldente"
-# Communications service
-cask "amazon-chime"
 # Android SDK component
 cask "android-platform-tools"
 # Tools for building Android applications
