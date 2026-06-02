@@ -1,11 +1,19 @@
+local uv = vim.uv or vim.loop
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.uv.fs_stat(lazypath) then
+if not uv.fs_stat(lazypath) then
 	-- Clone lazy.nvim
-	vim.fn.system({
+	local result = vim.fn.system({
 		"git", "clone", "--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
 		lazypath,
 	})
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ result, "WarningMsg" },
+		}, true, {})
+		return
+	end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -14,8 +22,24 @@ if vim.loader and vim.loader.enable then
 	vim.loader.enable()
 end
 
+local function command_output(cmd)
+	if vim.fn.executable(cmd[1]) ~= 1 then return nil end
+
+	local result = vim.fn.system(cmd)
+	if vim.v.shell_error ~= 0 then return nil end
+
+	return result
+end
+
+local function command_major_version(cmd, pattern)
+	local result = command_output(cmd)
+	if not result or result == "" then return nil end
+
+	return tonumber(result:match(pattern))
+end
+
 local function is_go_version_compatible()
-	local result = vim.fn.system("go version")
+	local result = command_output({ "go", "version" })
 	if not result or result == "" then return false end
 
 	local major, minor = result:match("go(%d+)%.(%d+)")
@@ -26,6 +50,82 @@ local function is_go_version_compatible()
 end
 
 local go_is_compatible = is_go_version_compatible()
+
+local function is_node_version_compatible()
+	local major = command_major_version({ "node", "-v" }, "v(%d+)")
+	return major ~= nil and major >= 20
+end
+
+local function configure_lsp_servers()
+	vim.lsp.config("*", {
+		on_attach = function(client, bufnr)
+			if client.server_capabilities.documentSymbolProvider then
+				local ok, navic = pcall(require, "nvim-navic")
+				if ok then
+					navic.attach(client, bufnr)
+				end
+			end
+		end,
+	})
+
+	vim.lsp.config("lua_ls", {
+		settings = {
+			Lua = {
+				runtime = {
+					version = "LuaJIT",
+					path = vim.split(package.path, ";"),
+				},
+				diagnostics = {
+					globals = { "vim" },
+				},
+				workspace = {
+					library = {
+						vim.env.VIMRUNTIME,
+						"${3rd}/luv/library"
+					},
+				},
+			},
+		},
+	})
+	vim.lsp.config("gopls", {
+		settings = {
+			gopls = {
+				analyses = {
+					unusedparams = true,
+					shadow = true,
+				},
+				staticcheck = true,
+				gofumpt = true,
+				usePlaceholders = true,
+				completeUnimported = true,
+			},
+		},
+	})
+	vim.lsp.config("pylsp", {
+		settings = {
+			pylsp = {
+				plugins = {
+					pylint = { enabled = true },
+					pycodestyle = { enabled = false },
+					mccabe = { enabled = false },
+					pyflakes = { enabled = false },
+					flake8 = { enabled = false },
+				},
+			},
+		},
+	})
+
+	local ok, schemastore = pcall(require, "schemastore")
+	if ok then
+		vim.lsp.config("jsonls", {
+			settings = {
+				json = {
+					schemas = schemastore.json.schemas(),
+				},
+			},
+		})
+	end
+end
 
 require("lazy").setup({
 	-- -------------------------------------------------------------------
@@ -111,12 +211,17 @@ require("lazy").setup({
 	},
 	{ "mikeage/occur.vim" },       -- Show all lines matching a pattern in a buffer
 	{
+		'nvim-telescope/telescope-ui-select.nvim',
+		dependencies = { "nvim-telescope/telescope.nvim" },
+		lazy = true,
+	},
+	{
 		"nvim-telescope/telescope.nvim", -- Fuzzy finder and file search
 		dependencies = { "nvim-lua/plenary.nvim" },
 		cmd = "Telescope",
 		opts = {
 			defaults = {
-				file_ignore_patterns = { ".git", "node_modules", "vendor" },
+				file_ignore_patterns = { "%.git/", "node_modules/", "vendor/" },
 				layout_config = {
 					prompt_position = "bottom",
 				},
@@ -137,9 +242,11 @@ require("lazy").setup({
 		},
 		config = function(_, opts)
 			-- First setup with the opts
-			require("telescope").setup(opts)
+			local telescope = require("telescope")
+			telescope.setup(opts)
 			-- Then load extensions
-			require("telescope").load_extension("ui-select")
+			require("lazy").load({ plugins = { "telescope-ui-select.nvim" } })
+			pcall(telescope.load_extension, "ui-select")
 		end,
 		keys = {
 			-- Port over your FZF mappings to Telescope
@@ -155,10 +262,6 @@ require("lazy").setup({
 			{ "<leader>fh", "<cmd>Telescope help_tags<cr>",   desc = "Help tags" },
 			{ "<leader>fd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
 		},
-	},
-	{
-		'nvim-telescope/telescope-ui-select.nvim',
-		dependencies = { "nvim-telescope/telescope.nvim" }
 	},
 	{
 		"mbbill/undotree", -- Visual navigation of undo history
@@ -460,8 +563,10 @@ require("lazy").setup({
 	{ "neovim/nvim-lspconfig" },
 	{
 		"mason-org/mason-lspconfig.nvim", -- Bridge between mason.nvim and lspconfig
-		dependencies = { "mason.nvim", "neovim/nvim-lspconfig" },
+		dependencies = { "mason.nvim", "neovim/nvim-lspconfig", "b0o/SchemaStore.nvim", "SmiteshP/nvim-navic" },
 		config = function()
+			configure_lsp_servers()
+
 			local ensure_installed = { "bashls", "eslint", "lua_ls", "pylsp", "ts_ls", "yamlls", "tailwindcss", "jsonls" }
 
 			if go_is_compatible then
@@ -554,8 +659,8 @@ require("lazy").setup({
 			require("conform").setup({
 				formatters_by_ft = {
 					python     = { "isort", "black" },
-					javascript = { "prettierd", "prettier" },
-					yaml       = { "yamlfmt", "yamlfix" },
+					javascript = { "prettierd", "prettier", stop_after_first = true },
+					yaml       = { "yamlfmt", "yamlfix", stop_after_first = true },
 					go         = { "goimports", "gofumpt" },
 				},
 			})
@@ -571,9 +676,8 @@ require("lazy").setup({
 				end
 				require("conform").format({
 					async = true,
-					lsp_fallback = true,
+					lsp_format = "fallback",
 					range = range,
-					stop_after_first = vim.bo.filetype == "javascript" or vim.bo.filetype == "yaml",
 				})
 			end, { range = true })
 		end,
@@ -585,20 +689,7 @@ require("lazy").setup({
 	{
 		'zbirenbaum/copilot.lua', -- GitHub Copilot integration
 		cmd = 'Copilot',
-		enabled = function()
-			local handle = io.popen("node -v")
-			if not handle then return false end
-
-			local result = handle:read("*a")
-			handle:close()
-
-			if not result or result == "" then return false end
-
-			-- Extract major version, assume format "v20.1.2"
-			local major = tonumber(result:match("v(%d+)"))
-			local compatible = major and major >= 20
-			return compatible
-		end,
+		enabled = is_node_version_compatible,
 		event = 'InsertEnter',
 		opts = {
 			filetypes = {
@@ -737,7 +828,7 @@ require("lazy").setup({
 			local M = {}
 
 			function M:init()
-				local group = vim.api.nvim_create_augroup("CodeCompanionFidgetHooks", {})
+				local group = vim.api.nvim_create_augroup("CodeCompanionFidgetHooks", { clear = true })
 
 				vim.api.nvim_create_autocmd({ "User" }, {
 					pattern = "CodeCompanionRequestStarted",
@@ -871,68 +962,6 @@ require("lazy").setup({
 	},
 })
 
-vim.lsp.config("*", {
-	on_attach = function(client, bufnr)
-		if client.server_capabilities.documentSymbolProvider then
-			require("nvim-navic").attach(client, bufnr)
-		end
-	end,
-})
-
-vim.lsp.config("lua_ls", {
-	settings = {
-		Lua = {
-			runtime = {
-				version = "LuaJIT",
-				path = vim.split(package.path, ";"),
-			},
-			diagnostics = {
-				globals = { "vim" },
-			},
-			workspace = {
-				library = {
-					vim.env.VIMRUNTIME,
-					"${3rd}/luv/library"
-				},
-			},
-		},
-	},
-})
-vim.lsp.config("gopls", {
-	settings = {
-		gopls = {
-			analyses = {
-				unusedparams = true,
-				shadow = true,
-			},
-			staticcheck = true,
-			gofumpt = true,
-			usePlaceholders = true,
-			completeUnimported = true,
-		},
-	},
-})
-vim.lsp.config("pylsp", {
-	settings = {
-		pylsp = {
-			plugins = {
-				pylint = { enabled = true },
-				pycodestyle = { enabled = false },
-				mccabe = { enabled = false },
-				pyflakes = { enabled = false },
-				flake8 = { enabled = false },
-			},
-		},
-	},
-})
-vim.lsp.config("jsonls", {
-	settings = {
-		json = {
-			schemas = require("schemastore").json.schemas(),
-		},
-	},
-})
-
 -----------------------------------------------------------------------
 -- 3) GLOBAL (NON–PLUGIN-SPECIFIC) CONFIG
 -----------------------------------------------------------------------
@@ -1059,7 +1088,7 @@ end, { desc = "Toggle showing all diagnostics or just the current line's" })
 
 -- LSP Navigation keymaps
 vim.api.nvim_create_autocmd('LspAttach', {
-	group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+	group = vim.api.nvim_create_augroup('UserLspConfig', { clear = true }),
 	callback = function(ev)
 		-- Buffer local mappings - only available when LSP is attached
 		local opts = { buffer = ev.buf, silent = true }
@@ -1093,7 +1122,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 vim.api.nvim_create_user_command('GenCompileCommands', function()
-	local uv = vim.loop
 	local json = vim.fn.json_encode
 
 	local function get_all_c_files()
@@ -1122,7 +1150,7 @@ vim.api.nvim_create_user_command('GenCompileCommands', function()
 			table.insert(commands, {
 				directory = vim.fn.getcwd(),
 				file = file,
-				command = string.format("cc -I. %s", file) -- Edit flags as needed
+				arguments = { "cc", "-I.", file },
 			})
 		end
 		local out, err = io.open("compile_commands.json", "w")
@@ -1140,7 +1168,7 @@ vim.api.nvim_create_user_command('GenCompileCommands', function()
 end, { desc = 'Generate a basic compile_commands.json for all .c files' })
 
 -- Disable semantic tokens from clangd so it stops dimming #ifdef'ed code
-local augroup = vim.api.nvim_create_augroup("DisableClangdSemanticTokens", {})
+local augroup = vim.api.nvim_create_augroup("DisableClangdSemanticTokens", { clear = true })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = augroup,
