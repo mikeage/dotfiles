@@ -1,17 +1,17 @@
-tap "adoptopenjdk/openjdk"
-tap "akeylesslabs/tap"
-tap "borgbackup/tap"
-tap "carlocab/personal"
-tap "ciruz/tap"
-tap "hashicorp/tap"
-tap "homebrew-ffmpeg/ffmpeg"
-tap "jstkdng/programs"
-tap "krishkrosh/apps"
-tap "mongodb/brew"
-tap "osx-cross/avr"
-tap "supersonic-app/supersonic"
-tap "teamookla/speedtest"
-tap "wswenyue/apkparser"
+tap "adoptopenjdk/openjdk", trusted: true
+tap "akeylesslabs/tap", trusted: true
+tap "borgbackup/tap", trusted: true
+tap "carlocab/personal", trusted: true
+tap "ciruz/tap", trusted: true
+tap "hashicorp/tap", trusted: true
+tap "homebrew-ffmpeg/ffmpeg", trusted: true
+tap "jstkdng/programs", trusted: true
+tap "krishkrosh/apps", trusted: true
+tap "mongodb/brew", trusted: true
+tap "osx-cross/avr", trusted: true
+tap "supersonic-app/supersonic", trusted: true
+tap "teamookla/speedtest", trusted: true
+tap "wswenyue/apkparser", trusted: true
 # Simple, modern, secure file encryption
 brew "age"
 # General-purpose data compression with high compression ratio
@@ -137,7 +137,7 @@ brew "faac"
 # ISO AAC audio decoder
 brew "faad2"
 # Powerful, clean, object-oriented scripting language
-brew "ruby"
+brew "ruby", link: false
 # Easiest way to build and release mobile apps
 brew "fastlane"
 # Simple, fast and user-friendly alternative to find
@@ -154,6 +154,8 @@ brew "fzf"
 brew "gawk"
 # Easily access your Google Calendar(s) from a command-line
 brew "gcalcli"
+# Disk usage analyzer with console interface written in Go
+brew "gdu"
 # GitHub command-line tool
 brew "gh"
 # Multi-platform software reverse engineering framework
@@ -240,6 +242,8 @@ brew "luarocks"
 brew "macmon"
 # Mac App Store command-line interface
 brew "mas"
+# Java-based project management
+brew "maven"
 # CLI for interacting with MCP servers using both stdio and HTTP transport
 brew "mcptools"
 # Unified display of technical and tag data for audio/video
