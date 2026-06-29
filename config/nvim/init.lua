@@ -764,24 +764,46 @@ require("lazy").setup({
 			"j-hui/fidget.nvim",
 		},
 		opts = {
-			strategies = {
+			-- The entire adapters section is from https://github.com/olimorris/codecompanion.nvim/issues/2884#issuecomment-4207100934 and relates to the "top_p is not supported with this model" error.
+			adapters = {
+				http = {
+					copilot = function()
+						return require("codecompanion.adapters").extend("copilot", {
+							-- https://codecompanion.olimorris.dev/configuration/adapters-http#changing-adapter-schema
+							schema = {
+								top_p = {
+									---@type fun(self: CodeCompanion.HTTPAdapter): boolean | boolean
+									enabled = function(self)
+										local model = self.schema.model.default
+										if model:find("5.5") then
+											return false
+										end
+										return true
+									end
+								},
+							},
+						})
+					end,
+				},
+			},
+			interactions = {
 				chat = {
 					adapter = {
 						name = "copilot",
-						model = "claude-sonnet-4.5",
+						model = "gpt-5.5",
 					},
 					keymaps = { close = { modes = { n = "<NOP>", i = "<NOP>" } }, },
 				},
 				inline = {
 					adapter = {
 						name = "copilot",
-						model = "claude-sonnet-4.5",
+						model = "gpt-5.5",
 					},
 				},
 				command = {
 					adapter = {
 						name = "copilot",
-						model = "claude-sonnet-4.5",
+						model = "gpt-5.5",
 					},
 				},
 			},
