@@ -1,4 +1,3 @@
-tap "adoptopenjdk/openjdk", trusted: true
 tap "akeylesslabs/tap", trusted: true
 tap "borgbackup/tap", trusted: true
 tap "carlocab/personal", trusted: true
@@ -534,8 +533,6 @@ cask "thumbhost3mf"
 cask "thunderbird"
 # Turn your MacBook's trackpad into a precise digital weighing scale
 cask "krishkrosh/apps/trackweight"
-# Management tool for Unity
-cask "unity-hub"
 # Open-source code editor
 cask "visual-studio-code"
 # Multimedia player
@@ -590,7 +587,7 @@ uv "nb-clean"
 uv "platformio"
 uv "pylint"
 uv "qbit-manage"
-uv "reclaim"
+uv "reclaim", source: "git+https://github.com/CorrosiveTruths/t_balance.git"
 uv "sebastientromp-chat-downloader"
 uv "static-ffmpeg"
 uv "transcribe-anything"
