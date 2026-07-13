@@ -1,31 +1,67 @@
 $include /etc/inputrc
+# Uncomment this to use vi-style command-line editing instead of emacs-style editing.
 #set editing-mode vi
 $if mode=vi
+# Apply the next bindings to vi command mode.
 set keymap vi-command
-# these are for vi-command mode
+# Up: search backward through history entries that start with the text before the cursor.
 "\e[A": history-search-backward
+# Down: search forward through matching history entries.
 "\e[B": history-search-forward
+# Alternate terminal Up sequence: search backward through matching history entries.
+"\eOA": history-search-backward
+# Alternate terminal Down sequence: search forward through matching history entries.
+"\eOB": history-search-forward
+# Open the current command line in $VISUAL/$EDITOR, then execute the saved result.
+"\C-x\C-e": edit-and-execute-command
+# Expand the current word from words already present in history or the current buffer.
+"\e/": dabbrev-expand
+# Apply the next bindings to vi insert mode.
 set keymap vi-insert
-# # these are for vi-insert mode
+# Up: search backward through history entries that start with the text before the cursor.
 "\e[A": history-search-backward
+# Down: search forward through matching history entries.
 "\e[B": history-search-forward
+# Alternate terminal Up sequence: search backward through matching history entries.
+"\eOA": history-search-backward
+# Alternate terminal Down sequence: search forward through matching history entries.
+"\eOB": history-search-forward
+# Open the current command line in $VISUAL/$EDITOR, then execute the saved result.
+"\C-x\C-e": edit-and-execute-command
+# Expand the current word from words already present in history or the current buffer.
+"\e/": dabbrev-expand
 $else
+# Up: search backward through history entries that start with the text before the cursor.
 "\e[A": history-search-backward
+# Down: search forward through matching history entries.
 "\e[B": history-search-forward
+# Alternate terminal Up sequence: search backward through matching history entries.
+"\eOA": history-search-backward
+# Alternate terminal Down sequence: search forward through matching history entries.
+"\eOB": history-search-forward
+# Open the current command line in $VISUAL/$EDITOR, then execute the saved result.
+"\C-x\C-e": edit-and-execute-command
+# Expand the current word from words already present in history or the current buffer.
+"\e/": dabbrev-expand
 $endif
 
+# Show all completion candidates as soon as completion is ambiguous.
 set show-all-if-ambiguous on
+# Show all completion candidates immediately when no more text can be inserted.
 set show-all-if-unmodified on
 
+# Complete filenames without requiring exact letter case.
 set completion-ignore-case on
 
-# Show *, @, / etc in completions
+# Show *, @, / etc in completions.
 set visible-stats on
+# Append / to completed directory names.
 set mark-directories on
+# Append / to completed symlinks that point to directories.
 set mark-symlinked-directories on
 
-# Color the common prefix in completions
+# Color the common prefix in completions.
 set colored-completion-prefix on
 
-# Be more intelligent when autocompleting (don't re-complete when in the middle of a word)
+# Do not reinsert completion text that is already present after the cursor.
 set skip-completed-text on

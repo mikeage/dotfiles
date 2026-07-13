@@ -16,6 +16,22 @@ safe_source() {
 	[[ -f "$1" && -r "$1" ]] && source "$1"
 }
 
+shopt_safe() {
+	local option
+
+	for option in "$@"; do
+		shopt -s "$option" 2>/dev/null || true
+	done
+}
+
+bind_safe() {
+	local binding
+
+	for binding in "$@"; do
+		bind "$binding" 2>/dev/null || true
+	done
+}
+
 # Platform detection
 if [[ "$(uname)" == "Darwin" ]]; then
 	is_mac=true
@@ -123,19 +139,33 @@ export LC_ALL=en_US.UTF-8
 #######################
 # Shell behavior     #
 #######################
-shopt -s checkwinsize
-shopt -s nocaseglob # Case-insensitive globbing (used in pathname expansion)
-shopt -s cdspell    # Auto-correct typos in cd commands
-shopt -s dirspell   # Auto-correct directory names during completion
+# Update LINES and COLUMNS after each command if the terminal was resized.
+shopt_safe checkwinsize
+# Match globs case-insensitively, e.g. *.jpg also matches .JPG.
+shopt_safe nocaseglob # Case-insensitive globbing (used in pathname expansion)
+# Correct minor spelling mistakes in cd directory names.
+shopt_safe cdspell    # Auto-correct typos in cd commands
+# Correct minor spelling mistakes in directory names during completion.
+shopt_safe dirspell   # Auto-correct directory names during completion
 
 # Shell mode detection for enhanced capabilities
 if is_interactive; then
 	# Immediately add a trailing slash when autocompleting symlinks to directories
-	bind "set mark-symlinked-directories on"
+	bind_safe "set mark-symlinked-directories on"
+	# Tell programs when text is pasted so shells/editors can handle paste safely.
+	bind_safe "set enable-bracketed-paste on"
+	# Use LS_COLORS when Readline prints completion candidates.
+	bind_safe "set colored-stats on"
+	# Show the common completion prefix when cycling through completion candidates.
+	bind_safe "set menu-complete-display-prefix on"
+	# Treat hyphens and underscores as equivalent during case-insensitive completion.
+	bind_safe "set completion-map-case on"
+	# Do not let edits to recalled history entries rewrite the in-memory history line.
+	bind_safe "set revert-all-at-newline on"
 
 	# Enable history expansion with space
 	# E.g. typing !!<space> will replace the !! with your last command
-	bind Space:magic-space
+	bind_safe Space:magic-space
 fi
 
 #######################
@@ -146,8 +176,10 @@ export HISTSIZE=100000000
 # export HISTTIMEFORMAT="%F %T "
 export HISTIGNORE="ls:cd:pwd:exit:date:* --help:clear"
 
-shopt -s histappend # Append to the history file, don't overwrite it
-shopt -s cmdhist    # Save multi-line commands as one line
+# Append commands to the history file instead of overwriting it.
+shopt_safe histappend # Append to the history file, don't overwrite it
+# Store multi-line commands as a single history entry.
+shopt_safe cmdhist    # Save multi-line commands as one line
 
 __prompt_command() {
 	local last_status=$?
@@ -158,6 +190,36 @@ __prompt_command() {
 	else
 		__status_color="${RED:-}"
 	fi
+
+	__prompt_context=""
+	if [[ -n "${HYPERSCALE_ENV:-}" ]]; then
+		__prompt_context+="(e:${HYPERSCALE_ENV}) "
+	fi
+	if [[ -n "${VIRTUAL_ENV:-}" ]]; then
+		__prompt_context+="(py:${VIRTUAL_ENV##*/}) "
+	elif [[ -n "${CONDA_DEFAULT_ENV:-}" ]]; then
+		__prompt_context+="(conda:${CONDA_DEFAULT_ENV}) "
+	fi
+	if [[ -n "${CLOUDSDK_ACTIVE_CONFIG_NAME:-}" ]]; then
+		__prompt_context+="(gcp:${CLOUDSDK_ACTIVE_CONFIG_NAME}) "
+	fi
+
+	__prompt_jobs=""
+	local job_count=0 job
+	while IFS= read -r job; do
+		[[ -n "$job" ]] && ((job_count++))
+	done < <(jobs -p)
+	if ((job_count > 0)); then
+		__prompt_jobs=" [jobs:${job_count}]"
+	fi
+
+	if command -v __git_ps1 >/dev/null 2>&1; then
+		__git_prompt="$(__git_ps1 " {%s}")"
+	else
+		__git_prompt="$(__local_git_ps1 " {%s}")"
+	fi
+
+	PS1='\[\e]0;\u@\h: \w\a\]\[${__status_color}\]${__last_status}\[${CYAN}\] \u@\h \[${GREEN}\]${__prompt_context}\[${RED}\]\w\[${CYAN}\]${__git_prompt}\[${YELLOW}\]${__prompt_jobs}\[${CYAN}\]\$\[${RESET}\] '
 
 	if [[ -t 1 ]] && command_exists tput; then
 		tput rmkx 2>/dev/null || true
@@ -326,10 +388,10 @@ fi
 # In case we don't have the __git_ps1 available, for any reason, at least print the branch
 __local_git_ps1() {
 	local b
-	b="$(git symbolic-ref HEAD 2>/dev/null)"
-	if [ -n "$b" ]; then
+	b="$(git symbolic-ref --quiet --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)"
+	if [[ -n "$b" ]]; then
 		# shellcheck disable=SC2059
-		printf "${1:- (%s)}" "${b##refs/heads/}"
+		printf "${1:- (%s)}" "$b"
 	fi
 }
 
@@ -338,15 +400,6 @@ get_CLOUDSDK_ACTIVE_CONFIG_NAME() {
 }
 
 if is_interactive; then
-	# Use the built-in __git_ps1 if available, otherwise use our local version
-	if command -v __git_ps1 >/dev/null 2>&1; then
-		# shellcheck disable=SC2016
-		GITPS1='$(__git_ps1 " {%s}")'
-	else
-		# shellcheck disable=SC2016
-		GITPS1='$(__local_git_ps1 " {%s}")'
-	fi
-
 	export GIT_PS1_SHOWDIRTYSTATE=1
 	export GIT_PS1_SHOWUNTRACKEDFILES=1
 	export GIT_PS1_SHOWSTASHSTATE=1
@@ -354,19 +407,22 @@ if is_interactive; then
 	if [[ -t 1 ]] && command_exists tput && tput setaf 1 >/dev/null 2>&1; then
 		GREEN="$(tput setaf 2)"
 		RED="$(tput setaf 1)"
-		#YELLOW="$(tput setaf 3)"
+		YELLOW="$(tput setaf 3)"
 		CYAN="$(tput setaf 6)"
-		GRAY="$(tput setaf 7)"
+		RESET="$(tput sgr0)"
 	else
 		GREEN=""
 		RED=""
+		YELLOW=""
 		CYAN=""
-		GRAY=""
+		RESET=""
 	fi
 	__last_status="  0"
 	__status_color="$GREEN"
-
-	PS1='\[${__status_color}\]${__last_status}\[${CYAN}\] \u@\h \[${GREEN}\]${HYPERSCALE_ENV:+(e:${HYPERSCALE_ENV}) }\[${RED}\]\w\[${CYAN}\]'"${GITPS1}"'\$\[${GRAY}\] '
+	__prompt_context=""
+	__prompt_jobs=""
+	__git_prompt=""
+	PS1='\[${__status_color}\]${__last_status}\[${CYAN}\] \u@\h \[${GREEN}\]${__prompt_context}\[${RED}\]\w\[${CYAN}\]${__git_prompt}\[${YELLOW}\]${__prompt_jobs}\[${CYAN}\]\$\[${RESET}\] '
 fi
 
 #######################
