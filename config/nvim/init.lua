@@ -775,7 +775,7 @@ require("lazy").setup({
 									---@type fun(self: CodeCompanion.HTTPAdapter): boolean | boolean
 									enabled = function(self)
 										local model = self.schema.model.default
-										if model:find("5.5") then
+										if model:find("5.6") then
 											return false
 										end
 										return true
@@ -790,20 +790,20 @@ require("lazy").setup({
 				chat = {
 					adapter = {
 						name = "copilot",
-						model = "gpt-5.5",
+						model = "gpt-5.6-sol",
 					},
 					keymaps = { close = { modes = { n = "<NOP>", i = "<NOP>" } }, },
 				},
 				inline = {
 					adapter = {
 						name = "copilot",
-						model = "gpt-5.5",
+						model = "gpt-5.6-sol",
 					},
 				},
 				command = {
 					adapter = {
 						name = "copilot",
-						model = "gpt-5.5",
+						model = "gpt-5.6-sol",
 					},
 				},
 			},
