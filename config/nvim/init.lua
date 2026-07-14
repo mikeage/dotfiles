@@ -46,7 +46,7 @@ local function is_go_version_compatible()
 	major, minor = tonumber(major), tonumber(minor)
 
 	if not major or not minor then return false end
-	return (major > 1) or (major == 1 and minor >= 23)
+	return (major > 1) or (major == 1 and minor >= 25)
 end
 
 local go_is_compatible = is_go_version_compatible()
