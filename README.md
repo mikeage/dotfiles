@@ -51,6 +51,15 @@ git config --global merge.stat true
 git config --global rerere.enabled 1
 ```
 
+If `diff-so-fancy` is available
+
+```
+git config --bool --global diff-so-fancy.stripLeadingSymbols false
+git config --global interactive.diffFilter "diff-so-fancy --patch"
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RF"
+
+```
+
 ## Alacritty Config
 
 ```bash
