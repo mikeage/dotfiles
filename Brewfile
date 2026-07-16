@@ -1,7 +1,6 @@
 tap "akeylesslabs/tap", trusted: true
 tap "borgbackup/tap", trusted: true
 tap "carlocab/personal", trusted: true
-tap "ciruz/tap", trusted: true
 tap "hashicorp/tap", trusted: true
 tap "homebrew-ffmpeg/ffmpeg", trusted: true
 tap "jstkdng/programs", trusted: true
@@ -27,8 +26,6 @@ brew "asciinema"
 brew "python@3.14"
 # Perf monitoring CLI tool for Apple Silicon
 brew "asitop"
-# Protocol definitions and daemon for D-Bus at-spi
-brew "at-spi2-core"
 # Automatic configure script builder
 brew "autoconf"
 # Collection of over 500 reusable autoconf macros
@@ -49,10 +46,6 @@ brew "bash"
 brew "bash-completion@2"
 # Clone of cat(1) with syntax highlighting and Git integration
 brew "bat"
-# Generate compilation database for clang tooling
-brew "bear"
-# Library for USB device access
-brew "libusb"
 # Swiss army knife for network attacks and monitoring
 brew "bettercap"
 # Remove large files or passwords from Git history like git-filter-branch
@@ -67,44 +60,30 @@ brew "binwalk"
 brew "node"
 # Secure and free password manager for all of your devices
 brew "bitwarden-cli"
-# Collection of portable C++ source libraries
-brew "boost"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
 # CD/DVD/Blu-ray premastering and recording software
 brew "cdrtools"
 # Tool to obtain certs from Let's Encrypt and autoenable HTTPS
 brew "certbot"
-# Framework for layout and rendering of i18n text
-brew "pango"
 # Versatile and fast Unicode/ASCII/ANSI graphics renderer
 brew "chafa"
 # Formatting tools for C, C++, Obj-C, Java, JavaScript, TypeScript
 brew "clang-format"
-# Command-line tool for Amazon Route 53
-brew "cli53"
 # Cross-platform make
 brew "cmake"
 # Container runtimes on MacOS (and Linux) with minimal setup
 brew "colima", restart_service: :changed
-# Get a file from an HTTP, HTTPS or FTP server
-brew "curl"
-# Generic library support script
-brew "libtool"
-# Granddaddy of HTML tools, with support for modern standards
-brew "tidy-html5"
-# Dependency Manager for PHP
-brew "composer"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Tool for browsing source code
 brew "cscope"
 # Reimplementation of ctags(1)
 brew "ctags"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
 # Tools to work with Android .dex and Java .class files
 brew "dex2jar"
-# Display user-friendly message boxes from shell scripts
-brew "dialog"
 # Good-lookin' diffs with diff-highlight and more
 brew "diff-so-fancy"
 # Tool for exploring each layer in a docker image
@@ -123,36 +102,22 @@ brew "gnu-tar"
 brew "dpkg"
 # Simple command-line tool for creating clusters on Amazon EKS
 brew "eksctl"
-# LLVM bytecode to JavaScript compiler
-brew "emscripten"
-# Pseudorandom number sequence test program
-brew "ent"
 # AST-based pattern checker for JavaScript
 brew "eslint"
 # Perl lib for reading and writing EXIF metadata
 brew "exiftool"
-# ISO AAC audio encoder
-brew "faac"
-# ISO AAC audio decoder
-brew "faad2"
 # Powerful, clean, object-oriented scripting language
-brew "ruby", link: false
+brew "ruby"
 # Easiest way to build and release mobile apps
 brew "fastlane"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
-# High quality MPEG Audio Layer III (MP3) encoder
-brew "lame"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
-# C routines to compute the Discrete Fourier Transform
-brew "fftw"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # GNU awk utility
 brew "gawk"
-# Easily access your Google Calendar(s) from a command-line
-brew "gcalcli"
 # Disk usage analyzer with console interface written in Go
 brew "gdu"
 # GitHub command-line tool
@@ -175,28 +140,10 @@ brew "gnupg"
 brew "gnuplot"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
-# Package compiler and linker metadata toolkit
-brew "pkgconf"
 # Open-source build automation tool based on the Groovy and Kotlin DSL
 brew "gradle"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
-# Toolkit for creating graphical user interfaces
-brew "gtk+3"
-# Subtitle renderer for the ASS/SSA subtitle format
-brew "libass"
-# Data and connectivity library for the Icecast server
-brew "libshout"
-# HTTP client/server library for GNOME
-brew "libsoup"
-# Portable SCTP userland stack
-brew "libusrsctp"
-# Audio compression format and tools
-brew "musepack"
-# Implementation of the Secure Real-time Transport Protocol
-brew "srtp"
-# Audio metadata library
-brew "taglib"
 # Development framework for multimedia applications
 brew "gstreamer"
 # Improved top (interactive process viewer)
@@ -209,8 +156,6 @@ brew "inetutils"
 brew "innoextract"
 # Offline radio signal analyser
 brew "inspectrum"
-# Modular IRC client
-brew "irssi"
 # Dex to Java decompiler
 brew "jadx"
 # Command-line interface for JFrog products
@@ -225,18 +170,6 @@ brew "kompose"
 brew "kubernetes-cli"
 # Sophisticated file transfer program
 brew "lftp"
-# Configuration file processing library
-brew "libconfig"
-# ELF object file access library
-brew "libelf"
-# Provides library functionality for FIDO U2F & FIDO 2.0, including USB
-brew "libfido2"
-# Implementation of the file(1) command
-brew "libmagic"
-# Use Realtek DVB-T dongles as a cheap SDR
-brew "librtlsdr"
-# Package manager for the Lua programming language
-brew "luarocks"
 # Sudoless performance monitoring for Apple Silicon processors
 brew "macmon"
 # Mac App Store command-line interface
@@ -257,14 +190,8 @@ brew "mosquitto"
 brew "yt-dlp"
 # Media player based on MPlayer and mplayer2
 brew "mpv"
-# Multiple Repository management tool
-brew "mr"
-# NCurses Disk Usage
-brew "ncdu"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-# No Nonsense Neovim Client in Rust
-brew "neovide"
 # Utility for managing network connections
 brew "netcat"
 # Port scanning utility for large networks
@@ -275,34 +202,18 @@ brew "nvm"
 brew "ollama", restart_service: :changed
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
-# Swiss-army knife of markup format conversion
-brew "pandoc"
-# Check coding standards in PHP, JavaScript and CSS
-brew "php-code-sniffer"
-# Minimal dumb-terminal emulation program
-brew "picocom"
-# PDF rendering library (based on the xpdf-3.0 code base)
-brew "poppler"
 # Cross-platform library for audio I/O
 brew "portaudio"
-# Object-relational database system
-brew "postgresql@18"
 # Fast Git hook manager written in Rust, drop-in alternative to pre-commit
 brew "prek"
 # Code formatter for JavaScript, CSS, JSON, GraphQL, Markdown, YAML
 brew "prettier"
-# Parallel versions of OpenSSH and related tools
-brew "pssh"
-# Show ps output as a tree
-brew "pstree"
 # Sound system for POSIX OSes
 brew "pulseaudio"
 # Command-line interface for qBittorrent written in Go
 brew "qbittorrent-cli"
 # Generic machine emulator and virtualizer
 brew "qemu"
-# Tools for and transforming and inspecting PDF files
-brew "qpdf"
 # Reverse engineering framework
 brew "radare2"
 # Ruby version manager
@@ -337,8 +248,6 @@ brew "smartmontools"
 brew "socat"
 # Editor of encrypted files
 brew "sops"
-# SOund eXchange: universal sound sample translator
-brew "sox"
 # Compressed read-only file system for Linux
 brew "squashfs"
 # Non-interactive SSH password auth
@@ -349,12 +258,10 @@ brew "st"
 brew "stern"
 # CLI for extracting streams from various websites to a video player
 brew "streamlink"
-# Implementation of the STUN protocol
-brew "stuntman"
 # Version control system designed to be a better CVS
 brew "subversion"
-# MUD client
-brew "tintin"
+# Granddaddy of HTML tools, with support for modern standards
+brew "tidy-html5"
 # Terminal multiplexer
 brew "tmux"
 # Parser generator tool
@@ -363,10 +270,6 @@ brew "tree-sitter-cli"
 brew "urlview"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
-# Tool for creating isolated virtual python environments
-brew "virtualenv"
-# Generator for LS_COLORS with support for multiple color themes
-brew "vivid"
 # Web Assembly Binary Toolkit
 brew "wabt"
 # Executes a program periodically, showing output fullscreen
@@ -409,8 +312,6 @@ brew "teamookla/speedtest/speedtest"
 brew "wswenyue/apkparser/apkparser"
 # View, print, and comment on PDF documents
 cask "adobe-acrobat-reader"
-# macOS menu bar app for monitoring ADS-B stations
-cask "ciruz/tap/adsbar"
 # Menu bar tool to limit maximum charging percentage
 cask "aldente"
 # Android SDK component
@@ -423,8 +324,6 @@ cask "araxis-merge"
 cask "audacity"
 # Tool to flash OS images to SD cards & USB drives
 cask "balenaetcher"
-# 3D model slicing software for 3D printers, maintained by Bambu Lab
-cask "bambu-studio"
 # Compact TeX distribution as alternative to the full TeX Live / MacTeX
 cask "basictex"
 # E-books management software
@@ -433,12 +332,8 @@ cask "calibre"
 cask "charles"
 # OpenAI's official ChatGPT desktop app
 cask "chatgpt"
-# Tool to show live information about the batteries in various devices
-cask "coconutbattery"
 # OpenAI's coding agent that runs in your terminal
 cask "codex"
-# OpenAI's Codex desktop app for managing coding agents
-cask "codex-app"
 # Tool to run Windows software
 cask "crossover"
 # Reverse engineering platform powered by Rizin
@@ -467,8 +362,6 @@ cask "google-chrome@beta"
 cask "gqrx"
 # Graphically shows disk usage within a file system
 cask "grandperspective"
-# Desktop automation application
-cask "hammerspoon"
 # Standalone Java Decompiler GUI
 cask "jd-gui"
 # Jellyfin desktop client
