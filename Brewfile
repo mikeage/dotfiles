@@ -9,6 +9,7 @@ tap "mongodb/brew", trusted: true
 tap "osx-cross/avr", trusted: true
 tap "supersonic-app/supersonic", trusted: true
 tap "teamookla/speedtest", trusted: true
+tap "ustinka/rar"
 tap "wswenyue/apkparser", trusted: true
 # Simple, modern, secure file encryption
 brew "age"
@@ -144,6 +145,8 @@ brew "go"
 brew "gradle"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# Audio metadata library
+brew "taglib"
 # Development framework for multimedia applications
 brew "gstreamer"
 # Improved top (interactive process viewer)
@@ -342,8 +345,6 @@ cask "cutter"
 cask "db-browser-for-sqlite"
 # Voice and text chat software
 cask "discord"
-# Disk usage utility
-cask "disk-inventory-x"
 # Developer platform
 cask "dotnet-sdk"
 # Matrix collaboration client
@@ -362,8 +363,6 @@ cask "google-chrome@beta"
 cask "gqrx"
 # Graphically shows disk usage within a file system
 cask "grandperspective"
-# Standalone Java Decompiler GUI
-cask "jd-gui"
 # Jellyfin desktop client
 cask "jellyfin-media-player"
 # Note taking and to-do application with synchronisation capabilities
@@ -401,7 +400,7 @@ cask "orcaslicer"
 # Collaboration platform for API development
 cask "postman"
 # Archive manager for data compression and backups
-cask "rar"
+cask "ustinka/rar/rar", trusted: true
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
 # Open source virtual/remote desktop application
@@ -469,12 +468,10 @@ uv "abxrcli"
 uv "aws-sso"
 uv "black"
 uv "data-hacks3"
-uv "esphome"
 uv "flake8"
 uv "isort"
 uv "jinjanator"
 uv "llm", with: ["llm-gemini", "llm-ollama"]
-uv "llm-benchmark"
 uv "mcp-proxy"
 uv "nb-clean"
 uv "platformio"
@@ -483,6 +480,4 @@ uv "qbit-manage"
 uv "reclaim", source: "git+https://github.com/CorrosiveTruths/t_balance.git"
 uv "sebastientromp-chat-downloader"
 uv "static-ffmpeg"
-uv "transcribe-anything"
-uv "whisperx"
 uv "yamlfix"
