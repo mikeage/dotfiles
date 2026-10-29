@@ -426,7 +426,6 @@ require("lazy").setup({
 		opts = {},
 	},
 	{ "kshenoy/vim-signature" }, -- Display and navigate marks
-	{ 'numToStr/Comment.nvim' },
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
