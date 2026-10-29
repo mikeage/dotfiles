@@ -107,6 +107,7 @@ fi
 # Additional core paths
 prepend_path "/usr/local/sbin"
 append_path "$HOME/.local/bin"
+append_path "$HOME/.cargo/bin"
 
 # Go settings
 if [[ -d "$HOME/go" ]]; then
