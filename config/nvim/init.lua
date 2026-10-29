@@ -10,7 +10,7 @@ if not uv.fs_stat(lazypath) then
 	if vim.v.shell_error ~= 0 then
 		vim.api.nvim_echo({
 			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-			{ result, "WarningMsg" },
+			{ result,                         "WarningMsg" },
 		}, true, {})
 		return
 	end
@@ -209,7 +209,7 @@ require("lazy").setup({
 		"esmuellert/vscode-diff.nvim",
 		dependencies = { "MunifTanjim/nui.nvim" },
 	},
-	{ "mikeage/occur.vim" },       -- Show all lines matching a pattern in a buffer
+	{ "mikeage/occur.vim" }, -- Show all lines matching a pattern in a buffer
 	{
 		'nvim-telescope/telescope-ui-select.nvim',
 		dependencies = { "nvim-telescope/telescope.nvim" },
