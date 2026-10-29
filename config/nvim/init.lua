@@ -904,6 +904,24 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter", -- Syntax highlighting and code parsing
 		lazy = false,
 		build = ":TSUpdate",
+		config = function()
+			require("nvim-treesitter").install({
+				"bash", "c", "cpp", "go", "javascript", "json", "jsonc",
+				"lua", "markdown", "markdown_inline", "python", "tsx",
+				"typescript", "yaml",
+			})
+
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = {
+					"sh", "c", "cpp", "go", "javascript", "javascriptreact",
+					"json", "jsonc", "lua", "markdown", "python",
+					"typescript", "typescriptreact", "yaml",
+				},
+				callback = function(args)
+					pcall(vim.treesitter.start, args.buf)
+				end,
+			})
+		end,
 	},
 	{
 		"HiPhish/rainbow-delimiters.nvim", -- Rainbow parentheses for nested structures
