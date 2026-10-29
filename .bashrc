@@ -66,7 +66,9 @@ prepend_path() {
 	# Wrap PATH in ':' to make whole-component removal easier
 	local p=":${PATH}:"
 	# Remove ALL existing occurrences of the directory
-	p="${p//:$dir:/:}"
+	while [[ "$p" == *":$dir:"* ]]; do
+		p="${p//:"$dir":/:}"
+	done
 
 	# Trim leading and trailing colons
 	p="${p#:}"
@@ -357,13 +359,14 @@ if [[ -n "${HOMEBREW_PREFIX}" ]]; then
 	__gcloud_completion_loaded=false
 	__load_gcloud_completion() {
 		if ! $__gcloud_completion_loaded; then
-			safe_source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/completion.bash.inc"
+			safe_source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/completion.bash.inc" || return 1
 			__gcloud_completion_loaded=true
 		fi
 	}
 	__gcloud_lazy_complete() {
-		__load_gcloud_completion
-		case "${COMP_WORDS[0]}" in
+		COMPREPLY=()
+		__load_gcloud_completion || return 1
+		case "${1##*/}" in
 			bq)
 				_bq_completer "$@"
 				;;
@@ -441,7 +444,14 @@ if command_exists tmux; then
 
 	# When reconnecting a tmux session, the DISPLAY variable will retain it's previous value. This fixes that.
 	if [[ -n "$TMUX" ]]; then
-		alias fix_display='eval export $(tmux show-environment | command grep "^DISPLAY=")'
+		fix_display() {
+			local display_env
+			display_env="$(tmux show-environment DISPLAY)" || return
+			case "$display_env" in
+				DISPLAY=*) export DISPLAY="${display_env#DISPLAY=}" ;;
+				-DISPLAY) unset DISPLAY ;;
+			esac
+		}
 	fi
 fi
 
@@ -545,8 +555,8 @@ y() {
 		return 1
 	fi
 
-	# shellcheck disable=SC2155
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd yazi_status
+	local tmp cwd yazi_status
+	tmp="$(mktemp -t "yazi-cwd.XXXXXX")" || return 1
 	yazi "$@" --cwd-file="$tmp"
 	yazi_status=$?
 	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
