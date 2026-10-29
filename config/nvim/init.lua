@@ -764,47 +764,23 @@ require("lazy").setup({
 			"j-hui/fidget.nvim",
 		},
 		opts = {
-			-- The entire adapters section is from https://github.com/olimorris/codecompanion.nvim/issues/2884#issuecomment-4207100934 and relates to the "top_p is not supported with this model" error.
-			adapters = {
-				http = {
-					copilot = function()
-						return require("codecompanion.adapters").extend("copilot", {
-							-- https://codecompanion.olimorris.dev/configuration/adapters-http#changing-adapter-schema
-							schema = {
-								top_p = {
-									---@type fun(self: CodeCompanion.HTTPAdapter): boolean | boolean
-									enabled = function(self)
-										local model = self.schema.model.default
-										if model:find("5.6") then
-											return false
-										end
-										return true
-									end
-								},
-							},
-						})
-					end,
-				},
-			},
 			interactions = {
 				chat = {
 					adapter = {
 						name = "copilot",
-						model = "gpt-5.6-sol",
+						model = "gpt-6-sol",
 					},
-					keymaps = { close = { modes = { n = "<NOP>", i = "<NOP>" } }, },
+					keymaps = {
+						close = {
+							modes = { n = "<NOP>", i = "<NOP>" },
+						},
+					},
 				},
 				inline = {
-					adapter = {
-						name = "copilot",
-						model = "gpt-5.6-sol",
-					},
+					adapter = "copilot",
 				},
 				command = {
-					adapter = {
-						name = "copilot",
-						model = "gpt-5.6-sol",
-					},
+					adapter = "copilot",
 				},
 			},
 			opts = {
@@ -815,26 +791,6 @@ require("lazy").setup({
 					provider = "telescope"
 				}
 			},
-			actions = {
-				{
-					name = "Explain this function",
-					handler = function(selection)
-						return "Please explain what this function does in simple terms:\n\n" .. selection.text
-					end,
-				},
-				{
-					name = "Find bugs",
-					handler = function(selection)
-						return "Identify any bugs or issues in this code:\n\n" .. selection.text
-					end,
-				},
-				{
-					name = "Optimize this code",
-					handler = function(selection)
-						return "Suggest optimizations for this code:\n\n" .. selection.text
-					end,
-				},
-			}
 		},
 		keys = {
 			{ "<C-a>",          "<cmd>CodeCompanionActions<cr>",     mode = { "n", "v" }, desc = "CodeCompanion Actions" },
