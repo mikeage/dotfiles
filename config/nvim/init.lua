@@ -843,21 +843,30 @@ require("lazy").setup({
 			end
 
 			function M:create_progress_handle(request)
+				local data = request.data or {}
+				local interaction = data.interaction or "internal"
+				local adapter = data.adapter or {}
+
 				return progress.handle.create({
-					title = " Requesting assistance (" .. request.data.interaction .. ")",
+					title = " Requesting assistance (" .. interaction .. ")",
 					message = "In progress...",
 					lsp_client = {
-						name = M:llm_role_title(request.data.adapter),
+						name = M:llm_role_title(adapter),
 					},
 				})
 			end
 
 			function M:llm_role_title(adapter)
-				local parts = {}
-				table.insert(parts, adapter.formatted_name)
+				adapter = adapter or {}
+
+				local parts = {
+					tostring(adapter.formatted_name or adapter.name or "CodeCompanion"),
+				}
+
 				if adapter.model and adapter.model ~= "" then
-					table.insert(parts, "(" .. adapter.model .. ")")
+					table.insert(parts, "(" .. tostring(adapter.model) .. ")")
 				end
+
 				return table.concat(parts, " ")
 			end
 
