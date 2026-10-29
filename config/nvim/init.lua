@@ -31,13 +31,6 @@ local function command_output(cmd)
 	return result
 end
 
-local function command_major_version(cmd, pattern)
-	local result = command_output(cmd)
-	if not result or result == "" then return nil end
-
-	return tonumber(result:match(pattern))
-end
-
 local function is_go_version_compatible()
 	local result = command_output({ "go", "version" })
 	if not result or result == "" then return false end
@@ -50,11 +43,6 @@ local function is_go_version_compatible()
 end
 
 local go_is_compatible = is_go_version_compatible()
-
-local function is_node_version_compatible()
-	local major = command_major_version({ "node", "-v" }, "v(%d+)")
-	return major ~= nil and major >= 20
-end
 
 local function configure_lsp_servers()
 	vim.lsp.config("*", {
@@ -172,6 +160,7 @@ require("lazy").setup({
 	{
 		"folke/which-key.nvim", -- Displays popup with possible key bindings
 		dependencies = { "nvim-tree/nvim-web-devicons", "echasnovski/mini.icons" },
+		opts = {},
 	},
 
 	-- -------------------------------------------------------------------
@@ -590,7 +579,7 @@ require("lazy").setup({
 			end
 			return {
 				ensure_installed = tools,
-				auto_update = true,
+				auto_update = false,
 				run_on_start = true,
 			}
 		end,
@@ -686,7 +675,6 @@ require("lazy").setup({
 	{
 		'zbirenbaum/copilot.lua', -- GitHub Copilot integration
 		cmd = 'Copilot',
-		enabled = is_node_version_compatible,
 		event = 'InsertEnter',
 		opts = {
 			filetypes = {
@@ -781,7 +769,7 @@ require("lazy").setup({
 				},
 			},
 			opts = {
-				log_level = "DEBUG",
+				log_level = "WARN",
 			},
 			display = {
 				action_palette = {
