@@ -1061,20 +1061,19 @@ if vim.g.neovide then
 	vim.keymap.set('i', '<D-v>', '<ESC>l"+Pli') -- Paste insert mode
 end
 
--- Toggle diagnostics for all lines or just the current line
+-- Toggle diagnostics between the current line and all lines
 local default_diagnostic_config = {
 	float = { border = "rounded" },
 	virtual_text = false,
-	virtual_lines = false
+	virtual_lines = { current_line = true },
 }
 vim.diagnostic.config(default_diagnostic_config)
 vim.keymap.set('n', '<leader>ll', function()
-	if vim.diagnostic.config().virtual_lines == true then
-		vim.diagnostic.config(default_diagnostic_config)
-	else
-		vim.diagnostic.config({ virtual_lines = true })
-	end
-end, { desc = "Toggle showing all diagnostics or just the current line's" })
+	local show_all_lines = vim.diagnostic.config().virtual_lines == true
+	vim.diagnostic.config({
+		virtual_lines = show_all_lines and { current_line = true } or true,
+	})
+end, { desc = "Toggle current-line/all-line diagnostics" })
 
 -- LSP Navigation keymaps
 vim.api.nvim_create_autocmd('LspAttach', {
