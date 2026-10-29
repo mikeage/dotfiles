@@ -235,14 +235,14 @@ require("lazy").setup({
 			},
 			extensions = {
 				["ui-select"] = {
-					-- Use a simple table here instead of requiring themes directly
-					theme = "dropdown",
+					-- Apply the dropdown theme after Telescope is loaded.
 				},
 			},
 		},
 		config = function(_, opts)
 			-- First setup with the opts
 			local telescope = require("telescope")
+			opts.extensions["ui-select"] = require("telescope.themes").get_dropdown(opts.extensions["ui-select"])
 			telescope.setup(opts)
 			-- Then load extensions
 			require("lazy").load({ plugins = { "telescope-ui-select.nvim" } })
@@ -496,15 +496,13 @@ require("lazy").setup({
 			},
 		},
 		config = function(_, opts)
-			-- Setup base configuration
-			require("yanky").setup(opts)
-
 			-- Configure telescope mappings inside the config function
 			local mapping = require("yanky.telescope.mapping")
 			require("telescope").load_extension("yank_history")
 
 			-- Configure telescope picker
-			require("yanky").setup({
+			-- Setup base configuration together with the picker to preserve all options.
+			require("yanky").setup(vim.tbl_deep_extend("force", opts, {
 				picker = {
 					telescope = {
 						use_default_mappings = false,
@@ -525,7 +523,7 @@ require("lazy").setup({
 						}
 					}
 				}
-			})
+			}))
 
 			-- Default yanky keymaps
 			vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
@@ -914,7 +912,7 @@ require("lazy").setup({
 		build = ":TSUpdate",
 		config = function()
 			require("nvim-treesitter").install({
-				"bash", "c", "cpp", "go", "javascript", "json", "jsonc",
+				"bash", "c", "cpp", "go", "javascript", "json",
 				"lua", "markdown", "markdown_inline", "python", "tsx",
 				"typescript", "yaml",
 			})
@@ -1032,7 +1030,7 @@ vim.opt.wildignore:append("*~,*.pyc")
 local toggle_quickfix = function()
 	local is_open = false
 	for _, win in ipairs(vim.fn.getwininfo()) do
-		if win.quickfix == 1 then
+		if win.quickfix == 1 and win.loclist == 0 and win.tabnr == vim.fn.tabpagenr() then
 			is_open = true
 			break
 		end
@@ -1104,7 +1102,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		-- LSP actions (<leader>l prefix)
 		vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, opts)
 		vim.keymap.set({ 'n', 'v' }, "<leader>la", vim.lsp.buf.code_action, opts)
-		vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format({ async = true }) end, opts)
+		vim.keymap.set("n", "<leader>lf", "<cmd>Format<CR>", opts)
 
 		-- Symbols & outline navigation
 		vim.keymap.set("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<CR>", opts)
@@ -1126,7 +1124,7 @@ vim.api.nvim_create_user_command('GenCompileCommands', function()
 		local function scan(dir)
 			for _, name in ipairs(vim.fn.readdir(dir)) do
 				local path = dir .. '/' .. name
-				local stat = uv.fs_stat(path)
+				local stat = uv.fs_lstat(path)
 				if stat then
 					if stat.type == 'directory' and name ~= '.git' and name ~= '.svn' then
 						scan(path)
