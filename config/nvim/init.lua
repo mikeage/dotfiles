@@ -896,6 +896,7 @@ require("lazy").setup({
 	-- -------------------------------------------------------------------
 	{
 		"nvim-treesitter/nvim-treesitter", -- Syntax highlighting and code parsing
+		branch = "main",
 		lazy = false,
 		build = ":TSUpdate",
 		config = function()
