@@ -23,8 +23,6 @@ brew "aria2"
 brew "arp-scan"
 # Record and share terminal sessions
 brew "asciinema"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.14"
 # Perf monitoring CLI tool for Apple Silicon
 brew "asitop"
 # Automatic configure script builder
@@ -53,8 +51,8 @@ brew "bettercap"
 brew "bfg"
 # GNU binary tools for native development
 brew "binutils"
-# 7-Zip (high compression file archiver) implementation
-brew "p7zip"
+# 7-Zip is a file archiver with a high compression ratio
+brew "sevenzip"
 # Searches a binary image for embedded files and executable code
 brew "binwalk"
 # Open-source, cross-platform JavaScript runtime environment
@@ -205,6 +203,8 @@ brew "nvm"
 brew "ollama", restart_service: :changed
 # OpenBSD freely-licensed SSH connectivity tools
 brew "openssh"
+# 7-Zip (high compression file archiver) implementation
+brew "p7zip"
 # Cross-platform library for audio I/O
 brew "portaudio"
 # Fast Git hook manager written in Rust, drop-in alternative to pre-commit
@@ -213,6 +213,8 @@ brew "prek"
 brew "prettier"
 # Sound system for POSIX OSes
 brew "pulseaudio"
+# Interpreted, interactive, object-oriented programming language
+brew "python@3.14"
 # Command-line interface for qBittorrent written in Go
 brew "qbittorrent-cli"
 # Generic machine emulator and virtualizer
@@ -237,8 +239,6 @@ brew "runme"
 brew "rust"
 # Display and control your Android device
 brew "scrcpy"
-# 7-Zip is a file archiver with a high compression ratio
-brew "sevenzip"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
 # Autoformat shell script source code
@@ -294,25 +294,25 @@ brew "yazi"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # Akeyless CLI
-brew "akeylesslabs/tap/akeyless"
+brew "akeylesslabs/tap/akeyless", trusted: true
 # Deduplicating archiver with compression and authenticated encryption
-brew "borgbackup/tap/borgbackup-fuse"
+brew "borgbackup/tap/borgbackup-fuse", trusted: true
 # Packer
-brew "hashicorp/tap/packer"
+brew "hashicorp/tap/packer", trusted: true
 # Terraform
-brew "hashicorp/tap/terraform"
+brew "hashicorp/tap/terraform", trusted: true
 # Drop in replacement for ueberzug written in C++
-brew "jstkdng/programs/ueberzugpp"
+brew "jstkdng/programs/ueberzugpp", trusted: true
 # High-performance, schema-free, document-oriented database
-brew "mongodb/brew/mongodb-community"
+brew "mongodb/brew/mongodb-community", trusted: true
 # GNU compiler collection for AVR 8-bit and 32-bit Microcontrollers
-brew "osx-cross/avr/avr-gcc@14", link: true
+brew "osx-cross/avr/avr-gcc@14", link: true, trusted: true
 # GNU compiler collection for AVR 8-bit and 32-bit Microcontrollers
-brew "osx-cross/avr/avr-gcc@9", link: false
+brew "osx-cross/avr/avr-gcc@9", link: false, trusted: true
 # Ookla Speedtest
-brew "teamookla/speedtest/speedtest"
+brew "teamookla/speedtest/speedtest", trusted: true
 # Android apk file parsing tool
-brew "wswenyue/apkparser/apkparser"
+brew "wswenyue/apkparser/apkparser", trusted: true
 # View, print, and comment on PDF documents
 cask "adobe-acrobat-reader"
 # Menu bar tool to limit maximum charging percentage
@@ -339,8 +339,6 @@ cask "chatgpt"
 cask "codex"
 # Tool to run Windows software
 cask "crossover"
-# Reverse engineering platform powered by Rizin
-cask "cutter"
 # Browser for SQLite databases
 cask "db-browser-for-sqlite"
 # Voice and text chat software
@@ -409,8 +407,6 @@ cask "rustdesk"
 cask "steam"
 # Command-line client for Steam
 cask "steamcmd"
-# A lightweight and full-featured cross-platform desktop client for self-hosted music servers
-cask "supersonic-app/supersonic/supersonic"
 # Replacement for RCDefaultApps, written in Swift
 cask "swiftdefaultappsprefpane"
 # Mesh VPN based on WireGuard
@@ -424,7 +420,7 @@ cask "thumbhost3mf"
 # Customizable email client
 cask "thunderbird"
 # Turn your MacBook's trackpad into a precise digital weighing scale
-cask "krishkrosh/apps/trackweight"
+cask "krishkrosh/apps/trackweight", trusted: true
 # Open-source code editor
 cask "visual-studio-code"
 # Multimedia player
@@ -433,7 +429,7 @@ cask "vlc"
 cask "whatsapp"
 # Network protocol analyzer
 cask "wireshark-app"
-# Photo viewer, image manager, image resiser and more
+# Photo viewer and image manager
 cask "xnviewmp"
 # Open-source version of the X.Org X Window System
 cask "xquartz"
@@ -441,7 +437,6 @@ cask "xquartz"
 cask "zoom"
 mas "Amphetamine", id: 937984704
 mas "Bitwarden", id: 1352778147
-mas "karakeeper Bookmarker", id: 6746722790
 mas "Speedtest", id: 1153157709
 mas "udm14 for Safari", id: 6520379591
 mas "Universal Print", id: 6450432292
