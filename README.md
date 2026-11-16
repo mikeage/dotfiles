@@ -49,6 +49,7 @@ git config --global core.preloadindex true
 git config --global diff.mnemonicprefix true
 git config --global merge.stat true
 git config --global rerere.enabled 1
+git config --global core.excludesfile ~/.cvsignore
 ```
 
 If `diff-so-fancy` is available
@@ -58,6 +59,14 @@ git config --bool --global diff-so-fancy.stripLeadingSymbols false
 git config --global interactive.diffFilter "diff-so-fancy --patch"
 git config --global core.pager "diff-so-fancy | less --tabs=4 -RF"
 
+```
+
+If `Araxis Merge` is available
+
+```
+git config --global diff.tool araxis
+git config --global difftool.araxis.path /opt/homebrew/bin/araxiscompare
+git config --global mergetool.araxis.path /opt/homebrew/bin/araxiscompare
 ```
 
 ## Alacritty Config
