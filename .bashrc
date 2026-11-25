@@ -317,6 +317,12 @@ source_completion_dir() {
 	fi
 }
 
+# Load Google Cloud SDK paths for all shells; completions only for interactive shells.
+if [[ -n "$HOMEBREW_PREFIX" ]]; then
+	safe_source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.bash.inc"
+fi
+
+if is_interactive; then
 # Common completion paths to try
 completion_paths=(
 	"/usr/local/etc/bash_completion"
@@ -378,13 +384,10 @@ if [[ -n "${HOMEBREW_PREFIX}" ]]; then
 	}
 	complete -o nospace -F __gcloud_lazy_complete gcloud gsutil
 	complete -F __gcloud_lazy_complete bq
-	safe_source "${HOMEBREW_PREFIX}/share/google-cloud-sdk/path.bash.inc"
-
-	# Modules completion
-	if [[ -d "${HOMEBREW_PREFIX}/Cellar/modules" ]]; then
-		safe_source "${HOMEBREW_PREFIX}/Cellar/modules"/*/init/bash_completion
-	fi
+	# Modules completion (use Homebrew's stable opt symlink)
+	safe_source "${HOMEBREW_PREFIX}/opt/modules/init/bash_completion"
 fi
+fi # interactive completion
 
 #######################
 # Prompt configuration#
@@ -440,7 +443,9 @@ if command_exists tmux; then
 			echo "Usage: tmuxify <command>" >&2
 			return 1
 		fi
-		tmux new-session -A -s "$*" "exec $*"
+		local command
+		printf -v command '%q ' "$@"
+		tmux new-session -A -s "$*" "exec ${command% }"
 	}
 
 	# When reconnecting a tmux session, the DISPLAY variable will retain it's previous value. This fixes that.
@@ -500,11 +505,13 @@ export FZF_DEFAULT_OPTS="--height 40% --border"
 export FZF_CTRL_T_OPTS="--preview '$FZF_PREVIEW_COMMAND' --preview-window=right:60%"
 export FZF_ALT_C_OPTS="--preview 'ls -la {}'"
 
-# Source fzf-git.sh safely
-safe_source "${BASHRC_DIR}/fzf-git.sh/fzf-git.sh"
-safe_source ~/.fzf.bash
-safe_source ~/.iterm2_shell_integration.bash
-safe_source /usr/share/doc/fzf/examples/key-bindings.bash
+# Source interactive fzf bindings and shell integration
+if is_interactive; then
+	safe_source "${BASHRC_DIR}/fzf-git.sh/fzf-git.sh"
+	safe_source ~/.fzf.bash
+	safe_source ~/.iterm2_shell_integration.bash
+	safe_source /usr/share/doc/fzf/examples/key-bindings.bash
+fi
 
 #######################
 # Module system       #
@@ -522,14 +529,16 @@ fi
 #######################
 # Third-party tools   #
 #######################
-# thefuck
-if command_exists thefuck; then
-	eval "$(thefuck --alias oof)"
-fi
+# Interactive-only shell helpers
+if is_interactive; then
+	if command_exists thefuck; then
+		eval "$(thefuck --alias oof)"
+	fi
 
-# if command_exists rbenv; then
-# 	eval "$(rbenv init - --no-rehash bash)"
-# fi
+	if command_exists rbenv; then
+		eval "$(rbenv init - --no-rehash bash)"
+	fi
+fi
 
 # NVM (lazy loading)
 nvm() {
