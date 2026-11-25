@@ -16,7 +16,7 @@ ln -s ~/dotfiles/{.inputrc,.bashrc,.cvsignore,.rsync-exclude,.pylintrc,.zshrc} ~
 rm .bash_profile
 ln -s .bashrc .bash_profile
 mkdir -p ~/.config
-ln -s ~/dotfiles/config/{nvim,alacritty,tmux,yazi,kitty,karabiner,tqm} ~/.config/
+ln -s ~/dotfiles/config/{nvim,tmux,yazi,kitty,karabiner,tqm} ~/.config/
 
 ```
 ```
@@ -67,10 +67,4 @@ If `Araxis Merge` is available
 git config --global diff.tool araxis
 git config --global difftool.araxis.path /opt/homebrew/bin/araxiscompare
 git config --global mergetool.araxis.path /opt/homebrew/bin/araxiscompare
-```
-
-## Alacritty Config
-
-```bash
-wget https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info && tic -xe alacritty,alacritty-direct alacritty.info && rm alacritty.info
 ```
