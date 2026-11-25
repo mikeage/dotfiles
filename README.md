@@ -38,6 +38,12 @@ rm -rf ~/fonts-to-patch
 
 Download from https://github.com/thep0y/monaco-nerd-font, and choose MonacoNerdFontMono.zip
 
+## Mac setup
+
+```bash
+tmp=$(mktemp)
+jq --arg dir "$(brew --prefix)/lib/docker/cli-plugins" '.cliPluginsExtraDirs = ((.cliPluginsExtraDirs // []) + [$dir] | unique)' ~/.docker/config.json > "$tmp" && mv "$tmp" ~/.docker/config.json
+```
 ## Git config
 
 ```bash
